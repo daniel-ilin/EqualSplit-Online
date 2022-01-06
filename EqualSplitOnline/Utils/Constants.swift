@@ -1,8 +1,1 @@
-//
-//  Constants.swift
-//  EqualSplitOnline
-//
-//  Created by Daniel Ilin on 30.12.2021.
-//
-
-import Foundation
+let API_URL = "http://localhost:5000"

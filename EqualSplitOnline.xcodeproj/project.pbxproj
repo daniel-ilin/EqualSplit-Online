@@ -7,23 +7,77 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07E6BC40A22A1826DA2027AB /* Pods_EqualSplitOnline.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC418417459CA5F7B6F5837B /* Pods_EqualSplitOnline.framework */; };
+		650C107827828AD600549DA6 /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C107727828AD600549DA6 /* SessionService.swift */; };
+		650C107E27839F0000549DA6 /* HighlightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C107D27839F0000549DA6 /* HighlightButton.swift */; };
+		650C10822783A31600549DA6 /* IntToMoney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C10812783A31600549DA6 /* IntToMoney.swift */; };
+		650C10842783A83400549DA6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C10832783A83400549DA6 /* MainViewController.swift */; };
+		650C10862783A84100549DA6 /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C10852783A84100549DA6 /* UsersTableViewController.swift */; };
+		650C10882783A85600549DA6 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C10872783A85600549DA6 /* UserTableViewCell.swift */; };
+		650C108A2783A8B600549DA6 /* LineDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C10892783A8B600549DA6 /* LineDrawer.swift */; };
+		650C108C2783AD3900549DA6 /* GradientMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C108B2783AD3900549DA6 /* GradientMaker.swift */; };
+		650C10902783D0DA00549DA6 /* MoneyCountLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C108F2783D0DA00549DA6 /* MoneyCountLabel.swift */; };
+		650C109A2784939E00549DA6 /* AddUserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C10992784939E00549DA6 /* AddUserTableViewController.swift */; };
+		65222C9B277E5F9F007D2B01 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65222C9A277E5F9F007D2B01 /* RegistrationController.swift */; };
+		65222C9D277E5FBF007D2B01 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65222C9C277E5FBF007D2B01 /* LoginController.swift */; };
+		65222C9F277E5FE3007D2B01 /* AuthenticationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65222C9E277E5FE3007D2B01 /* AuthenticationDelegate.swift */; };
+		65222CA2277E6013007D2B01 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65222CA1277E6013007D2B01 /* AuthenticationViewModel.swift */; };
+		65222CA4277E6044007D2B01 /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65222CA3277E6044007D2B01 /* AuthButton.swift */; };
+		65222CA6277E6068007D2B01 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65222CA5277E6068007D2B01 /* CustomTextField.swift */; };
+		65222CAA277E9B13007D2B01 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65222CA9277E9B13007D2B01 /* Enums.swift */; };
+		65222CB02780F7BC007D2B01 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65222CAF2780F7BC007D2B01 /* UserService.swift */; };
+		65222CB42780FD26007D2B01 /* MyJsonDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65222CB32780FD26007D2B01 /* MyJsonDecoder.swift */; };
+		65222CB627825742007D2B01 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65222CB527825742007D2B01 /* SessionTableViewCell.swift */; };
 		65E61AF0277E35D70003BAD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E61AEF277E35D70003BAD8 /* AppDelegate.swift */; };
-		65E61AF2277E35D70003BAD8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E61AF1277E35D70003BAD8 /* SceneDelegate.swift */; };
-		65E61AF4277E35D70003BAD8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E61AF3277E35D70003BAD8 /* ViewController.swift */; };
-		65E61AF7277E35D70003BAD8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65E61AF5277E35D70003BAD8 /* Main.storyboard */; };
+		65E61AF4277E35D70003BAD8 /* SessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E61AF3277E35D70003BAD8 /* SessionViewController.swift */; };
 		65E61AF9277E35D90003BAD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65E61AF8277E35D90003BAD8 /* Assets.xcassets */; };
 		65E61AFC277E35D90003BAD8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65E61AFA277E35D90003BAD8 /* LaunchScreen.storyboard */; };
+		65E61B09277E3E300003BAD8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E61B08277E3E300003BAD8 /* Extensions.swift */; };
+		65E61B0B277E3E4C0003BAD8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E61B0A277E3E4C0003BAD8 /* Constants.swift */; };
+		65E61B0D277E3FF10003BAD8 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E61B0C277E3FF10003BAD8 /* AuthService.swift */; };
+		65E61B0F277E40760003BAD8 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E61B0E277E40760003BAD8 /* ResponseModel.swift */; };
+		65F9C1C5278656060096DB39 /* SetImageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F9C1C4278656060096DB39 /* SetImageColor.swift */; };
+		65F9C1C7278660E80096DB39 /* SessionCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F9C1C6278660E80096DB39 /* SessionCodeCell.swift */; };
+		65F9C1CC27866B7E0096DB39 /* AddOfflineUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F9C1CB27866B7E0096DB39 /* AddOfflineUserCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		24A9CDFD734D044EB3421AE2 /* Pods-EqualSplitOnline.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EqualSplitOnline.release.xcconfig"; path = "Target Support Files/Pods-EqualSplitOnline/Pods-EqualSplitOnline.release.xcconfig"; sourceTree = "<group>"; };
+		616AC3212694FDDA9F01D6EA /* Pods-EqualSplitOnline.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EqualSplitOnline.debug.xcconfig"; path = "Target Support Files/Pods-EqualSplitOnline/Pods-EqualSplitOnline.debug.xcconfig"; sourceTree = "<group>"; };
+		650C107727828AD600549DA6 /* SessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
+		650C107D27839F0000549DA6 /* HighlightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightButton.swift; sourceTree = "<group>"; };
+		650C10812783A31600549DA6 /* IntToMoney.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntToMoney.swift; sourceTree = "<group>"; };
+		650C10832783A83400549DA6 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		650C10852783A84100549DA6 /* UsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
+		650C10872783A85600549DA6 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		650C10892783A8B600549DA6 /* LineDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineDrawer.swift; sourceTree = "<group>"; };
+		650C108B2783AD3900549DA6 /* GradientMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientMaker.swift; sourceTree = "<group>"; };
+		650C108F2783D0DA00549DA6 /* MoneyCountLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyCountLabel.swift; sourceTree = "<group>"; };
+		650C10992784939E00549DA6 /* AddUserTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserTableViewController.swift; sourceTree = "<group>"; };
+		65222C9A277E5F9F007D2B01 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		65222C9C277E5FBF007D2B01 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		65222C9E277E5FE3007D2B01 /* AuthenticationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationDelegate.swift; sourceTree = "<group>"; };
+		65222CA1277E6013007D2B01 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
+		65222CA3277E6044007D2B01 /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
+		65222CA5277E6068007D2B01 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		65222CA9277E9B13007D2B01 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		65222CAF2780F7BC007D2B01 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		65222CB32780FD26007D2B01 /* MyJsonDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyJsonDecoder.swift; sourceTree = "<group>"; };
+		65222CB527825742007D2B01 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
 		65E61AEC277E35D70003BAD8 /* EqualSplitOnline.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EqualSplitOnline.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65E61AEF277E35D70003BAD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		65E61AF1277E35D70003BAD8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		65E61AF3277E35D70003BAD8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		65E61AF6277E35D70003BAD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		65E61AF3277E35D70003BAD8 /* SessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewController.swift; sourceTree = "<group>"; };
 		65E61AF8277E35D90003BAD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65E61AFB277E35D90003BAD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65E61AFD277E35D90003BAD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65E61B08277E3E300003BAD8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		65E61B0A277E3E4C0003BAD8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		65E61B0C277E3FF10003BAD8 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		65E61B0E277E40760003BAD8 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
+		65F9C1C4278656060096DB39 /* SetImageColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetImageColor.swift; sourceTree = "<group>"; };
+		65F9C1C6278660E80096DB39 /* SessionCodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCodeCell.swift; sourceTree = "<group>"; };
+		65F9C1CB27866B7E0096DB39 /* AddOfflineUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOfflineUserCell.swift; sourceTree = "<group>"; };
+		CC418417459CA5F7B6F5837B /* Pods_EqualSplitOnline.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EqualSplitOnline.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +85,46 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07E6BC40A22A1826DA2027AB /* Pods_EqualSplitOnline.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		650C108E2783CE3400549DA6 /* AuthenticationControllers */ = {
+			isa = PBXGroup;
+			children = (
+				65222C9A277E5F9F007D2B01 /* RegistrationController.swift */,
+				65222C9C277E5FBF007D2B01 /* LoginController.swift */,
+				65222C9E277E5FE3007D2B01 /* AuthenticationDelegate.swift */,
+			);
+			path = AuthenticationControllers;
+			sourceTree = "<group>";
+		};
+		65222CA0277E6006007D2B01 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				65222CA1277E6013007D2B01 /* AuthenticationViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		65222CA7277E9B05007D2B01 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				65222CA9277E9B13007D2B01 /* Enums.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		65E61AE3277E35D70003BAD8 = {
 			isa = PBXGroup;
 			children = (
 				65E61AEE277E35D70003BAD8 /* EqualSplitOnline */,
 				65E61AED277E35D70003BAD8 /* Products */,
+				68C269B545C62869AC73544F /* Frameworks */,
+				975AB8BDE384DA84EB83BA23 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +139,103 @@
 		65E61AEE277E35D70003BAD8 /* EqualSplitOnline */ = {
 			isa = PBXGroup;
 			children = (
-				65E61AEF277E35D70003BAD8 /* AppDelegate.swift */,
-				65E61AF1277E35D70003BAD8 /* SceneDelegate.swift */,
-				65E61AF3277E35D70003BAD8 /* ViewController.swift */,
-				65E61AF5277E35D70003BAD8 /* Main.storyboard */,
+				65222CA7277E9B05007D2B01 /* Enums */,
+				65222CA0277E6006007D2B01 /* ViewModel */,
+				65E61B07277E3DCF0003BAD8 /* API */,
+				65E61B06277E3DA90003BAD8 /* Utils */,
+				65E61B05277E3DA40003BAD8 /* Views */,
+				65E61B04277E3D990003BAD8 /* Model */,
+				65E61B03277E3D930003BAD8 /* Controllers */,
 				65E61AF8277E35D90003BAD8 /* Assets.xcassets */,
 				65E61AFA277E35D90003BAD8 /* LaunchScreen.storyboard */,
 				65E61AFD277E35D90003BAD8 /* Info.plist */,
 			);
 			path = EqualSplitOnline;
+			sourceTree = "<group>";
+		};
+		65E61B03277E3D930003BAD8 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				65E61AF3277E35D70003BAD8 /* SessionViewController.swift */,
+				650C10832783A83400549DA6 /* MainViewController.swift */,
+				650C10852783A84100549DA6 /* UsersTableViewController.swift */,
+				650C10992784939E00549DA6 /* AddUserTableViewController.swift */,
+				650C108E2783CE3400549DA6 /* AuthenticationControllers */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		65E61B04277E3D990003BAD8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				65E61B0E277E40760003BAD8 /* ResponseModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		65E61B05277E3DA40003BAD8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				65222CA3277E6044007D2B01 /* AuthButton.swift */,
+				65222CA5277E6068007D2B01 /* CustomTextField.swift */,
+				65222CB527825742007D2B01 /* SessionTableViewCell.swift */,
+				650C107D27839F0000549DA6 /* HighlightButton.swift */,
+				650C10872783A85600549DA6 /* UserTableViewCell.swift */,
+				650C108B2783AD3900549DA6 /* GradientMaker.swift */,
+				650C108F2783D0DA00549DA6 /* MoneyCountLabel.swift */,
+				65F9C1C82786650C0096DB39 /* AddUserCells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		65E61B06277E3DA90003BAD8 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				65E61AEF277E35D70003BAD8 /* AppDelegate.swift */,
+				65E61B08277E3E300003BAD8 /* Extensions.swift */,
+				65E61B0A277E3E4C0003BAD8 /* Constants.swift */,
+				65222CB32780FD26007D2B01 /* MyJsonDecoder.swift */,
+				650C10812783A31600549DA6 /* IntToMoney.swift */,
+				650C10892783A8B600549DA6 /* LineDrawer.swift */,
+				65F9C1C4278656060096DB39 /* SetImageColor.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		65E61B07277E3DCF0003BAD8 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				65E61B0C277E3FF10003BAD8 /* AuthService.swift */,
+				65222CAF2780F7BC007D2B01 /* UserService.swift */,
+				650C107727828AD600549DA6 /* SessionService.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		65F9C1C82786650C0096DB39 /* AddUserCells */ = {
+			isa = PBXGroup;
+			children = (
+				65F9C1C6278660E80096DB39 /* SessionCodeCell.swift */,
+				65F9C1CB27866B7E0096DB39 /* AddOfflineUserCell.swift */,
+			);
+			path = AddUserCells;
+			sourceTree = "<group>";
+		};
+		68C269B545C62869AC73544F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CC418417459CA5F7B6F5837B /* Pods_EqualSplitOnline.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		975AB8BDE384DA84EB83BA23 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				616AC3212694FDDA9F01D6EA /* Pods-EqualSplitOnline.debug.xcconfig */,
+				24A9CDFD734D044EB3421AE2 /* Pods-EqualSplitOnline.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +245,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 65E61B00277E35D90003BAD8 /* Build configuration list for PBXNativeTarget "EqualSplitOnline" */;
 			buildPhases = (
+				0D33F2FA0E4903406CF08F20 /* [CP] Check Pods Manifest.lock */,
 				65E61AE8277E35D70003BAD8 /* Sources */,
 				65E61AE9277E35D70003BAD8 /* Frameworks */,
 				65E61AEA277E35D70003BAD8 /* Resources */,
+				74E22A042BDC2179BB244245 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -127,34 +300,93 @@
 			files = (
 				65E61AFC277E35D90003BAD8 /* LaunchScreen.storyboard in Resources */,
 				65E61AF9277E35D90003BAD8 /* Assets.xcassets in Resources */,
-				65E61AF7277E35D70003BAD8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0D33F2FA0E4903406CF08F20 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EqualSplitOnline-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		74E22A042BDC2179BB244245 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EqualSplitOnline/Pods-EqualSplitOnline-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EqualSplitOnline/Pods-EqualSplitOnline-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EqualSplitOnline/Pods-EqualSplitOnline-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		65E61AE8277E35D70003BAD8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65E61AF4277E35D70003BAD8 /* ViewController.swift in Sources */,
+				650C10842783A83400549DA6 /* MainViewController.swift in Sources */,
+				65222C9B277E5F9F007D2B01 /* RegistrationController.swift in Sources */,
+				65E61AF4277E35D70003BAD8 /* SessionViewController.swift in Sources */,
+				65222CB02780F7BC007D2B01 /* UserService.swift in Sources */,
+				65222CB627825742007D2B01 /* SessionTableViewCell.swift in Sources */,
+				65E61B09277E3E300003BAD8 /* Extensions.swift in Sources */,
+				65222CB42780FD26007D2B01 /* MyJsonDecoder.swift in Sources */,
+				650C108A2783A8B600549DA6 /* LineDrawer.swift in Sources */,
+				65E61B0F277E40760003BAD8 /* ResponseModel.swift in Sources */,
+				65E61B0D277E3FF10003BAD8 /* AuthService.swift in Sources */,
+				65222C9F277E5FE3007D2B01 /* AuthenticationDelegate.swift in Sources */,
+				650C108C2783AD3900549DA6 /* GradientMaker.swift in Sources */,
+				650C10902783D0DA00549DA6 /* MoneyCountLabel.swift in Sources */,
+				650C10882783A85600549DA6 /* UserTableViewCell.swift in Sources */,
+				65222CA4277E6044007D2B01 /* AuthButton.swift in Sources */,
+				65222CAA277E9B13007D2B01 /* Enums.swift in Sources */,
+				650C107827828AD600549DA6 /* SessionService.swift in Sources */,
+				65222CA2277E6013007D2B01 /* AuthenticationViewModel.swift in Sources */,
+				65222CA6277E6068007D2B01 /* CustomTextField.swift in Sources */,
+				65F9C1CC27866B7E0096DB39 /* AddOfflineUserCell.swift in Sources */,
+				65F9C1C7278660E80096DB39 /* SessionCodeCell.swift in Sources */,
+				65F9C1C5278656060096DB39 /* SetImageColor.swift in Sources */,
+				65222C9D277E5FBF007D2B01 /* LoginController.swift in Sources */,
+				650C10862783A84100549DA6 /* UsersTableViewController.swift in Sources */,
 				65E61AF0277E35D70003BAD8 /* AppDelegate.swift in Sources */,
-				65E61AF2277E35D70003BAD8 /* SceneDelegate.swift in Sources */,
+				650C10822783A31600549DA6 /* IntToMoney.swift in Sources */,
+				650C109A2784939E00549DA6 /* AddUserTableViewController.swift in Sources */,
+				650C107E27839F0000549DA6 /* HighlightButton.swift in Sources */,
+				65E61B0B277E3E4C0003BAD8 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		65E61AF5277E35D70003BAD8 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				65E61AF6277E35D70003BAD8 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		65E61AFA277E35D90003BAD8 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -284,6 +516,7 @@
 		};
 		65E61B01277E35D90003BAD8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 616AC3212694FDDA9F01D6EA /* Pods-EqualSplitOnline.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -294,8 +527,7 @@
 				INFOPLIST_FILE = EqualSplitOnline/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -306,12 +538,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		65E61B02277E35D90003BAD8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 24A9CDFD734D044EB3421AE2 /* Pods-EqualSplitOnline.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -322,8 +555,7 @@
 				INFOPLIST_FILE = EqualSplitOnline/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -334,7 +566,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

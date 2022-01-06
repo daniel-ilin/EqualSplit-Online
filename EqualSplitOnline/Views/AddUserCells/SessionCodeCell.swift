@@ -14,15 +14,16 @@ class SessionCodeCell: UITableViewCell {
     
     private var cellTitle: UILabel = {
         let label = UILabel()
-        let attributedString = NSMutableAttributedString(string: "Use the session code to join the session", attributes: [.font: UIFont.systemFont(ofSize: 14), .foregroundColor: UIColor.label])
+        let attributedString = NSMutableAttributedString(string: "Show your friends the session code", attributes: [.font: UIFont.systemFont(ofSize: 18), .foregroundColor: UIColor.label])
         label.attributedText = attributedString
+        label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
     var sessionNumber: UILabel = {
         let label = UILabel()
-        let attributedString = NSMutableAttributedString(string: "000000", attributes: [.font: UIFont.boldSystemFont(ofSize: 24), .foregroundColor: UIColor.label])
+        let attributedString = NSMutableAttributedString(string: "000000", attributes: [.font: UIFont.boldSystemFont(ofSize: 32), .foregroundColor: UIColor.label])
         label.attributedText = attributedString
         label.adjustsFontSizeToFitWidth = true
         return label
@@ -34,10 +35,12 @@ class SessionCodeCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         addSubview(cellTitle)
-        cellTitle.centerX(inView: self, topAnchor: topAnchor, paddingTop: 4)
+        cellTitle.centerX(inView: self, topAnchor: topAnchor, paddingTop: 40)
+        cellTitle.anchor(left: leftAnchor, right: rightAnchor, paddingLeft: 40, paddingRight: 40)
         
         addSubview(sessionNumber)
         sessionNumber.centerX(inView: self, topAnchor: cellTitle.bottomAnchor, paddingTop: 8)
+        sessionNumber.anchor(bottom: self.bottomAnchor, paddingBottom: 40)
     }
     
     required init?(coder: NSCoder) {

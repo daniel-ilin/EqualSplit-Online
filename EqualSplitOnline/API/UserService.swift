@@ -11,14 +11,14 @@ struct UserService {
     
     static func fetchUserData(completion: @escaping AuthCompletion) {
         
-        let request: [String: String] = [:]
-        
         let callurl = "\(API_URL)/userdata"
-        AF.request(callurl, method: .post, parameters: request, encoder: JSONParameterEncoder.default).validate().responseDecodable(of: Sessions.self) { response in
+                
+        AF.request(callurl, method: .get).validate().responseDecodable(of: Sessions.self) { response in            
+            guard response.value != nil else {return}
             if response.response?.statusCode == 200 {
                 completion(response)
             } else {
-                print("DEBUG - status: \(String(describing: response.response?.statusCode))")
+                print("DEBUG - Could not fetch userdata: \(String(describing: response.error?.localizedDescription))")
             }
         }
     }

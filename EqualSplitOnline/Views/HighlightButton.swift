@@ -5,4 +5,16 @@
 //  Created by Daniel Ilin on 03.01.2022.
 //
 
-import Foundation
+import UIKit
+
+class HighlightButton: UIButton {
+    override var isHighlighted: Bool {
+            didSet {                
+                if isHighlighted {
+                    self.alpha = 0.3
+                } else {
+                    self.alpha = 1
+                }
+            }
+        }
+}

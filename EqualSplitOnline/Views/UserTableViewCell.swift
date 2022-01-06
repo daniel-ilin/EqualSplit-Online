@@ -8,29 +8,39 @@
 
 import UIKit
 
-class TableViewCell: UITableViewCell {
+class UserTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     
-    let personName = TableViewCellTextLabel()
-    let contribution = TableViewCellTextLabel()
-    let debt = TableViewCellTextLabel()
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        self.backgroundColor = .secondarySystemBackground
-                
+    let personName: TableViewCellTextLabel = {
+        let personName = TableViewCellTextLabel()
         personName.textAlignment = .left
         personName.font = UIFont(name: "Avenir Next", size: 22)
         personName.text = "User Name"
+        return personName
+    }()
+    
+    let contribution: TableViewCellTextLabel = {
+        let contribution = TableViewCellTextLabel()
         contribution.textAlignment = .left
         contribution.font = UIFont(name: "Avenir Next", size: 16)
         contribution.textColor = .secondaryLabel
         contribution.text = "$0.00"
+        return contribution
+    }()
+    
+    let debt: TableViewCellTextLabel = {
+        let debt = TableViewCellTextLabel()
         debt.textAlignment = .right
         debt.font = UIFont(name: "Avenir Next", size: 22)
         debt.text = "$0.00"
+        return debt
+    }()
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        self.backgroundColor = .systemBackground
                 
         contentView.addSubview(personName)
         contentView.addSubview(contribution)
@@ -79,7 +89,6 @@ class TableViewCellTextLabel: UILabel {
         self.font = UIFont(name: "Avenir Next", size: 22)
         self.adjustsFontSizeToFitWidth = true
         self.minimumScaleFactor = 1/10
-        
     }
     
     required init?(coder: NSCoder) {

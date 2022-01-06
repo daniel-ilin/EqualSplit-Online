@@ -30,7 +30,7 @@ class AddUserTableViewController: UITableViewController {
     
     func setupUI() {
         tableView.backgroundColor = .systemBackground
-        tableView.rowHeight = 80        
+//        tableView.rowHeight = 80        
         tableView.isUserInteractionEnabled = true
         
         self.clearsSelectionOnViewWillAppear = false
@@ -52,13 +52,22 @@ extension AddUserTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 2
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()        
-        return cell
+        let codeCell = SessionCodeCell()
+        let offlineCell = AddOfflineUserCell()        
+        offlineCell.addUserButtonAction = { [unowned self] in
+            print("DEBUG: Add Offline User Button Clicked!")
+        }
+        offlineCell.isUserInteractionEnabled = true
+        if indexPath.row == 0 {
+            return codeCell
+        } else {
+            return offlineCell
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -67,6 +76,10 @@ extension AddUserTableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
+    }
+    
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
 
 }
@@ -78,12 +91,13 @@ extension AddUserTableViewController {
         let header = UIView()
         let addUserLabel = UILabel()
         addUserLabel.text = "How would you like to add users?"
-        addUserLabel.font = UIFont(name: "Avenir Next Medium", size: 24)
+        addUserLabel.font = UIFont(name: "Avenir Next Medium", size: 18)
         addUserLabel.textColor = .secondaryLabel
         addUserLabel.textAlignment = .center
         addUserLabel.adjustsFontSizeToFitWidth = true
+        header.backgroundColor = .systemBackground
         header.addSubview(addUserLabel)
-        addUserLabel.anchor(top: header.topAnchor, left: header.leftAnchor, right: header.rightAnchor, paddingLeft: 40, paddingRight: 40)
+        addUserLabel.anchor(top: header.topAnchor, left: header.leftAnchor, bottom: header.bottomAnchor, right: header.rightAnchor, paddingLeft: 40, paddingBottom: 12, paddingRight: 40)
 //        header.isUserInteractionEnabled = true
 //        let searchController = UISearchController(searchResultsController: nil)
 //        searchController.searchBar.isUserInteractionEnabled = true

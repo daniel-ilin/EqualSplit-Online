@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+enum AnimationCase: Int {
+    case pushedDown = 1
+    case released = 0
+}
