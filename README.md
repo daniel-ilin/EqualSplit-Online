@@ -1,6 +1,5 @@
-# EqualSplit-Online
+# Equal Split Online
 
-# Equal Split
 This app allows you to add people to a selected session and keep track of their expenses. 
 In return, the app calculates the best way to split them equally among all people in the group. 
 You can create additional sessions and see progress for each person within the session.
