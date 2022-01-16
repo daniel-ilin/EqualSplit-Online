@@ -11,11 +11,8 @@ class MainViewController: UIViewController {
     
     
     // MARK: - Properties
-        
-    private var translation: CGPoint!
+            
     private var startingConstant: CGFloat! //Start position for the gesture transition
-    private var originalHeight: CGFloat = 0 // Initial Height for the UIView
-    private var difference: CGFloat!
     private var topConstraint: NSLayoutConstraint?
     
     private lazy var addUsersMode: Bool = false {
@@ -50,7 +47,7 @@ class MainViewController: UIViewController {
     private let tableLine = TableLine()
     
     private lazy var tableView: UsersTableViewController = {
-        let tableView = UsersTableViewController(session: self.activeSession)
+        let tableView = UsersTableViewController(session: self.activeSession, viewModel: self.viewModel)
         tableView.view.translatesAutoresizingMaskIntoConstraints = false
         tableView.view.clipsToBounds = true
         tableView.tableView.backgroundColor = .systemBackground
@@ -59,7 +56,7 @@ class MainViewController: UIViewController {
     }()
     
     private lazy var searchTableView: AddUserTableViewController = {
-        let tableView = AddUserTableViewController()
+        let tableView = AddUserTableViewController(sessionCode: activeSession.sessioncode)
         tableView.view.translatesAutoresizingMaskIntoConstraints = false
         tableView.view.clipsToBounds = true
         tableView.tableView.backgroundColor = .systemBackground
@@ -149,11 +146,13 @@ class MainViewController: UIViewController {
     }()
     
     private var activeSession: Session
+    private var viewModel: SessionViewModel
     
     // MARK: - Lifecycle
     
     init(session: Session) {
         activeSession = session
+        viewModel = Calculator.findOwersNeeders(inSession: activeSession)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -163,7 +162,6 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupUI()
         addObservers()
     }
@@ -302,6 +300,14 @@ extension MainViewController {
 
 extension MainViewController: UsersTableViewControllerDelegate {
     func delegateAction() {
+        
+    }
+}
+
+// MARK: - AddUserTableViewControllerDelegate
+
+extension MainViewController: AddUserTableViewControllerDelegate {
+    func delegateAddUserAction() {
         
     }
 }

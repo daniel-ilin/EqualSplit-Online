@@ -29,7 +29,7 @@ class AddOfflineUserCell: UITableViewCell {
         return label
     }()
     
-    var sessionNumber: UIButton = {
+    var addUserButton: UIButton = {
         let label = HighlightButton()
         let attributedString = NSMutableAttributedString(string: "Add Offline User", attributes: [.font: UIFont.boldSystemFont(ofSize: 18), .foregroundColor: UIColor.systemBlue])
         label.setAttributedTitle(attributedString, for: .normal)
@@ -56,9 +56,9 @@ class AddOfflineUserCell: UITableViewCell {
         cellTitle.centerX(inView: self, topAnchor: topAnchor, paddingTop: 40)
         cellTitle.anchor(left: leftAnchor, right: rightAnchor, paddingLeft: 40, paddingRight: 40)
         
-        addSubview(sessionNumber)
-        sessionNumber.centerX(inView: self, topAnchor: cellTitle.bottomAnchor, paddingTop: 8)
-        sessionNumber.anchor(bottom: self.bottomAnchor, paddingBottom: 40)
+        addSubview(addUserButton)
+        addUserButton.centerX(inView: self, topAnchor: cellTitle.bottomAnchor, paddingTop: 8)
+        addUserButton.anchor(bottom: self.bottomAnchor, paddingBottom: 40)
     }
     
     required init?(coder: NSCoder) {

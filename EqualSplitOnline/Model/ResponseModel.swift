@@ -11,6 +11,7 @@ import Foundation
 struct Session: Codable {
     let id, name, ownerid: String
     let users: [User]
+    let sessioncode: String
 }
 
 // MARK: - User

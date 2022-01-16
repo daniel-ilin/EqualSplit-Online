@@ -7,7 +7,7 @@
 
 import Alamofire
 
-typealias AuthCompletion = (DataResponse<Sessions, AFError>)->Void
+typealias LoginCompletion = (DataResponse<ActiveUser, AFError>)->Void
 
 struct AuthCredentials {
     let email: String
@@ -16,6 +16,8 @@ struct AuthCredentials {
 }
 
 struct AuthService {
+    
+    static var activeUser: ActiveUser?
     
     static func registerUser(withCredentials credentials: AuthCredentials, completion: @escaping (AFDataResponse<Data?>)->Void) {
         
@@ -36,19 +38,24 @@ struct AuthService {
         }
     }
     
-    static func loginUser(withEmail email: String, password: String, completion: @escaping (AFDataResponse<Data?>)->Void) {
+    static func loginUser(withEmail email: String, password: String, completion: @escaping LoginCompletion) {
         let request: [String: String] = [
             "email": email,
             "password": password
         ]
         
         let callurl = "\(API_URL)/login"
-        AF.request(callurl, method: .post, parameters: request, encoder: JSONParameterEncoder.default).response { response in
-            guard response.response == response.response else { return }
-            if response.response?.statusCode == 200 {                
+        AF.request(callurl, method: .post, parameters: request).validate().responseDecodable(of: ActiveUser.self) { response in
+            guard response.value != nil else {return}
+            if response.response?.statusCode == 200 {
+                do {
+                    activeUser = try response.result.get()
+                } catch {
+                    print("DEBUG - Could not login")
+                }                
                 completion(response)
             } else {
-                return
+                print("DEBUG - Could not login: \(String(describing: response.error?.localizedDescription))")
             }
         }
     }

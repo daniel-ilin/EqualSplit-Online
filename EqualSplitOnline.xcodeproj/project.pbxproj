@@ -10,7 +10,7 @@
 		07E6BC40A22A1826DA2027AB /* Pods_EqualSplitOnline.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC418417459CA5F7B6F5837B /* Pods_EqualSplitOnline.framework */; };
 		650C107827828AD600549DA6 /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C107727828AD600549DA6 /* SessionService.swift */; };
 		650C107E27839F0000549DA6 /* HighlightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C107D27839F0000549DA6 /* HighlightButton.swift */; };
-		650C10822783A31600549DA6 /* IntToMoney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C10812783A31600549DA6 /* IntToMoney.swift */; };
+		650C10822783A31600549DA6 /* IntToCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C10812783A31600549DA6 /* IntToCurrency.swift */; };
 		650C10842783A83400549DA6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C10832783A83400549DA6 /* MainViewController.swift */; };
 		650C10862783A84100549DA6 /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C10852783A84100549DA6 /* UsersTableViewController.swift */; };
 		650C10882783A85600549DA6 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C10872783A85600549DA6 /* UserTableViewCell.swift */; };
@@ -28,6 +28,17 @@
 		65222CB02780F7BC007D2B01 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65222CAF2780F7BC007D2B01 /* UserService.swift */; };
 		65222CB42780FD26007D2B01 /* MyJsonDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65222CB32780FD26007D2B01 /* MyJsonDecoder.swift */; };
 		65222CB627825742007D2B01 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65222CB527825742007D2B01 /* SessionTableViewCell.swift */; };
+		654347C3278BFAD600546BC2 /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654347C2278BFAD600546BC2 /* LoginResponseModel.swift */; };
+		6549A72F2787AF4300C87B3A /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6549A72E2787AF4300C87B3A /* UserDetailViewController.swift */; };
+		6549A7312787AF9E00C87B3A /* TransactionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6549A7302787AF9E00C87B3A /* TransactionsTableViewController.swift */; };
+		6549A7332787E53A00C87B3A /* RIngProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6549A7322787E53A00C87B3A /* RIngProgressBar.swift */; };
+		6549A73A278A24C500C87B3A /* SessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6549A739278A24C500C87B3A /* SessionViewModel.swift */; };
+		6549A73C278A4DFF00C87B3A /* RingPersonIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6549A73B278A4DFF00C87B3A /* RingPersonIcon.swift */; };
+		6549A73E278A51B700C87B3A /* AddNewPaymentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6549A73D278A51B700C87B3A /* AddNewPaymentButton.swift */; };
+		6549A740278A6F3600C87B3A /* TransactionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6549A73F278A6F3600C87B3A /* TransactionViewCell.swift */; };
+		6549A743278A7B5A00C87B3A /* TransactionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6549A742278A7B5A00C87B3A /* TransactionHeaderView.swift */; };
+		65E08EE827937BC700A2E883 /* TransactionViewCellViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E08EE727937BC700A2E883 /* TransactionViewCellViews.swift */; };
+		65E08EEA27946AC400A2E883 /* AnimatedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E08EE927946AC400A2E883 /* AnimatedButton.swift */; };
 		65E61AF0277E35D70003BAD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E61AEF277E35D70003BAD8 /* AppDelegate.swift */; };
 		65E61AF4277E35D70003BAD8 /* SessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E61AF3277E35D70003BAD8 /* SessionViewController.swift */; };
 		65E61AF9277E35D90003BAD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65E61AF8277E35D90003BAD8 /* Assets.xcassets */; };
@@ -46,7 +57,7 @@
 		616AC3212694FDDA9F01D6EA /* Pods-EqualSplitOnline.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EqualSplitOnline.debug.xcconfig"; path = "Target Support Files/Pods-EqualSplitOnline/Pods-EqualSplitOnline.debug.xcconfig"; sourceTree = "<group>"; };
 		650C107727828AD600549DA6 /* SessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
 		650C107D27839F0000549DA6 /* HighlightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightButton.swift; sourceTree = "<group>"; };
-		650C10812783A31600549DA6 /* IntToMoney.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntToMoney.swift; sourceTree = "<group>"; };
+		650C10812783A31600549DA6 /* IntToCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntToCurrency.swift; sourceTree = "<group>"; };
 		650C10832783A83400549DA6 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		650C10852783A84100549DA6 /* UsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
 		650C10872783A85600549DA6 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
@@ -64,6 +75,17 @@
 		65222CAF2780F7BC007D2B01 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		65222CB32780FD26007D2B01 /* MyJsonDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyJsonDecoder.swift; sourceTree = "<group>"; };
 		65222CB527825742007D2B01 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
+		654347C2278BFAD600546BC2 /* LoginResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
+		6549A72E2787AF4300C87B3A /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
+		6549A7302787AF9E00C87B3A /* TransactionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsTableViewController.swift; sourceTree = "<group>"; };
+		6549A7322787E53A00C87B3A /* RIngProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RIngProgressBar.swift; sourceTree = "<group>"; };
+		6549A739278A24C500C87B3A /* SessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewModel.swift; sourceTree = "<group>"; };
+		6549A73B278A4DFF00C87B3A /* RingPersonIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingPersonIcon.swift; sourceTree = "<group>"; };
+		6549A73D278A51B700C87B3A /* AddNewPaymentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewPaymentButton.swift; sourceTree = "<group>"; };
+		6549A73F278A6F3600C87B3A /* TransactionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewCell.swift; sourceTree = "<group>"; };
+		6549A742278A7B5A00C87B3A /* TransactionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHeaderView.swift; sourceTree = "<group>"; };
+		65E08EE727937BC700A2E883 /* TransactionViewCellViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewCellViews.swift; sourceTree = "<group>"; };
+		65E08EE927946AC400A2E883 /* AnimatedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedButton.swift; sourceTree = "<group>"; };
 		65E61AEC277E35D70003BAD8 /* EqualSplitOnline.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EqualSplitOnline.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65E61AEF277E35D70003BAD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65E61AF3277E35D70003BAD8 /* SessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				65222CA1277E6013007D2B01 /* AuthenticationViewModel.swift */,
+				6549A739278A24C500C87B3A /* SessionViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -116,6 +139,27 @@
 				65222CA9277E9B13007D2B01 /* Enums.swift */,
 			);
 			path = Enums;
+			sourceTree = "<group>";
+		};
+		6549A738278A211300C87B3A /* UserDetail */ = {
+			isa = PBXGroup;
+			children = (
+				6549A72E2787AF4300C87B3A /* UserDetailViewController.swift */,
+				6549A7302787AF9E00C87B3A /* TransactionsTableViewController.swift */,
+			);
+			path = UserDetail;
+			sourceTree = "<group>";
+		};
+		6549A741278A79D100C87B3A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				65222CB527825742007D2B01 /* SessionTableViewCell.swift */,
+				650C10872783A85600549DA6 /* UserTableViewCell.swift */,
+				6549A73F278A6F3600C87B3A /* TransactionViewCell.swift */,
+				65E08EE727937BC700A2E883 /* TransactionViewCellViews.swift */,
+				6549A742278A7B5A00C87B3A /* TransactionHeaderView.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		65E61AE3277E35D70003BAD8 = {
@@ -160,6 +204,7 @@
 				650C10832783A83400549DA6 /* MainViewController.swift */,
 				650C10852783A84100549DA6 /* UsersTableViewController.swift */,
 				650C10992784939E00549DA6 /* AddUserTableViewController.swift */,
+				6549A738278A211300C87B3A /* UserDetail */,
 				650C108E2783CE3400549DA6 /* AuthenticationControllers */,
 			);
 			path = Controllers;
@@ -169,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				65E61B0E277E40760003BAD8 /* ResponseModel.swift */,
+				654347C2278BFAD600546BC2 /* LoginResponseModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -178,11 +224,14 @@
 			children = (
 				65222CA3277E6044007D2B01 /* AuthButton.swift */,
 				65222CA5277E6068007D2B01 /* CustomTextField.swift */,
-				65222CB527825742007D2B01 /* SessionTableViewCell.swift */,
 				650C107D27839F0000549DA6 /* HighlightButton.swift */,
-				650C10872783A85600549DA6 /* UserTableViewCell.swift */,
+				65E08EE927946AC400A2E883 /* AnimatedButton.swift */,
 				650C108B2783AD3900549DA6 /* GradientMaker.swift */,
 				650C108F2783D0DA00549DA6 /* MoneyCountLabel.swift */,
+				6549A7322787E53A00C87B3A /* RIngProgressBar.swift */,
+				6549A73B278A4DFF00C87B3A /* RingPersonIcon.swift */,
+				6549A73D278A51B700C87B3A /* AddNewPaymentButton.swift */,
+				6549A741278A79D100C87B3A /* Cells */,
 				65F9C1C82786650C0096DB39 /* AddUserCells */,
 			);
 			path = Views;
@@ -195,7 +244,7 @@
 				65E61B08277E3E300003BAD8 /* Extensions.swift */,
 				65E61B0A277E3E4C0003BAD8 /* Constants.swift */,
 				65222CB32780FD26007D2B01 /* MyJsonDecoder.swift */,
-				650C10812783A31600549DA6 /* IntToMoney.swift */,
+				650C10812783A31600549DA6 /* IntToCurrency.swift */,
 				650C10892783A8B600549DA6 /* LineDrawer.swift */,
 				65F9C1C4278656060096DB39 /* SetImageColor.swift */,
 			);
@@ -352,15 +401,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6549A73E278A51B700C87B3A /* AddNewPaymentButton.swift in Sources */,
 				650C10842783A83400549DA6 /* MainViewController.swift in Sources */,
 				65222C9B277E5F9F007D2B01 /* RegistrationController.swift in Sources */,
 				65E61AF4277E35D70003BAD8 /* SessionViewController.swift in Sources */,
 				65222CB02780F7BC007D2B01 /* UserService.swift in Sources */,
 				65222CB627825742007D2B01 /* SessionTableViewCell.swift in Sources */,
+				6549A7312787AF9E00C87B3A /* TransactionsTableViewController.swift in Sources */,
 				65E61B09277E3E300003BAD8 /* Extensions.swift in Sources */,
 				65222CB42780FD26007D2B01 /* MyJsonDecoder.swift in Sources */,
 				650C108A2783A8B600549DA6 /* LineDrawer.swift in Sources */,
 				65E61B0F277E40760003BAD8 /* ResponseModel.swift in Sources */,
+				6549A7332787E53A00C87B3A /* RIngProgressBar.swift in Sources */,
 				65E61B0D277E3FF10003BAD8 /* AuthService.swift in Sources */,
 				65222C9F277E5FE3007D2B01 /* AuthenticationDelegate.swift in Sources */,
 				650C108C2783AD3900549DA6 /* GradientMaker.swift in Sources */,
@@ -373,14 +425,22 @@
 				65222CA6277E6068007D2B01 /* CustomTextField.swift in Sources */,
 				65F9C1CC27866B7E0096DB39 /* AddOfflineUserCell.swift in Sources */,
 				65F9C1C7278660E80096DB39 /* SessionCodeCell.swift in Sources */,
+				6549A73A278A24C500C87B3A /* SessionViewModel.swift in Sources */,
+				6549A740278A6F3600C87B3A /* TransactionViewCell.swift in Sources */,
 				65F9C1C5278656060096DB39 /* SetImageColor.swift in Sources */,
 				65222C9D277E5FBF007D2B01 /* LoginController.swift in Sources */,
 				650C10862783A84100549DA6 /* UsersTableViewController.swift in Sources */,
 				65E61AF0277E35D70003BAD8 /* AppDelegate.swift in Sources */,
-				650C10822783A31600549DA6 /* IntToMoney.swift in Sources */,
+				654347C3278BFAD600546BC2 /* LoginResponseModel.swift in Sources */,
+				650C10822783A31600549DA6 /* IntToCurrency.swift in Sources */,
+				6549A73C278A4DFF00C87B3A /* RingPersonIcon.swift in Sources */,
+				6549A72F2787AF4300C87B3A /* UserDetailViewController.swift in Sources */,
 				650C109A2784939E00549DA6 /* AddUserTableViewController.swift in Sources */,
+				65E08EE827937BC700A2E883 /* TransactionViewCellViews.swift in Sources */,
 				650C107E27839F0000549DA6 /* HighlightButton.swift in Sources */,
 				65E61B0B277E3E4C0003BAD8 /* Constants.swift in Sources */,
+				65E08EEA27946AC400A2E883 /* AnimatedButton.swift in Sources */,
+				6549A743278A7B5A00C87B3A /* TransactionHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,19 +10,18 @@ import UIKit
 
 class UsersTableViewController: UITableViewController {
     
-    // MARK: - Properties
+    // MARK: - Properties            
     
-    var currentSessionNum: Int!
-    var currentSession: Session!
-    
-    weak var delegate: UsersTableViewControllerDelegate?
+    weak var delegate: UsersTableViewControllerDelegate?        
     
     private var activeSession: Session
+    private var viewModel: SessionViewModel
     
     // MARK: - Lifecycle
     
-    init(session: Session) {
+    init(session: Session, viewModel: SessionViewModel) {
         activeSession = session
+        self.viewModel = viewModel
         super.init(style: .plain)
     }
     
@@ -46,13 +45,17 @@ class UsersTableViewController: UITableViewController {
         tableView.rowHeight = 80
         
         self.clearsSelectionOnViewWillAppear = false
-        view.backgroundColor = .systemBackground
-        view.layer.cornerRadius = 20
+        view.backgroundColor = .systemBackground        
         didMove(toParent: self)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
         
         tableView.register(UserTableViewCell.self, forCellReuseIdentifier: "Cell")        
+    }
+    
+    func showModalView(forUser rowNumber: Int) {
+        let mvc = UserDetailViewController(user: activeSession.users[rowNumber], viewModel: viewModel.people[rowNumber])
+        self.present(mvc, animated: true, completion: nil)
     }
 }
 
@@ -65,7 +68,7 @@ extension UsersTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return activeSession.users.count
+        return viewModel.people.count
     }
     
     
@@ -75,7 +78,7 @@ extension UsersTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        showModalView(forUser: indexPath.row)
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -85,8 +88,22 @@ extension UsersTableViewController {
 //    MARK: - CellSetup
     
     private func cellSetup(ofCell cell: UserTableViewCell, at indexPath: IndexPath)->UITableViewCell {
-        cell.personName.text = activeSession.users[indexPath.row].username
-//        Some conditions to style the cell
+        let person = viewModel.people[indexPath.row]
+        cell.personName.text = person.name
+        let spentGenetal = IntToCurrency.makeDollars(fromNumber: person.spentGeneral)
+        cell.contribution.text = "Spent total: \(spentGenetal ?? "0")"
+        var plusMinus = "-"
+        if person.ower == .isNeeder {
+            plusMinus = "+"
+        } else if person.ower == .isClean {
+            plusMinus = ""
+        }
+        cell.debt.text = plusMinus + "\(IntToCurrency.makeDollars(fromNumber: person.totalDebtFieldText ?? 0) ?? "$0.00")"
+        cell.debt.textColor = person.moneyTextColor        
+        if person.id == AuthService.activeUser?.id {
+            cell.userStatus.isHidden = false
+            cell.userStatus.text = "Logged In"
+        }
         return cell
     }
     

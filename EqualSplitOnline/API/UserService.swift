@@ -7,6 +7,8 @@
 
 import Alamofire
 
+typealias AuthCompletion = (DataResponse<Sessions, AFError>)->Void
+
 struct UserService {
     
     static func fetchUserData(completion: @escaping AuthCompletion) {

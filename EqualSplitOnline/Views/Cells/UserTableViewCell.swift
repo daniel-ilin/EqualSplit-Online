@@ -12,7 +12,7 @@ class UserTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     
-    let personName: TableViewCellTextLabel = {
+    var personName: TableViewCellTextLabel = {
         let personName = TableViewCellTextLabel()
         personName.textAlignment = .left
         personName.font = UIFont(name: "Avenir Next", size: 22)
@@ -20,7 +20,7 @@ class UserTableViewCell: UITableViewCell {
         return personName
     }()
     
-    let contribution: TableViewCellTextLabel = {
+    var contribution: TableViewCellTextLabel = {
         let contribution = TableViewCellTextLabel()
         contribution.textAlignment = .left
         contribution.font = UIFont(name: "Avenir Next", size: 16)
@@ -29,10 +29,20 @@ class UserTableViewCell: UITableViewCell {
         return contribution
     }()
     
-    let debt: TableViewCellTextLabel = {
+    var userStatus: TableViewCellTextLabel = {
+        let userStatus = TableViewCellTextLabel()
+        userStatus.textAlignment = .right
+        userStatus.font = UIFont(name: "Avenir Next", size: 16)
+        userStatus.textColor = .secondaryLabel
+        userStatus.text = "Logged In"
+        userStatus.isHidden = true
+        return userStatus
+    }()
+    
+    var debt: TableViewCellTextLabel = {
         let debt = TableViewCellTextLabel()
         debt.textAlignment = .right
-        debt.font = UIFont(name: "Avenir Next", size: 22)
+        debt.font = UIFont(name: "Avenir Next Medium", size: 22)
         debt.text = "$0.00"
         return debt
     }()
@@ -45,6 +55,7 @@ class UserTableViewCell: UITableViewCell {
         contentView.addSubview(personName)
         contentView.addSubview(contribution)
         contentView.addSubview(debt)
+        contentView.addSubview(userStatus)
         
         NSLayoutConstraint.activate([
             personName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
@@ -55,12 +66,15 @@ class UserTableViewCell: UITableViewCell {
             contribution.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             contribution.bottomAnchor.constraint(greaterThanOrEqualTo: contentView.bottomAnchor, constant: -10),
             contribution.topAnchor.constraint(greaterThanOrEqualTo: personName.bottomAnchor, constant: 10),
-            contribution.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -20),
+            contribution.trailingAnchor.constraint(lessThanOrEqualTo: userStatus.leadingAnchor, constant: -10),
             
-            debt.bottomAnchor.constraint(equalTo: personName.bottomAnchor, constant: 0),
+            debt.bottomAnchor.constraint(greaterThanOrEqualTo: userStatus.topAnchor, constant: -5),
             debt.leadingAnchor.constraint(greaterThanOrEqualTo: centerXAnchor, constant: 0),
             debt.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
-            debt.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 5)
+            debt.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            
+            userStatus.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            userStatus.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30)
         ])
     }
     

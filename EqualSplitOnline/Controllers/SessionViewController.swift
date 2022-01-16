@@ -35,7 +35,7 @@ class SessionViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.isNavigationBarHidden = false        
+        navigationController?.isNavigationBarHidden = false
     }
     
     //    MARK: - Helpers
@@ -74,19 +74,7 @@ class SessionViewController: UITableViewController {
         }
     }
     
-    //    MARK: - Actions
-    
-    @objc func handleLogout() {
-        AuthService.logout { response in
-            guard response.error == nil else {
-                return
-            }
-            self.checkIfUserLoggedIn()
-        }
-    }
-    
-    @objc func addSession() {
-        
+    func createNewSession() {
         let titleString = "Select session name"
         let ac = UIAlertController(title: titleString , message: nil, preferredStyle: .alert)
         ac.addTextField()
@@ -103,11 +91,58 @@ class SessionViewController: UITableViewController {
         }
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
         ac.addAction(cancel)
         ac.addAction(confirm)
         present(ac, animated: true, completion: nil)
+    }
+    
+    func joinSession() {
+        let titleString = "Enter session code"
+        let ac = UIAlertController(title: titleString , message: nil, preferredStyle: .alert)
+        ac.addTextField()
+        ac.textFields![0].clearButtonMode = .whileEditing
         
+        let confirm = UIAlertAction(title: "Confirm", style: .default) {[weak self] _ in
+            let sessionCode = ac.textFields![0].text
+            SessionService.joinSession(withCode: sessionCode ?? "") { response in
+                guard response.error == nil else {
+                    return
+                }
+                self?.fetchUser()
+            }
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        ac.addAction(cancel)
+        ac.addAction(confirm)
+        present(ac, animated: true, completion: nil)
+    }
+    
+    //    MARK: - Actions
+    
+    @objc func handleLogout() {
+        AuthService.logout { response in
+            guard response.error == nil else {
+                return
+            }
+            self.checkIfUserLoggedIn()
+        }
+    }
+    
+    @objc func addSession() {
+        
+        let sessionAlert = UIAlertController(title: "Join session with a code or create new?", message: nil, preferredStyle: .actionSheet)
+        
+        sessionAlert.addAction(UIAlertAction(title: "Create", style: .default, handler: { [weak self] _ in
+            self!.createNewSession()
+        }))
+        sessionAlert.addAction(UIAlertAction(title: "Join", style: .default, handler: { [weak self] _ in
+            self!.joinSession()
+        }))
+        sessionAlert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
+        
+        present(sessionAlert, animated: true, completion: nil)
+                
     }
     
     @objc func editSessions() {
@@ -153,12 +188,14 @@ extension SessionViewController {
 extension SessionViewController {
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footer = UIView()
+        footer.backgroundColor = .secondarySystemBackground
         footer.addSubview(addSessionButton)
-        addSessionButton.centerX(inView: footer, topAnchor: footer.topAnchor, paddingTop: 20)
+        addSessionButton.layer.zPosition = 5
+        addSessionButton.centerX(inView: footer, topAnchor: footer.topAnchor, paddingTop: 5)
         return footer
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 200
+        return 50
     }
 }

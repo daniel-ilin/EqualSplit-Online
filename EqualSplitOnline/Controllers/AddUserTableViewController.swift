@@ -12,10 +12,20 @@ class AddUserTableViewController: UITableViewController {
     
     // MARK: - Properties
     
-    weak var delegate: UsersTableViewControllerDelegate?
-//    var searchBar: UISearchBar?
+    weak var delegate: AddUserTableViewControllerDelegate?
+    
+    private var sessionCode: String?
     
     // MARK: - Lifecycle
+    
+    init(sessionCode: String) {
+        super.init(style: .plain)
+        self.sessionCode = sessionCode
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,14 +38,28 @@ class AddUserTableViewController: UITableViewController {
     
     // MARK: - Helpers
     
+    func addOfflineUser() {
+        let titleString = "Add offline user"
+        let ac = UIAlertController(title: titleString , message: "Enter username", preferredStyle: .alert)
+        ac.addTextField()
+        ac.textFields![0].clearButtonMode = .whileEditing
+        
+        let confirm = UIAlertAction(title: "Confirm", style: .default) {[weak self] _ in
+            print("DEBUG: Add offline user")
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        ac.addAction(cancel)
+        ac.addAction(confirm)
+        present(ac, animated: true, completion: nil)
+    }
+    
     func setupUI() {
         tableView.backgroundColor = .systemBackground
-//        tableView.rowHeight = 80        
         tableView.isUserInteractionEnabled = true
         
         self.clearsSelectionOnViewWillAppear = false
         view.backgroundColor = .systemBackground
-        view.layer.cornerRadius = 20
         didMove(toParent: self)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
@@ -58,9 +82,23 @@ extension AddUserTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let codeCell = SessionCodeCell()
+        codeCell.sessionNumber.text = " \(sessionCode!) "
+        codeCell.copyToClipboardButtonAction = { [unowned self] in
+            UIPasteboard.general.string = sessionCode
+            UIView.animate(withDuration: 0.2) {
+                let attributedString = NSMutableAttributedString(string: "Copied", attributes: [.font: UIFont.systemFont(ofSize: 18), .foregroundColor: UIColor.label])
+                codeCell.copyToClipboard.setAttributedTitle(attributedString, for: .normal)
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
+                UIView.animate(withDuration: 0.2) {
+                    let attributedString = NSMutableAttributedString(string: "Copy", attributes: [.font: UIFont.boldSystemFont(ofSize: 18), .foregroundColor: UIColor.systemBlue])
+                    codeCell.copyToClipboard.setAttributedTitle(attributedString, for: .normal)
+                }
+            }
+        }
         let offlineCell = AddOfflineUserCell()        
         offlineCell.addUserButtonAction = { [unowned self] in
-            print("DEBUG: Add Offline User Button Clicked!")
+            addOfflineUser()
         }
         offlineCell.isUserInteractionEnabled = true
         if indexPath.row == 0 {
@@ -117,3 +155,8 @@ extension AddUserTableViewController {
 //    // TODO
 //  }
 //}
+
+
+protocol AddUserTableViewControllerDelegate: AnyObject {
+    func delegateAddUserAction()
+}
