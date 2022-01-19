@@ -10,6 +10,7 @@ import UIKit
 class SessionTableViewCell: UITableViewCell {
 
 //    MARK: - Properties
+        
     
     var sessionName: UILabel = {
         let label = UILabel()
@@ -40,6 +41,14 @@ class SessionTableViewCell: UITableViewCell {
         return label
     }()
     
+    var ownerLabel: UILabel = {
+        let label = UILabel()
+        let attributedString = NSMutableAttributedString(string: "Owner: ", attributes: [.font: UIFont.systemFont(ofSize: 14), .foregroundColor: UIColor.secondaryLabel])
+        label.attributedText = attributedString
+        label.textAlignment = .right
+        return label
+    }()
+    
 //    MARK: - Lifecycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -56,6 +65,9 @@ class SessionTableViewCell: UITableViewCell {
         
         addSubview(totalMoneyAmount)
         totalMoneyAmount.anchor(top: sessionName.bottomAnchor, left: numberOfUsers.rightAnchor, bottom: bottomAnchor, paddingTop: 8, paddingLeft: 20, paddingBottom: 12)
+        
+        addSubview(ownerLabel)
+        ownerLabel.anchor(top: sessionName.bottomAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 8, paddingBottom: 12, paddingRight: 20)
     }
     
     required init?(coder: NSCoder) {

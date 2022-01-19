@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 // MARK: - UIView Anchor
 
@@ -110,3 +111,19 @@ extension UIButton {
     }
 }
 
+
+extension UIViewController {
+    
+    static let hud = JGProgressHUD(style: .dark)
+    
+    func showLoader(_ show: Bool) {
+        view.endEditing(true)
+        
+        if show {
+            UIViewController.hud.show(in: view)
+        } else {
+            UIViewController.hud.dismiss()
+        }
+    }
+    
+}

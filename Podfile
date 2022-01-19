@@ -7,6 +7,8 @@ target 'EqualSplitOnline' do
 
 pod 'Alamofire', '~> 5.5'
 
+pod 'JGProgressHUD'
+
   # Pods for EqualSplitOnline
 
 end

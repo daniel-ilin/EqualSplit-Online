@@ -81,7 +81,7 @@ extension AddUserTableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let codeCell = SessionCodeCell()
+        let codeCell = SessionCodeCell()        
         codeCell.sessionNumber.text = " \(sessionCode!) "
         codeCell.copyToClipboardButtonAction = { [unowned self] in
             UIPasteboard.general.string = sessionCode
@@ -136,16 +136,6 @@ extension AddUserTableViewController {
         header.backgroundColor = .systemBackground
         header.addSubview(addUserLabel)
         addUserLabel.anchor(top: header.topAnchor, left: header.leftAnchor, bottom: header.bottomAnchor, right: header.rightAnchor, paddingLeft: 40, paddingBottom: 12, paddingRight: 40)
-//        header.isUserInteractionEnabled = true
-//        let searchController = UISearchController(searchResultsController: nil)
-//        searchController.searchBar.isUserInteractionEnabled = true
-//        searchController.searchResultsUpdater = self
-//        searchController.obscuresBackgroundDuringPresentation = false
-//        searchController.searchBar.placeholder = "Search users"
-//        searchController.searchBar.autocapitalizationType = .none
-//        header.addSubview(searchController.searchBar)
-//        searchController.searchBar.anchor(top: header.topAnchor, left: header.leftAnchor, bottom: header.bottomAnchor, right: header.rightAnchor)
-//        searchBar = searchController.searchBar
         return header
     }
 }

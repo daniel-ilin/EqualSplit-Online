@@ -82,22 +82,24 @@ class RegistrationController: UIViewController {
     
     //    MARK: - Actions
         
-        @objc func keyboardWillShow(notification: NSNotification) {
-            guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
-                return
-            }
-            
-            if alreadyHaveAccountButton.frame.minY < keyboardSize.height {
-                self.view.frame.origin.y = alreadyHaveAccountButton.frame.minY - keyboardSize.height - 30
-            }
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
         }
         
-        @objc func keyboardWillHide(notification: NSNotification) {
-            // move back the root view origin to zero
-            self.view.frame.origin.y = 0
+        if alreadyHaveAccountButton.frame.minY < keyboardSize.height {
+            self.view.frame.origin.y = alreadyHaveAccountButton.frame.minY - keyboardSize.height - 30
         }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        // move back the root view origin to zero
+        self.view.frame.origin.y = 0
+    }
     
     @objc func handleSignUp() {
+        
+        showLoader(true)
         
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
@@ -106,14 +108,19 @@ class RegistrationController: UIViewController {
         let credentials = AuthCredentials(email: email, name: name, password: password)
         AuthService.registerUser(withCredentials: credentials) { response in
             if response.error != nil {
+                self.showLoader(false)
                 print("DEBUG: Could not register")
                 return
             }
             AuthService.loginUser(withEmail: email, password: password) { response in
-                if response.error != nil {
+                self.showLoader(false)
+                if response.error != nil {                    
                     print("DEBUG: Could not login")
                     return
                 }
+                
+                self.showLoader(false)
+                
                 self.delegate?.authenticationDidComplete()
             }
         }

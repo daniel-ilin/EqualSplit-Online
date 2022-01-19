@@ -34,7 +34,7 @@ class UserTableViewCell: UITableViewCell {
         userStatus.textAlignment = .right
         userStatus.font = UIFont(name: "Avenir Next", size: 16)
         userStatus.textColor = .secondaryLabel
-        userStatus.text = "Logged In"
+        userStatus.text = "You"
         userStatus.isHidden = true
         return userStatus
     }()

@@ -105,13 +105,16 @@ class LoginController: UIViewController {
     }
     
     @objc func handleLogin() {
+        showLoader(true)
+        
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         AuthService.loginUser(withEmail: email, password: password) { (response) in
+            self.showLoader(false)
             if response.error != nil {
                 print("DEBUG: Could not login")
                 return
-            }
+            }            
             self.delegate?.authenticationDidComplete()
         }
     }

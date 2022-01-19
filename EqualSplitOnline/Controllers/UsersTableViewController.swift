@@ -12,10 +12,24 @@ class UsersTableViewController: UITableViewController {
     
     // MARK: - Properties            
     
+    var dvc: UserDetailViewController?
+    
     weak var delegate: UsersTableViewControllerDelegate?        
     
+    weak var viewmodelDelegate: TransactionTableViewViewModelDelegate?
+    
     private var activeSession: Session
-    private var viewModel: SessionViewModel
+    var viewModel: SessionViewModel {
+        didSet {
+            for person in viewModel.people {
+                if person.id == dvc?.viewModel.id {
+                    dvc?.viewModel = person
+                }
+            }
+            view.pushTransition(0.2)
+            tableView.reloadData()
+        }
+    }
     
     // MARK: - Lifecycle
     
@@ -32,10 +46,24 @@ class UsersTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        configureRefreshControl()
     }
     
     override func viewDidAppear(_ animated: Bool) {
                 
+    }
+    
+    //    MARK: - Actions
+    
+    @objc func handleRefreshControl() {
+        UserService.fetchUserData { response in
+            guard response.error == nil else { return }
+            SessionViewController.sessions = response.value!
+            self.viewmodelDelegate?.configureViewmodel()
+            DispatchQueue.main.async {
+                self.tableView.refreshControl?.endRefreshing()
+            }
+        }
     }
     
     // MARK: - Helpers
@@ -53,9 +81,28 @@ class UsersTableViewController: UITableViewController {
         tableView.register(UserTableViewCell.self, forCellReuseIdentifier: "Cell")        
     }
     
+    func configureRefreshControl() {
+       // Add the refresh control to your UIScrollView object.
+       tableView.refreshControl = UIRefreshControl()
+       tableView.refreshControl?.addTarget(self, action:
+                                          #selector(handleRefreshControl),
+                                          for: .valueChanged)
+    }
+    
     func showModalView(forUser rowNumber: Int) {
-        let mvc = UserDetailViewController(user: activeSession.users[rowNumber], viewModel: viewModel.people[rowNumber])
-        self.present(mvc, animated: true, completion: nil)
+        self.showLoader(true)
+        UserService.fetchUserData { result in
+            if result.error != nil {
+                return
+            } else {
+                self.showLoader(false)
+                self.viewmodelDelegate?.configureViewmodel()
+            }
+        }
+        
+        dvc = UserDetailViewController(user: activeSession.users[rowNumber], viewModel: viewModel.people[rowNumber], inSessionWithId: viewModel.sessionId)
+        dvc!.viewmodelDelegate = self.viewmodelDelegate
+        self.present(dvc!, animated: true, completion: nil)
     }
 }
 
@@ -85,6 +132,10 @@ extension UsersTableViewController {
         
     }
     
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return UITableViewCell.EditingStyle.none
+    }
+    
 //    MARK: - CellSetup
     
     private func cellSetup(ofCell cell: UserTableViewCell, at indexPath: IndexPath)->UITableViewCell {
@@ -102,7 +153,8 @@ extension UsersTableViewController {
         cell.debt.textColor = person.moneyTextColor        
         if person.id == AuthService.activeUser?.id {
             cell.userStatus.isHidden = false
-            cell.userStatus.text = "Logged In"
+        } else {
+            cell.userStatus.isHidden = true
         }
         return cell
     }

@@ -90,10 +90,11 @@ final class TransactionCollapsedCellView: UIView {
     func uiSetup(at indexPath: IndexPath, withViewModel viewModel: Person) {
         let person = viewModel
         let cell = self
-        //        let dateFormatter = DateFormatter()
-        //        dateFormatter.dateStyle = .medium
-        //        dateFormatter.timeStyle = .none
-        //        dateFormatter.locale = Locale(identifier: "en_US")
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        dateFormatter.locale = Locale(identifier: "en_US")
         
         let moneyFonts = [UIFont(name: "Avenir Next", size: 20), UIFont(name: "Avenir Next Medium", size: 20)]
         var tableSectionsData = [[CalculatorTransaction]]()
@@ -138,7 +139,8 @@ final class TransactionCollapsedCellView: UIView {
             cell.moneyLabel.textColor = UIColor.label
             cell.moneyLabel.text = "\(IntToCurrency.makeDollars(fromNumber: tableSectionsData[0][indexPath.row].amount) ?? "Error")"
             cell.descriptionLabel.text = "\(tableSectionsData[0][indexPath.row].transacDescription ?? "")"
-            cell.dateLabel.text = "Fix Date"
+            
+            cell.dateLabel.text = dateFormatter.string(from: tableSectionsData[0][indexPath.row].date)
             
         } else if spentCount == 0 && owesOrNeedsCount > 0 {
             cell.moneyLabel.font = moneyFonts[1]
@@ -154,9 +156,8 @@ final class TransactionCollapsedCellView: UIView {
                 
                 
                 cell.descriptionLabel.text = tableSectionsData[indexPath.section][indexPath.row].transacDescription ?? toOrFrom + " \(endPerson!)"
-                
-                
-                cell.dateLabel.text = "Fix Date"
+                                                                
+                cell.dateLabel.text = dateFormatter.string(from: tableSectionsData[0][indexPath.row].date)
             } else {
                 cell.moneyLabel.textColor = textColor
                 cell.moneyLabel.text = plusOrMinus + "\(IntToCurrency.makeDollars(fromNumber: tableSectionsData[indexPath.section][indexPath.row].amount) ?? "Error")"
@@ -174,10 +175,19 @@ final class TransactionCollapsedCellView: UIView {
     }
 }
 
+
+
+
+
+
+
+
 // MARK: - TransactionExpandedCellView
 
 final class TransactionExpandedCellView: UIView {
-    override init(frame: CGRect) {
+    
+    init(frame: CGRect, newTransaction: Bool) {
+        self.isNewTransaction = newTransaction
         super.init(frame: frame)
         commonInit()
     }
@@ -188,11 +198,17 @@ final class TransactionExpandedCellView: UIView {
     
 //    MARK: - Properties
     
+    private var isNewTransaction = false
+    
+    weak var delegate: ExpandedCellViewDelegate?
+    weak var headerDelegate: HeaderNewTransactionViewDelegate?
+    
     private let title = UILabel()
     
-    private let moneyField: UITextField = {
+    lazy var moneyField: UITextField = {
         let tf = CustomTextField(placeholder: "$0.00")
         tf.setHeight(40)
+        tf.delegate = self
         tf.layer.borderColor = UIColor.clear.cgColor
         tf.layer.borderWidth = 0
         tf.backgroundColor = .secondarySystemBackground
@@ -216,7 +232,7 @@ final class TransactionExpandedCellView: UIView {
         tf.layer.masksToBounds = true
         tf.clearButtonMode = .whileEditing
         tf.font = UIFont(name: "Avenir Next", size: 20)
-        tf.keyboardType = .decimalPad
+        tf.keyboardType = .default
         return tf
     }()
     
@@ -246,22 +262,54 @@ final class TransactionExpandedCellView: UIView {
         return button
     }()
     
+    private var moneyAmount: Int = 0
+    private var baseAmount: Int = 0
+    
+    private var tableSectionsData = [[CalculatorTransaction]]()
+    private var currentIndexPath: IndexPath?
+    
     //    MARK: - Actions
     
     @objc func confirmChangesHandler() {
-        print("DEBUG: Confirm changes")
+        if isNewTransaction {
+            
+            guard moneyField.text != "" else { return }
+            guard descriptionField.text != "" else { return }
+            let amount = moneyAmount
+            let description = descriptionField.text
+            headerDelegate?.confirmHandler(amount: amount, description: description ?? "") { [weak self] in
+                self?.descriptionField.text = ""
+                self?.moneyAmount = 0
+                self?.moneyField.text = ""
+            }
+        } else {
+            guard currentIndexPath != nil else { return }
+            guard moneyField.text != "" else { return }
+            guard descriptionField.text != "" else { return }
+            let id = tableSectionsData[currentIndexPath!.section][currentIndexPath!.row].id
+            let amount = moneyAmount
+            let description = descriptionField.text
+            delegate?.confirmHandler(id: id, amount: amount, description: description ?? "")
+        }
     }
     
     @objc func cancelChangesHandler() {
-        print("DEBUG: Cancel changes")
+        if isNewTransaction {
+            self.descriptionField.text = ""
+            self.moneyAmount = 0
+            self.moneyField.text = ""
+            headerDelegate?.canceledHandler()
+        } else {
+            delegate?.canceledHandler()
+        }
     }
     
     //    MARK: - Helpers
     
     func uiSetup(at indexPath: IndexPath, withViewModel viewModel: Person) {
+        currentIndexPath = indexPath
         let person = viewModel
         
-        var tableSectionsData = [[CalculatorTransaction]]()
         if person.owes.count > 0 {
             tableSectionsData = [person.spent, person.owes]
         } else if person.needs.count > 0 {
@@ -272,12 +320,12 @@ final class TransactionExpandedCellView: UIView {
         
         let spentCount = tableSectionsData[0].count
         let owesOrNeedsCount = tableSectionsData[1].count
-        var moneyAmount = 0
         var description = ""
         
         if spentCount > 0 && owesOrNeedsCount == 0 {
             moneyAmount = tableSectionsData[0][indexPath.row].amount
             description = tableSectionsData[0][indexPath.row].transacDescription
+                        
         } else if spentCount == 0 && owesOrNeedsCount > 0 {
             moneyAmount = tableSectionsData[1][indexPath.row].amount
         } else if spentCount > 0 && owesOrNeedsCount > 0 {
@@ -292,6 +340,7 @@ final class TransactionExpandedCellView: UIView {
             description = tableSectionsData[indexPath.section][indexPath.row].transacDescription
         }
         
+        baseAmount = moneyAmount
         moneyField.text = IntToCurrency.makeDollars(fromNumber: moneyAmount)
         descriptionField.text = description
     }
@@ -319,5 +368,43 @@ final class TransactionExpandedCellView: UIView {
             confirmButton.leadingAnchor.constraint(equalTo: cancelButton.trailingAnchor, constant: 10),
             confirmButton.bottomAnchor.constraint(equalTo: cancelButton.bottomAnchor)
         ])
+    }
+}
+
+
+protocol ExpandedCellViewDelegate: AnyObject {
+    func canceledHandler()
+    func confirmHandler(id: String, amount: Int, description: String)
+    func textfieldNumberTooLarge()
+}
+
+protocol HeaderNewTransactionViewDelegate: AnyObject {
+    func canceledHandler()
+    func confirmHandler(amount: Int, description: String, completion: @escaping ()->Void)
+    func textfieldNumberTooLarge()
+}
+
+extension TransactionExpandedCellView: UITextFieldDelegate {
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        textField.text = ""
+        moneyAmount = 0
+        return false
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {        
+        if let digit = Int(string) {
+            moneyAmount = moneyAmount * 10 + digit
+            if moneyAmount > 1_000_000_000_00 {
+                delegate?.textfieldNumberTooLarge()
+                moneyAmount = baseAmount
+            }
+            moneyField.text = IntToCurrency.makeDollars(fromNumber: moneyAmount)
+        }
+        if string == "" {
+            moneyAmount = moneyAmount / 10
+            moneyField.text = moneyAmount == 0 ? "" : IntToCurrency.makeDollars(fromNumber: moneyAmount)
+        }
+        return false
     }
 }

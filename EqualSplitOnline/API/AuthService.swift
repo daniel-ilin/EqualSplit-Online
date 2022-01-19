@@ -6,6 +6,7 @@
 //
 
 import Alamofire
+import JGProgressHUD
 
 typealias LoginCompletion = (DataResponse<ActiveUser, AFError>)->Void
 
@@ -20,6 +21,8 @@ struct AuthService {
     static var activeUser: ActiveUser?
     
     static func registerUser(withCredentials credentials: AuthCredentials, completion: @escaping (AFDataResponse<Data?>)->Void) {
+        
+        
         
         let request: [String: String] = [
             "email": credentials.email,

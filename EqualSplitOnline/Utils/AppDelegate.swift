@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-        window?.backgroundColor = .white
+        window?.backgroundColor = .black
         window?.rootViewController = UINavigationController(rootViewController: SessionViewController())
         
         return true

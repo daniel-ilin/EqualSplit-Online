@@ -28,8 +28,6 @@ class SessionCodeCell: UITableViewCell {
         let attributedString = NSMutableAttributedString(string: " 000000 ", attributes: [.font: UIFont.boldSystemFont(ofSize: 32), .foregroundColor: UIColor.label])
         label.attributedText = attributedString
         label.adjustsFontSizeToFitWidth = true
-        label.layer.borderWidth = 2
-        label.layer.borderColor = UIColor.label.cgColor
         label.layer.cornerRadius = 8
         return label
     }()

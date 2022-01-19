@@ -48,6 +48,7 @@ class MainViewController: UIViewController {
     
     private lazy var tableView: UsersTableViewController = {
         let tableView = UsersTableViewController(session: self.activeSession, viewModel: self.viewModel)
+        tableView.viewmodelDelegate = self
         tableView.view.translatesAutoresizingMaskIntoConstraints = false
         tableView.view.clipsToBounds = true
         tableView.tableView.backgroundColor = .systemBackground
@@ -146,7 +147,19 @@ class MainViewController: UIViewController {
     }()
     
     private var activeSession: Session
-    private var viewModel: SessionViewModel
+    var viewModel: SessionViewModel {
+        didSet {
+            view.pushTransition(0.2)
+            
+            let value = self.activeSession.totalSpent()/self.activeSession.users.count
+            perPersonSpentAmountLabel.text = IntToCurrency.makeDollars(fromNumber: value)
+            
+            let totalValue = self.activeSession.totalSpent()
+            totalSpentAmountLabel.text = IntToCurrency.makeDollars(fromNumber: totalValue)
+            
+            tableView.viewModel = viewModel
+        }
+    }
     
     // MARK: - Lifecycle
     
@@ -173,10 +186,16 @@ class MainViewController: UIViewController {
         navigationController?.isNavigationBarHidden = true
     }
     
+    func updateTableView() {
+        tableView.tableView.reloadData()
+    }
+    
     // MARK: - Helpers
     
     private func setupUI() {
-                
+               
+        viewModel = Calculator.findOwersNeeders(inSession: activeSession)
+        
         view.addSubview(sessionMenuButton)
         sessionMenuButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, paddingTop: 14, paddingLeft: 20, width: 30, height: 30)
         
@@ -309,5 +328,19 @@ extension MainViewController: UsersTableViewControllerDelegate {
 extension MainViewController: AddUserTableViewControllerDelegate {
     func delegateAddUserAction() {
         
+    }
+}
+
+// MARK: - TransactionTableViewViewModelDelegate
+
+extension MainViewController: TransactionTableViewViewModelDelegate {
+    func configureViewmodel() {
+        let sessions = SessionViewController.sessions
+        for session in sessions {
+            if session.id == activeSession.id {
+                activeSession = session
+            }
+        }
+        viewModel = Calculator.findOwersNeeders(inSession: activeSession)
     }
 }

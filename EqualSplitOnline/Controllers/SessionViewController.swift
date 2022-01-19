@@ -11,7 +11,16 @@ class SessionViewController: UITableViewController {
     
     //    MARK: - Properties
     
-    var sessions = [Session]()
+    static var sessions = [Session]() {
+        didSet {
+            let currentUserId = AuthService.activeUser?.id
+            for (index, session) in sessions.enumerated() {
+                if session.ownerid == currentUserId {
+                    sessions.move(from: index, to: 0)
+                }                
+            }
+        }
+    }
     
     private let addSessionButton: UIButton = {
         let button = HighlightButton()
@@ -31,6 +40,7 @@ class SessionViewController: UITableViewController {
         super.viewDidLoad()
         
         configureUI()
+        configureRefreshControl()
         checkIfUserLoggedIn()
     }
     
@@ -39,6 +49,10 @@ class SessionViewController: UITableViewController {
     }
     
     //    MARK: - Helpers
+    
+    func updateTableView() {
+        tableView.reloadData()
+    }
     
     func configureUI() {
         self.view.backgroundColor = .secondarySystemBackground
@@ -50,14 +64,23 @@ class SessionViewController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editSessions))
     }
     
+    func configureRefreshControl() {
+       // Add the refresh control to your UIScrollView object.
+       tableView.refreshControl = UIRefreshControl()
+       tableView.refreshControl?.addTarget(self, action:
+                                          #selector(handleRefreshControl),
+                                          for: .valueChanged)
+    }
+    
     func fetchUser() {
         UserService.fetchUserData { response in
+            self.showLoader(false)
             if response.error != nil {
                 print("DEBUG: \(response.error?.localizedDescription ?? "Error when fetching users")")
                 return
             }            
-            guard let value = response.value else { return }
-            self.sessions = value
+            guard let value = response.value else { return }            
+            SessionViewController.sessions = value
             self.tableView.reloadData()
         }
     }
@@ -81,6 +104,7 @@ class SessionViewController: UITableViewController {
         ac.textFields![0].clearButtonMode = .whileEditing
         
         let confirm = UIAlertAction(title: "Confirm", style: .default) {[weak self] _ in
+            self?.showLoader(true)
             let sessionName = ac.textFields![0].text
             SessionService.addSession(withName: sessionName ?? "") { response in
                 guard response.error == nil else {
@@ -103,8 +127,9 @@ class SessionViewController: UITableViewController {
         ac.textFields![0].clearButtonMode = .whileEditing
         
         let confirm = UIAlertAction(title: "Confirm", style: .default) {[weak self] _ in
+            
             let sessionCode = ac.textFields![0].text
-            SessionService.joinSession(withCode: sessionCode ?? "") { response in
+            SessionService.joinSession(withCode: sessionCode ?? "") { response in                
                 guard response.error == nil else {
                     return
                 }
@@ -118,7 +143,27 @@ class SessionViewController: UITableViewController {
         present(ac, animated: true, completion: nil)
     }
     
+    private func findOwnerName(ofSession session: Session) -> String {
+        for user in session.users {
+            if user.userid == session.ownerid {
+                if user.userid == AuthService.activeUser?.id {
+                    return "You"
+                } else {
+                    return user.username
+                }
+            }
+        }
+        return ""
+    }
+    
     //    MARK: - Actions
+    
+    @objc func handleRefreshControl() {
+        fetchUser()
+        DispatchQueue.main.async {
+            self.tableView.refreshControl?.endRefreshing()
+        }
+    }
     
     @objc func handleLogout() {
         AuthService.logout { response in
@@ -164,18 +209,23 @@ extension SessionViewController: AuthenticationDelegate {
 extension SessionViewController {
         override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = SessionTableViewCell(style: .default, reuseIdentifier: cellReuseIdentifier)
+            let sessions = SessionViewController.sessions
             cell.sessionName.text = sessions[indexPath.row].name
             cell.numberOfUsers.text = "\(sessions[indexPath.row].users.count)"
             cell.totalMoneyAmount.text = IntToCurrency.makeDollars(fromNumber: sessions[indexPath.row].totalSpent())
+            
+            let ownerName = findOwnerName(ofSession: sessions[indexPath.row])
+            cell.ownerLabel.text?.append(ownerName)
+            
             return cell
         }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        sessions.count
+        SessionViewController.sessions.count
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = MainViewController(session: sessions[indexPath.row])
+        let vc = MainViewController(session: SessionViewController.sessions[indexPath.row])
         navigationController?.pushViewController(vc, animated: true)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.tableView.deselectRow(at: indexPath, animated: true)
@@ -199,3 +249,9 @@ extension SessionViewController {
         return 50
     }
 }
+
+//extension SessionViewController: DataModelUpdateDelegate {
+//    func updateDataModel() {
+//        self.fetchUser()
+//    }
+//}

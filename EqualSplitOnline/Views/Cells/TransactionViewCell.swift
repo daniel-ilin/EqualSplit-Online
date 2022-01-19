@@ -14,7 +14,7 @@ class TransactionViewCell: UITableViewCell {
     
     private var userCanEdit = false
     private let collapsedView = TransactionCollapsedCellView()
-    private let expandedView = TransactionExpandedCellView()
+    let expandedView = TransactionExpandedCellView(frame: CGRect.zero, newTransaction: false)
     private let containerView = UIStackView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -34,9 +34,8 @@ class TransactionViewCell: UITableViewCell {
     //    MARK: - UISetup
     
     func cellSetup(at indexPath: IndexPath, withViewModel viewModel: Person)->UITableViewCell {
-        if AuthService.activeUser?.id == viewModel.id {
-            userCanEdit = true
-        }
+        findIfUserCanEditCell(at: indexPath, withViewModel: viewModel)
+        
         collapsedView.uiSetup(at: indexPath, withViewModel: viewModel)
         expandedView.uiSetup(at: indexPath, withViewModel: viewModel)
         return self
@@ -91,3 +90,43 @@ extension TransactionViewCell {
         }
     }
 }
+
+extension TransactionViewCell {
+    func findIfUserCanEditCell(at indexPath: IndexPath, withViewModel viewModel: Person) {
+        if AuthService.activeUser?.id == viewModel.id {
+            userCanEdit = true
+        } else {
+            userCanEdit = false
+            return
+        }
+        
+        let person = viewModel
+        
+        var tableSectionsData = [[CalculatorTransaction]]()
+        if person.owes.count > 0 {
+            tableSectionsData = [person.spent, person.owes]
+        } else if person.needs.count > 0 {
+            tableSectionsData = [person.spent, person.needs]
+        } else {
+            tableSectionsData = [person.spent, person.needs]
+        }
+        
+        let spentCount = tableSectionsData[0].count
+        let owesOrNeedsCount = tableSectionsData[1].count
+        
+        if spentCount > 0 && owesOrNeedsCount == 0 {
+            userCanEdit = true
+        } else if spentCount == 0 && owesOrNeedsCount > 0 {
+            userCanEdit = false
+        } else if spentCount > 0 && owesOrNeedsCount > 0 {
+            if indexPath.section == 0 {
+                userCanEdit = true
+            } else {
+                userCanEdit = false
+            }
+        } else {
+            userCanEdit = false
+        }
+    }
+}
+

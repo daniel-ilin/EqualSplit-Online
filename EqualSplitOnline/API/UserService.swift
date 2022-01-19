@@ -18,6 +18,7 @@ struct UserService {
         AF.request(callurl, method: .get).validate().responseDecodable(of: Sessions.self) { response in            
             guard response.value != nil else {return}
             if response.response?.statusCode == 200 {
+                SessionViewController.sessions = response.value!
                 completion(response)
             } else {
                 print("DEBUG - Could not fetch userdata: \(String(describing: response.error?.localizedDescription))")

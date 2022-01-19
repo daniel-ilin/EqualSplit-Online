@@ -9,25 +9,34 @@ import Foundation
 import UIKit
 
 class SessionViewModel {
+    var sessionId: String
     var people: [Person]
     
-    init(forPeople people: [Person]) {
+    init(forPeople people: [Person], inSessionWithId sessionid: String) {
         self.people = people
+        self.sessionId = sessionid
     }
 }
 
-struct Calculator {
+struct Calculator {    
+    
+//    MARK: - FindOwersNeeders
+    
     static func findOwersNeeders(inSession session: Session) -> SessionViewModel {
         
         var people = [Person]()
         let users = session.users
         let personSpent = session.totalSpent()/users.count
         
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-mm-dd"
+        
         for user in users {
             let newPerson = Person(name: user.username, id: user.userid)
             for transaction in user.transactions {
-                let transaction = CalculatorTransaction(amount: Int(transaction.amount) ?? 0, sender: user.username, description: transaction.description, date: Date())
-                newPerson.spent.append(transaction)
+                let calcTransaction = CalculatorTransaction(amount: Int(transaction.amount) ?? 0, sender: user.username, description: transaction.description, date: dateFormatter.date(from: transaction.date) ?? Date())
+                calcTransaction.id = transaction.id
+                newPerson.spent.append(calcTransaction)
             }
             people.append(newPerson)
         }
@@ -128,7 +137,13 @@ struct Calculator {
             }
         }
         
-        return SessionViewModel(forPeople: people)
+        for (index, person) in people.enumerated() {
+            if person.id == AuthService.activeUser?.id {
+                people.move(from: index, to: 0)
+            }
+        }
+        
+        return SessionViewModel(forPeople: people, inSessionWithId: session.id)
     }
 }
 
@@ -220,6 +235,7 @@ class CalculatorTransaction {
     var sender: String
     var complete: Bool
     var transacDescription: String!
+    var id: String = ""
     
     var moneyTextColor: UIColor?
     var moneyTextFont: UIFont?

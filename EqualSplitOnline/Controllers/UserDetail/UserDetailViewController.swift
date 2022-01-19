@@ -13,23 +13,47 @@ class UserDetailViewController: UIViewController {
     
     // MARK: - Properties
     
+    private lazy var darkView: UIView = {
+        let view = UIView(frame: self.view.frame)
+        view.backgroundColor = .black
+        view.alpha = 0
+        view.layer.zPosition = 120        
+        return view
+    }()
+    
+    
     private lazy var addTransactionMode: Bool = false {
         didSet {
             if addTransactionMode == true {
-                topConstraint?.constant = -progressRing.frame.height-8
+//                expandTableView()
+                self.addTransactionView.isHidden = false
+                self.addNewPaymentButton.isEnabled = false
+                self.heightConstraint?.constant = 160
+                self.tableView.view.addSubview(self.darkView)
                 UIView.animate(withDuration: 0.3) {
                     self.view.layoutIfNeeded()
+                    self.darkView.alpha = 0.3
                 }
-                self.view.endEditing(true)
+                addTransactionView.moneyField.becomeFirstResponder()
             } else {
-                topConstraint?.constant = 30
+//                contractTableView()
+                self.heightConstraint?.constant = 0
+                self.addTransactionView.isHidden = true
+                self.addNewPaymentButton.isEnabled = true
                 UIView.animate(withDuration: 0.3) {
                     self.view.layoutIfNeeded()
+                    self.darkView.alpha = 0
+                } completion: { _ in
+                    self.darkView.removeFromSuperview()
                 }
-                self.view.endEditing(true)
+
+                addTransactionView.moneyField.resignFirstResponder()
             }
         }
     }
+    
+    
+    private var heightConstraint: NSLayoutConstraint?
     
     private var backButton: UIButton = {
         let backButton = UIButton()
@@ -89,8 +113,11 @@ class UserDetailViewController: UIViewController {
     
     private let tableLine = TableLine()
     
+    weak var viewmodelDelegate: TransactionTableViewViewModelDelegate?
+    
     private lazy var tableView: TransactionsTableViewController = {
         let tableView = TransactionsTableViewController(user: activeUser, viewModel: viewModel)
+        tableView.viewmodelDelegate = self.viewmodelDelegate
         tableView.view.translatesAutoresizingMaskIntoConstraints = false
         tableView.view.clipsToBounds = true
         tableView.tableView.backgroundColor = .systemBackground
@@ -111,7 +138,7 @@ class UserDetailViewController: UIViewController {
     private lazy var addNewPaymentButton: AddNewPaymentButton = {
         let button = AddNewPaymentButton()
         button.addTarget(self, action: #selector(addNewPaymentHandler), for: .touchUpInside)
-        if AuthService.activeUser?.id == activeUser.userid {
+        if AuthService.activeUser?.id == viewModel.id {
             button.isEnabled = true
             button.alpha = 1
         } else {
@@ -121,21 +148,37 @@ class UserDetailViewController: UIViewController {
         return button
     }()
     
+    private lazy var addTransactionView: TransactionExpandedCellView = {
+        let cv = TransactionExpandedCellView(frame: CGRect.zero, newTransaction: true)        
+        cv.headerDelegate = self
+        cv.isHidden = false
+        return cv
+    }()
+    
     private var personIcon = RingPersonIcon()
     
     private var activeUser: User
-    private var viewModel: Person {
+    var viewModel: Person {
         didSet {
+            view.pushTransition(0.2)
             personIcon.adjustColor(forPerson: viewModel)
+            personOwesLabel.text = viewModel.owesOrOwed
+            nameLabel.text = viewModel.name
+            progressRing.progress = viewModel.progress
+            progressLabel.text = IntToCurrency.makeDollars(fromNumber: viewModel.totalDebtFieldText ?? 0)
+            tableView.viewModel = viewModel
             tableView.tableView.reloadData()
         }
     }
     
+    private var currentSessionId: String
+    
     // MARK: - Lifecycle
     
-    init(user: User, viewModel: Person) {
+    init(user: User, viewModel: Person, inSessionWithId sessionid: String) {
         activeUser = user
         self.viewModel = viewModel
+        self.currentSessionId = sessionid
         personIcon.adjustColor(forPerson: viewModel)
         super.init(nibName: nil, bundle: nil)
     }
@@ -159,6 +202,26 @@ class UserDetailViewController: UIViewController {
     }
     
     // MARK: - Helpers
+    
+    func updateTableView() {
+        tableView.tableView.reloadData()
+    }
+    
+    func expandTableView() {
+        topConstraint?.constant = -progressRing.frame.height-8
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+        self.view.endEditing(true)
+    }
+    
+    func contractTableView() {
+        topConstraint?.constant = 30
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+        self.view.endEditing(true)
+    }
     
     private func setupUI() {
         view.addSubview(nameLabel)
@@ -203,10 +266,19 @@ class UserDetailViewController: UIViewController {
         tableViewContainer.addSubview(addNewPaymentButton)
         addNewPaymentButton.centerX(inView: tableViewContainer, topAnchor: dragBarView.bottomAnchor, paddingTop: 4)
         
+        tableViewContainer.addSubview(addTransactionView)
+        
+        addTransactionView.anchor(top: addNewPaymentButton.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 4, paddingLeft: 0, paddingRight: 0)
+        
+        heightConstraint = addTransactionView.heightAnchor.constraint(equalToConstant: 0)
+        NSLayoutConstraint.activate([
+            heightConstraint!
+        ])
+        
         tableViewContainer.addSubview(tableView.view)
         tableView.didMove(toParent: self)
         tableView.delegate = self
-        tableView.view.anchor(top: addNewPaymentButton.bottomAnchor, left: tableViewContainer.leftAnchor, bottom: tableViewContainer.bottomAnchor, right: tableViewContainer.rightAnchor, paddingTop: 5)
+        tableView.view.anchor(top: addTransactionView.bottomAnchor, left: tableViewContainer.leftAnchor, bottom: tableViewContainer.bottomAnchor, right: tableViewContainer.rightAnchor, paddingTop: 5)
         
         LineDrawer.drawLineFromPoint(start: CGPoint(x: self.view.frame.width-20, y: 0), toPoint: CGPoint(x: self.view.frame.width-20, y: self.view.frame.height), ofColor: UIColor(named: "LineRed")!, inView: tableViewContainer, view: tableLine)
         
@@ -218,9 +290,19 @@ class UserDetailViewController: UIViewController {
     
     // MARK: - Actions
     
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
+        }
+        tableView.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height-100, right: 0)
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        tableView.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    
     @objc func addNewPaymentHandler() {
         addTransactionMode = true
-        print("DEBUG: Add New Payment Tapped")
     }
     
     @objc func closeController() {
@@ -256,15 +338,54 @@ class UserDetailViewController: UIViewController {
     
     private func addObservers() {
         tableViewContainer.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleExpand)))
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
+    
 }
 
 
 // MARK: TransactionsTableViewControllerDelegate
 
 extension UserDetailViewController: TransactionsTableViewControllerDelegate {
-    func delegateAction() {
-        
+    func selectedRow() {
+        expandTableView()
+    }
+    
+    func deselectedRow() {
+        contractTableView()        
+    }
+    
+}
+
+extension UserDetailViewController: HeaderNewTransactionViewDelegate {
+    func confirmHandler(amount: Int, description: String, completion: @escaping () -> Void) {
+        self.showLoader(true)
+        TransactionService.addTransaction(intoSessionId: currentSessionId, withAmount: amount, description: description) { response in
+            guard response.error == nil else { return }
+            UserService.fetchUserData { response in
+                guard response.error == nil else { return }
+                SessionViewController.sessions = response.value!
+                self.canceledHandler()
+                self.viewmodelDelegate?.configureViewmodel()
+                completion()
+                self.showLoader(false)
+            }
+        }
+    }
+    
+    func canceledHandler() {
+        addTransactionMode = false
+    }
+    
+    func textfieldNumberTooLarge() {
+        let ac = UIAlertController(title: "Error", message: "Please enter amount less than 1 billion", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+        ac.addAction(ok)
+        //self.contributionTextField.text = ""
+        present(ac, animated: true)        
     }
     
     

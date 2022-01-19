@@ -11,7 +11,7 @@ class TransactionsTableViewController: UITableViewController {
     
     // MARK: - Properties
     
-    private var activeUserCanMakeChanges = false
+    var activeUserCanMakeChanges = false
     
     var activeUser: User!
     
@@ -21,12 +21,12 @@ class TransactionsTableViewController: UITableViewController {
     
     weak var delegate: TransactionsTableViewControllerDelegate?
     
+    weak var viewmodelDelegate: TransactionTableViewViewModelDelegate?
     
     // MARK: - Lifecycle
     
     init(user: User, viewModel: Person) {
-        activeUser = user
-        if AuthService.activeUser?.id == activeUser.userid {
+        if AuthService.activeUser?.id == viewModel.id {
             activeUserCanMakeChanges = true
         }
         self.viewModel = viewModel
@@ -62,12 +62,16 @@ class TransactionsTableViewController: UITableViewController {
         view.clipsToBounds = true
         
         tableView.register(UserTableViewCell.self, forCellReuseIdentifier: "Cell")
-    }
+    }        
 }
 
 //  MARK: - UITableViewDataSource
 
 extension TransactionsTableViewController {
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return UITableViewCell.EditingStyle.none
+    }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = TransactionHeaderView(frame: CGRect(x: 20, y: 0, width: tableView.bounds.size.width-20, height: 80))
@@ -97,10 +101,12 @@ extension TransactionsTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as? TransactionViewCell
+        cell?.expandedView.delegate = self
         return cell!.cellSetup(at: indexPath, withViewModel: viewModel)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.selectedRow()
         UIView.animate(withDuration: 0.3) {
             self.tableView.performBatchUpdates(nil)
         }
@@ -110,6 +116,7 @@ extension TransactionsTableViewController {
         if let cell = self.tableView.cellForRow(at: indexPath) as? TransactionViewCell {
             cell.hideDetailView()
         }
+        
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -145,5 +152,66 @@ extension TransactionsTableViewController {
 // MARK: - UsersTableViewControllerDelegate
 
 protocol TransactionsTableViewControllerDelegate: AnyObject {
-    func delegateAction()
+    func selectedRow()
+    func deselectedRow()    
 }
+
+// MARK: - TransactionTableViewViewModelDelegate
+
+protocol TransactionTableViewViewModelDelegate: AnyObject {
+    func configureViewmodel()
+}
+
+// MARK: - ExpandedCellViewDelegate
+
+extension TransactionsTableViewController: ExpandedCellViewDelegate {
+    func textfieldNumberTooLarge() {
+        let ac = UIAlertController(title: "Error", message: "Please enter amount less than 1 billion", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+        ac.addAction(ok)
+        //self.contributionTextField.text = ""
+        present(ac, animated: true)
+    }
+    
+    func canceledHandler() {
+        delegate?.deselectedRow()
+        deselectAllRows(animated: true)
+    }
+    
+    func confirmHandler(id: String, amount: Int, description: String) {
+        self.showLoader(true)
+        TransactionService.changeTransaction(id: id, withAmount: amount, description: description) { response in
+            guard response.error == nil else {
+                return
+            }            
+            UserService.fetchUserData { response in
+                self.showLoader(false)
+                if response.error != nil {
+                    print("DEBUG: \(response.error?.localizedDescription ?? "Error when fetching users")")
+                    return
+                }
+                guard response.value != nil else { return }                
+                SessionViewController.sessions = response.value!
+                self.viewmodelDelegate?.configureViewmodel()
+                self.delegate?.deselectedRow()
+                self.deselectAllRows(animated: true)
+                
+                self.showLoader(false)
+            }
+        }
+    }
+}
+
+// MARK: - deselectAllRows
+
+extension UITableViewController {
+    func deselectAllRows(animated: Bool) {
+        guard let selectedRows = tableView.indexPathsForSelectedRows else { return }
+        for indexPath in selectedRows { tableView.deselectRow(at: indexPath, animated: animated) }
+        UIView.animate(withDuration: 0.3) {
+            self.tableView.performBatchUpdates(nil)
+        }
+    }
+}
+
+
