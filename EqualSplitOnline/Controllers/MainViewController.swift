@@ -336,10 +336,16 @@ extension MainViewController: AddUserTableViewControllerDelegate {
 extension MainViewController: TransactionTableViewViewModelDelegate {
     func configureViewmodel() {
         let sessions = SessionViewController.sessions
+        var matchFound = false
         for session in sessions {
             if session.id == activeSession.id {
                 activeSession = session
+                matchFound = true
             }
+        }
+        if matchFound == false {
+            navigationController?.popViewController(animated: true)
+            return
         }
         viewModel = Calculator.findOwersNeeders(inSession: activeSession)
     }

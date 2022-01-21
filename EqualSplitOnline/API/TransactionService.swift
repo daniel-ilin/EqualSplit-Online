@@ -47,5 +47,23 @@ struct TransactionService {
         }
     }
     
+    static func deleteTransaction(withId id: String, inSessionWithId sessionId: String, completion: @escaping (AFDataResponse<Data?>)->Void) {
+        
+        let request: [String: String] = [
+            "id": id,
+            "sessionid": sessionId
+        ]
+        
+        let callurl = "\(API_URL)/transactions"
+        
+        AF.request(callurl, method: .delete, parameters: request, encoder: JSONParameterEncoder.default).response { response in
+            if response.response?.statusCode == 200 {
+                completion(response)
+            } else {
+                print("DEBUG - status: \(String(describing: response.error?.localizedDescription))")
+            }
+        }
+    }
+    
     
 }

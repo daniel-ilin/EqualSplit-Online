@@ -13,7 +13,7 @@ struct UserService {
     
     static func fetchUserData(completion: @escaping AuthCompletion) {
         
-        let callurl = "\(API_URL)/userdata"
+        let callurl = "\(API_URL)/user"
                 
         AF.request(callurl, method: .get).validate().responseDecodable(of: Sessions.self) { response in            
             guard response.value != nil else {return}

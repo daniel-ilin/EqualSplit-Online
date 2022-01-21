@@ -17,6 +17,8 @@ class TransactionsTableViewController: UITableViewController {
     
     var viewModel: Person
     
+    private let currentSession: SessionViewModel
+    
     private let cellReuseIdentifier = "TransactionCellReuseIdentifier"
     
     weak var delegate: TransactionsTableViewControllerDelegate?
@@ -25,10 +27,11 @@ class TransactionsTableViewController: UITableViewController {
     
     // MARK: - Lifecycle
     
-    init(user: User, viewModel: Person) {
+    init(user: User, viewModel: Person, session: SessionViewModel) {
         if AuthService.activeUser?.id == viewModel.id {
             activeUserCanMakeChanges = true
         }
+        self.currentSession = session
         self.viewModel = viewModel
         super.init(style: .plain)
     }
@@ -62,7 +65,36 @@ class TransactionsTableViewController: UITableViewController {
         view.clipsToBounds = true
         
         tableView.register(UserTableViewCell.self, forCellReuseIdentifier: "Cell")
-    }        
+    }
+    
+    func deleteRowHandler(forTransaction transaction: CalculatorTransaction) {
+        guard let id = transaction.id else { return }
+        
+        
+        let titleString = "Delete \(IntToCurrency.makeDollars(fromNumber: transaction.amount) ?? "error")"
+        let messageString = "from \(viewModel.name)?"
+        let ac = UIAlertController(title: titleString, message: messageString, preferredStyle: .alert)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        let confirm = UIAlertAction(title: "Delete", style: .destructive) {[weak self] _ in
+            self!.showLoader(true)
+            TransactionService.deleteTransaction(withId: id, inSessionWithId: self!.currentSession.sessionId) { response in
+                guard response.error == nil else { return }
+                UserService.fetchUserData { response in
+                    guard response.error == nil else { return }
+                    guard response.value != nil else { return }
+                    SessionViewController.sessions = response.value!
+                    self!.showLoader(false)
+                    self!.viewmodelDelegate?.configureViewmodel()
+                }
+            }
+        }
+        
+        ac.addAction(cancel)
+        ac.addAction(confirm)
+        present(ac, animated: true, completion: nil)
+    }
 }
 
 //  MARK: - UITableViewDataSource
@@ -70,7 +102,7 @@ class TransactionsTableViewController: UITableViewController {
 extension TransactionsTableViewController {
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return UITableViewCell.EditingStyle.none
+        return SetupCellSwipeEditStyle(forPerson: viewModel, forSession: currentSession, atIndexPath: indexPath)
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -120,7 +152,9 @@ extension TransactionsTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
+        if editingStyle == .delete {
+            deleteRowHandler(forTransaction: viewModel.spent[indexPath.row])
+        }
     }
     
     //    MARK: - RowSetup
@@ -185,14 +219,11 @@ extension TransactionsTableViewController: ExpandedCellViewDelegate {
                 return
             }            
             UserService.fetchUserData { response in
-                self.showLoader(false)
-                if response.error != nil {
-                    print("DEBUG: \(response.error?.localizedDescription ?? "Error when fetching users")")
-                    return
-                }
-                guard response.value != nil else { return }                
+                guard response.error == nil else { return }
+                guard response.value != nil else { return }
                 SessionViewController.sessions = response.value!
                 self.viewmodelDelegate?.configureViewmodel()
+                
                 self.delegate?.deselectedRow()
                 self.deselectAllRows(animated: true)
                 
@@ -215,3 +246,37 @@ extension UITableViewController {
 }
 
 
+// MARK: - setupCellSwipeEditStyle
+
+extension UITableViewController {
+    
+    func SetupCellSwipeEditStyle(forPerson person: Person, forSession session: SessionViewModel, atIndexPath indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        
+        guard AuthService.activeUser?.id == session.ownerId else {            
+            return UITableViewCell.EditingStyle.none
+        }
+        
+        if person.spent.count > 0 && person.owes.count == 0 && person.needs.count == 0 {
+            return UITableViewCell.EditingStyle.delete
+        } else if person.spent.count == 0 && person.owes.count > 0 {
+            return UITableViewCell.EditingStyle.none
+        } else if person.spent.count == 0 && person.needs.count > 0 {
+            return UITableViewCell.EditingStyle.none
+        } else if person.spent.count > 0 && person.owes.count > 0 {
+            if indexPath.section == 0 {
+                return UITableViewCell.EditingStyle.delete
+            } else {
+                return UITableViewCell.EditingStyle.none
+            }
+        } else if person.spent.count > 0 && person.needs.count > 0 {
+            if indexPath.section == 0 {
+                return UITableViewCell.EditingStyle.delete
+            } else {
+                return UITableViewCell.EditingStyle.none
+            }
+        } else {
+            return UITableViewCell.EditingStyle.none
+        }
+    }
+    
+}

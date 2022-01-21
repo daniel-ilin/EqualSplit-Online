@@ -46,6 +46,7 @@ class RegistrationController: UIViewController {
     
     private let fullnameTextField: UITextField = {
         let tf = CustomTextField(placeholder: "Name")
+        tf.keyboardType = .default
         return tf
     }()
     

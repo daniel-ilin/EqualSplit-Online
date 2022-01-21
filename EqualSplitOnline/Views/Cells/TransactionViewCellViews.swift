@@ -286,7 +286,7 @@ final class TransactionExpandedCellView: UIView {
             guard currentIndexPath != nil else { return }
             guard moneyField.text != "" else { return }
             guard descriptionField.text != "" else { return }
-            let id = tableSectionsData[currentIndexPath!.section][currentIndexPath!.row].id
+            guard let id = tableSectionsData[currentIndexPath!.section][currentIndexPath!.row].id else { return }            
             let amount = moneyAmount
             let description = descriptionField.text
             delegate?.confirmHandler(id: id, amount: amount, description: description ?? "")
@@ -397,6 +397,7 @@ extension TransactionExpandedCellView: UITextFieldDelegate {
             moneyAmount = moneyAmount * 10 + digit
             if moneyAmount > 1_000_000_000_00 {
                 delegate?.textfieldNumberTooLarge()
+                headerDelegate?.textfieldNumberTooLarge()
                 moneyAmount = baseAmount
             }
             moneyField.text = IntToCurrency.makeDollars(fromNumber: moneyAmount)

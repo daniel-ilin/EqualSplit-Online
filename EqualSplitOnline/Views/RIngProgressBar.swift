@@ -60,6 +60,7 @@ class RingProgressBar: UIView {
         progressLayer.fillColor = nil
         progressLayer.strokeColor = color.cgColor
         
+        
         layer.addSublayer(progressLayer)
         layer.transform = CATransform3DMakeRotation(CGFloat(90*Double.pi/180), 0, 0, -1)
     }

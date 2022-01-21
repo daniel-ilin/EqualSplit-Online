@@ -115,8 +115,10 @@ class UserDetailViewController: UIViewController {
     
     weak var viewmodelDelegate: TransactionTableViewViewModelDelegate?
     
+    private var currentSession: SessionViewModel
+    
     private lazy var tableView: TransactionsTableViewController = {
-        let tableView = TransactionsTableViewController(user: activeUser, viewModel: viewModel)
+        let tableView = TransactionsTableViewController(user: activeUser, viewModel: viewModel, session: currentSession)
         tableView.viewmodelDelegate = self.viewmodelDelegate
         tableView.view.translatesAutoresizingMaskIntoConstraints = false
         tableView.view.clipsToBounds = true
@@ -144,7 +146,7 @@ class UserDetailViewController: UIViewController {
         } else {
             button.isEnabled = false
             button.alpha = 0.5            
-        }
+        }        
         return button
     }()
     
@@ -175,10 +177,11 @@ class UserDetailViewController: UIViewController {
     
     // MARK: - Lifecycle
     
-    init(user: User, viewModel: Person, inSessionWithId sessionid: String) {
+    init(user: User, viewModel: Person, inSession session: SessionViewModel) {
         activeUser = user
         self.viewModel = viewModel
-        self.currentSessionId = sessionid
+        self.currentSession = session
+        self.currentSessionId = session.sessionId
         personIcon.adjustColor(forPerson: viewModel)
         super.init(nibName: nil, bundle: nil)
     }
@@ -367,9 +370,10 @@ extension UserDetailViewController: HeaderNewTransactionViewDelegate {
             guard response.error == nil else { return }
             UserService.fetchUserData { response in
                 guard response.error == nil else { return }
-                SessionViewController.sessions = response.value!
-                self.canceledHandler()
+                guard response.value != nil else { return }
+                SessionViewController.sessions = response.value!                
                 self.viewmodelDelegate?.configureViewmodel()
+                self.addTransactionMode = false
                 completion()
                 self.showLoader(false)
             }

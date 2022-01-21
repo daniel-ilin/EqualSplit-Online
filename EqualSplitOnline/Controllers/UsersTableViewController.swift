@@ -58,7 +58,8 @@ class UsersTableViewController: UITableViewController {
     @objc func handleRefreshControl() {
         UserService.fetchUserData { response in
             guard response.error == nil else { return }
-            SessionViewController.sessions = response.value!
+            guard response.value != nil else { return }
+            SessionViewController.sessions = response.value!            
             self.viewmodelDelegate?.configureViewmodel()
             DispatchQueue.main.async {
                 self.tableView.refreshControl?.endRefreshing()
@@ -91,18 +92,50 @@ class UsersTableViewController: UITableViewController {
     
     func showModalView(forUser rowNumber: Int) {
         self.showLoader(true)
-        UserService.fetchUserData { result in
-            if result.error != nil {
-                return
-            } else {
-                self.showLoader(false)
-                self.viewmodelDelegate?.configureViewmodel()
+        UserService.fetchUserData { response in
+            guard response.error == nil else { return }
+            guard response.value != nil else { return }
+            SessionViewController.sessions = response.value!
+            self.showLoader(false)
+            self.viewmodelDelegate?.configureViewmodel()
+        }
+        
+        dvc = UserDetailViewController(user: activeSession.users[rowNumber], viewModel: viewModel.people[rowNumber], inSession: viewModel)
+        dvc!.viewmodelDelegate = self.viewmodelDelegate
+        self.present(dvc!, animated: true, completion: nil)
+    }
+    
+    func deleteHander(forUser user: Person) {
+                        
+        var titleString = "Remove \(user.name)"
+        var messageString = "from \(activeSession.name)"
+        
+        if AuthService.activeUser?.id == user.id {
+            titleString = "Leave and delete session?"
+            messageString = "You are the session owner. If you leave the session will be deleted."
+        }
+        
+        let ac = UIAlertController(title: titleString, message: messageString, preferredStyle: .alert)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        let confirm = UIAlertAction(title: "Delete", style: .destructive) {[weak self] _ in
+            self!.showLoader(true)
+            SessionService.removeUser(withId: user.id, fromSessionWithId: (self?.activeSession.id)!) { response in
+                guard response.error == nil else { return }
+                UserService.fetchUserData { response in
+                    guard response.error == nil else { return }
+                    guard response.value != nil else { return }
+                    SessionViewController.sessions = response.value!
+                    self?.showLoader(false)
+                    self?.viewmodelDelegate?.configureViewmodel()
+                }
             }
         }
         
-        dvc = UserDetailViewController(user: activeSession.users[rowNumber], viewModel: viewModel.people[rowNumber], inSessionWithId: viewModel.sessionId)
-        dvc!.viewmodelDelegate = self.viewmodelDelegate
-        self.present(dvc!, animated: true, completion: nil)
+        ac.addAction(cancel)
+        ac.addAction(confirm)
+        present(ac, animated: true, completion: nil)
     }
 }
 
@@ -129,12 +162,19 @@ extension UsersTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
+        if editingStyle == .delete {
+            deleteHander(forUser: viewModel.people[indexPath.row])
+        }
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return UITableViewCell.EditingStyle.none
+        if viewModel.ownerId == AuthService.activeUser?.id {
+            return UITableViewCell.EditingStyle.delete
+        } else {
+            return UITableViewCell.EditingStyle.none
+        }
     }
+    
     
 //    MARK: - CellSetup
     

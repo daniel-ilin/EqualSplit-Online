@@ -80,6 +80,11 @@ extension AddUserTableViewController {
     }
     
     
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return UITableViewCell.EditingStyle.none
+    }
+    
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let codeCell = SessionCodeCell()        
         codeCell.sessionNumber.text = " \(sessionCode!) "

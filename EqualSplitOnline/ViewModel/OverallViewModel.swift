@@ -11,10 +11,12 @@ import UIKit
 class SessionViewModel {
     var sessionId: String
     var people: [Person]
+    var ownerId: String
     
-    init(forPeople people: [Person], inSessionWithId sessionid: String) {
+    init(forPeople people: [Person], inSessionWithId sessionid: String, ownerId: String) {
         self.people = people
         self.sessionId = sessionid
+        self.ownerId = ownerId
     }
 }
 
@@ -143,7 +145,7 @@ struct Calculator {
             }
         }
         
-        return SessionViewModel(forPeople: people, inSessionWithId: session.id)
+        return SessionViewModel(forPeople: people, inSessionWithId: session.id, ownerId: session.ownerid)
     }
 }
 
@@ -235,7 +237,7 @@ class CalculatorTransaction {
     var sender: String
     var complete: Bool
     var transacDescription: String!
-    var id: String = ""
+    var id: String?
     
     var moneyTextColor: UIColor?
     var moneyTextFont: UIFont?

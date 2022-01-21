@@ -10,7 +10,6 @@ import UIKit
 class SessionTableViewCell: UITableViewCell {
 
 //    MARK: - Properties
-        
     
     var sessionName: UILabel = {
         let label = UILabel()
@@ -49,13 +48,102 @@ class SessionTableViewCell: UITableViewCell {
         return label
     }()
     
+    var renameButton: UIButton = {
+        let button = UIButton()
+        let attributedTitle = NSMutableAttributedString(string: "Change Name ", attributes: [.font: UIFont.systemFont(ofSize: 16), .foregroundColor: UIColor.systemBlue])
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        button.titleLabel?.textAlignment = .left
+        button.isHidden = true
+        button.isEnabled = false
+        button.addTarget(self, action: #selector(renameHandler), for: .touchUpInside)
+        button.isUserInteractionEnabled = true
+        return button
+    }()
+    
+    var deleteButton: UIButton = {
+        let button = UIButton()
+        let attributedTitle = NSMutableAttributedString(string: "Delete ", attributes: [.font: UIFont.systemFont(ofSize: 16), .foregroundColor: UIColor.systemRed])
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        button.titleLabel?.textAlignment = .right
+        button.isHidden = true
+        button.isEnabled = false
+        button.addTarget(self, action: #selector(deleteHandler), for: .touchUpInside)
+        button.isUserInteractionEnabled = true
+        return button
+    }()
+    
+    var session: Session?
+    
+    var delegate: SessionCellDelegate?
+    
+//    MARK: - Actions
+    
+    @objc func renameHandler() {
+        delegate?.renameActionHandler(forCell: self)
+    }
+    
+    @objc func deleteHandler() {
+        delegate?.deleteActionHandler(forCell: self)
+    }
+    
+//    MARK: - Helpers
+    
+    func configureUI(forSession session: Session, editMode: Bool) {
+        self.session = session
+        sessionName.text = session.name
+        numberOfUsers.text = "\(session.users.count)"
+        totalMoneyAmount.text = IntToCurrency.makeDollars(fromNumber: session.totalSpent())
+        let ownerName = findOwnerName(ofSession: session)
+        ownerLabel.text?.append(ownerName)
+        
+        let currentUserOwner = session.ownerid == AuthService.activeUser?.id
+        
+        if editMode && currentUserOwner {
+            numberOfUsers.isHidden = true
+            totalMoneyAmount.isHidden = true
+            peopleIcon.isHidden = true
+            renameButton.isHidden = false
+            deleteButton.isHidden = false
+            
+            renameButton.isEnabled = true
+            deleteButton.isEnabled = true
+            
+            self.contentView.isUserInteractionEnabled = false
+        } else {
+            numberOfUsers.isHidden = false
+            totalMoneyAmount.isHidden = false
+            peopleIcon.isHidden = false
+            renameButton.isHidden = true
+            deleteButton.isHidden = true
+            
+            renameButton.isEnabled = false
+            deleteButton.isEnabled = false
+            
+            self.contentView.isUserInteractionEnabled = true
+        }
+    }
+    
+    
+    private func findOwnerName(ofSession session: Session) -> String {
+        for user in session.users {
+            if user.userid == session.ownerid {
+                if user.userid == AuthService.activeUser?.id {
+                    return "You"
+                } else {
+                    return user.username
+                }
+            }
+        }
+        return ""
+    }
+    
 //    MARK: - Lifecycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         addSubview(sessionName)
-        sessionName.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 12, paddingLeft: 20, paddingRight: 8)
+        sessionName.anchor(top: topAnchor, left: leftAnchor, paddingTop: 12, paddingLeft: 20)
         
         addSubview(peopleIcon)
         peopleIcon.anchor(top: sessionName.bottomAnchor, left: leftAnchor, paddingTop: 10, paddingLeft: 20)
@@ -68,9 +156,27 @@ class SessionTableViewCell: UITableViewCell {
         
         addSubview(ownerLabel)
         ownerLabel.anchor(top: sessionName.bottomAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 8, paddingBottom: 12, paddingRight: 20)
+        
+        addSubview(renameButton)
+        renameButton.anchor(left: leftAnchor, bottom: numberOfUsers.bottomAnchor, paddingLeft: 20, paddingBottom: -4)
+        
+        addSubview(deleteButton)
+        deleteButton.anchor(bottom: sessionName.bottomAnchor, right: rightAnchor, paddingBottom: -6, paddingRight: 20)
+        
+        NSLayoutConstraint.activate([
+            deleteButton.leadingAnchor.constraint(greaterThanOrEqualTo: sessionName.trailingAnchor, constant: 8)
+        ])
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+
+// MARK: - SessionCellDelegate
+
+protocol SessionCellDelegate {
+    func renameActionHandler(forCell cell: SessionTableViewCell)
+    func deleteActionHandler(forCell cell: SessionTableViewCell)
 }

@@ -11,6 +11,13 @@ class SessionViewController: UITableViewController {
     
     //    MARK: - Properties
     
+    private var editMode = false {
+        didSet {
+            topRightButton?.title = editMode ? "Done" : "Edit"            
+            tableView.reloadData()
+        }
+    }
+    
     static var sessions = [Session]() {
         didSet {
             let currentUserId = AuthService.activeUser?.id
@@ -31,6 +38,8 @@ class SessionViewController: UITableViewController {
         return button
     }()
     
+    private var topRightButton: UIBarButtonItem?
+    
     private let cellReuseIdentifier = "CellReuseIdentifier"
     private let footerReuseIdenifier = "footerReuseIdentifier"
     
@@ -46,6 +55,8 @@ class SessionViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
+        self.showLoader(true)
+        fetchUser()
     }
     
     //    MARK: - Helpers
@@ -61,7 +72,9 @@ class SessionViewController: UITableViewController {
         tableView.register(SessionTableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editSessions))
+        topRightButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editSessions))
+        
+        navigationItem.rightBarButtonItem = topRightButton
     }
     
     func configureRefreshControl() {
@@ -75,10 +88,8 @@ class SessionViewController: UITableViewController {
     func fetchUser() {
         UserService.fetchUserData { response in
             self.showLoader(false)
-            if response.error != nil {
-                print("DEBUG: \(response.error?.localizedDescription ?? "Error when fetching users")")
-                return
-            }            
+            guard response.error == nil else { return }
+            guard response.value != nil else { return }
             guard let value = response.value else { return }            
             SessionViewController.sessions = value
             self.tableView.reloadData()
@@ -142,19 +153,7 @@ class SessionViewController: UITableViewController {
         ac.addAction(confirm)
         present(ac, animated: true, completion: nil)
     }
-    
-    private func findOwnerName(ofSession session: Session) -> String {
-        for user in session.users {
-            if user.userid == session.ownerid {
-                if user.userid == AuthService.activeUser?.id {
-                    return "You"
-                } else {
-                    return user.username
-                }
-            }
-        }
-        return ""
-    }
+
     
     //    MARK: - Actions
     
@@ -191,7 +190,7 @@ class SessionViewController: UITableViewController {
     }
     
     @objc func editSessions() {
-        print("DEBUG: Editing sessions")        
+        editMode.toggle()
     }
 }
 
@@ -209,14 +208,9 @@ extension SessionViewController: AuthenticationDelegate {
 extension SessionViewController {
         override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = SessionTableViewCell(style: .default, reuseIdentifier: cellReuseIdentifier)
+            cell.delegate = self
             let sessions = SessionViewController.sessions
-            cell.sessionName.text = sessions[indexPath.row].name
-            cell.numberOfUsers.text = "\(sessions[indexPath.row].users.count)"
-            cell.totalMoneyAmount.text = IntToCurrency.makeDollars(fromNumber: sessions[indexPath.row].totalSpent())
-            
-            let ownerName = findOwnerName(ofSession: sessions[indexPath.row])
-            cell.ownerLabel.text?.append(ownerName)
-            
+            cell.configureUI(forSession: sessions[indexPath.row], editMode: editMode)            
             return cell
         }
     
@@ -250,8 +244,52 @@ extension SessionViewController {
     }
 }
 
-//extension SessionViewController: DataModelUpdateDelegate {
-//    func updateDataModel() {
-//        self.fetchUser()
-//    }
-//}
+// MARK: - SessionCellDelegate
+
+extension SessionViewController: SessionCellDelegate {
+    
+    func deleteActionHandler(forCell cell: SessionTableViewCell) {
+        
+        let titleString = "Delete \(cell.sessionName.text!)"
+        let messageString = "Session will be deleted for all members. All session data will be lost."
+        let ac = UIAlertController(title: titleString, message: messageString, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        guard let id = cell.session?.id else { return }
+        let confirm = UIAlertAction(title: "Delete", style: .destructive) {[weak self] _ in
+            self!.showLoader(true)
+            SessionService.deleteSession(withId: id) { response in
+                guard response.error == nil else { return }
+                self?.fetchUser()
+            }
+        }
+        
+        ac.addAction(cancel)
+        ac.addAction(confirm)
+        present(ac, animated: true, completion: nil)
+    }
+    
+    
+    func renameActionHandler(forCell cell: SessionTableViewCell) {
+        
+        let titleString = "Rename \(cell.sessionName.text!)"
+        let messageString = "Select new session name"
+        let ac = UIAlertController(title: titleString, message: messageString, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        ac.addTextField()
+        ac.textFields![0].clearButtonMode = .whileEditing
+        guard let id = cell.session?.id else { return }
+        let confirm = UIAlertAction(title: "Confirm", style: .default) {[weak self] _ in
+            guard let text = ac.textFields![0].text else { return }
+            guard text != "" else { return }
+            self!.showLoader(true)
+            SessionService.renameSession(withId: id, toName: text) { response in
+                guard response.error == nil else { return }
+                self?.fetchUser()
+            }
+        }
+        ac.addAction(cancel)
+        ac.addAction(confirm)
+        present(ac, animated: true, completion: nil)
+    }
+    
+}
