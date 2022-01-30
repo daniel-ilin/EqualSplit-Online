@@ -272,7 +272,7 @@ extension SessionViewController: SessionCellDelegate {
     func renameActionHandler(forCell cell: SessionTableViewCell) {
         
         let titleString = "Rename \(cell.sessionName.text!)"
-        let messageString = "Select new session name"
+        let messageString = "Select new name"
         let ac = UIAlertController(title: titleString, message: messageString, preferredStyle: .alert)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         ac.addTextField()

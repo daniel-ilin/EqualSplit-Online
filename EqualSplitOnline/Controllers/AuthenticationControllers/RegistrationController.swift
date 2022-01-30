@@ -79,6 +79,7 @@ class RegistrationController: UIViewController {
         super.viewDidLoad()
         configureUI()
         configureNotificationObservers()
+        hideKeyboardWhenTappedAround()
     }
     
     //    MARK: - Actions
@@ -89,7 +90,7 @@ class RegistrationController: UIViewController {
         }
         
         if alreadyHaveAccountButton.frame.minY < keyboardSize.height {
-            self.view.frame.origin.y = alreadyHaveAccountButton.frame.minY - keyboardSize.height - 30
+            self.view.frame.origin.y = -keyboardSize.height + alreadyHaveAccountButton.frame.minY
         }
     }
     
@@ -153,7 +154,11 @@ class RegistrationController: UIViewController {
         topStack.spacing = 16
         
         view.addSubview(topStack)
-        topStack.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 150, paddingLeft: 32, paddingRight: 32)
+        topStack.anchor(left: view.leftAnchor, right: view.rightAnchor, paddingLeft: 32, paddingRight: 32)
+        
+        NSLayoutConstraint.activate([
+            topStack.topAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor, constant: 150)
+        ])
         
         let stack = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, fullnameTextField, signupButton, alreadyHaveAccountButton])
         stack.axis = .vertical
@@ -161,6 +166,10 @@ class RegistrationController: UIViewController {
         
         view.addSubview(stack)
         stack.anchor(top: topStack.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 40, paddingLeft: 32, paddingRight: 32)
+        
+        NSLayoutConstraint.activate([
+            stack.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: -20)
+        ])
     }
     
     func configureNotificationObservers() {
@@ -181,5 +190,20 @@ extension RegistrationController: FormViewModel {
     func updateForm() {
         signupButton.backgroundColor = viewModel.buttonBackgroundColor
         signupButton.isEnabled = viewModel.formIsValid
+    }
+}
+
+
+// MARK: - hideKeyboardWhenTappedAround
+
+extension RegistrationController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }

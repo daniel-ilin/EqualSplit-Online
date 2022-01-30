@@ -5,6 +5,7 @@
 //  Created by Daniel Ilin on 16.01.2022.
 //
 
+import Foundation
 import Alamofire
 
 struct TransactionService {
@@ -17,7 +18,7 @@ struct TransactionService {
             "description": description
         ]
         
-        let callurl = "\(API_URL)/transactions"
+        let callurl = "\(API_URL)/transaction"
         
         AF.request(callurl, method: .post, parameters: request, encoder: JSONParameterEncoder.default).response { response in
             if response.response?.statusCode == 200 {
@@ -36,7 +37,7 @@ struct TransactionService {
             "id": id
         ]
         
-        let callurl = "\(API_URL)/transactions"
+        let callurl = "\(API_URL)/transaction"
         
         AF.request(callurl, method: .put, parameters: request, encoder: JSONParameterEncoder.default).response { response in
             if response.response?.statusCode == 200 {
@@ -54,7 +55,7 @@ struct TransactionService {
             "sessionid": sessionId
         ]
         
-        let callurl = "\(API_URL)/transactions"
+        let callurl = "\(API_URL)/transaction"
         
         AF.request(callurl, method: .delete, parameters: request, encoder: JSONParameterEncoder.default).response { response in
             if response.response?.statusCode == 200 {

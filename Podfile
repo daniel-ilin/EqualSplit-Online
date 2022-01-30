@@ -5,10 +5,11 @@ target 'EqualSplitOnline' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-pod 'Alamofire', '~> 5.5'
-
-pod 'JGProgressHUD'
-
   # Pods for EqualSplitOnline
+
+  target 'EqualSplitOnlineTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
 
 end

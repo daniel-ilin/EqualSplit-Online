@@ -13,9 +13,10 @@ struct UserService {
     
     static func fetchUserData(completion: @escaping AuthCompletion) {
         
-        let callurl = "\(API_URL)/user"
+        let callurl = "\(API_URL)/users"
                 
         AF.request(callurl, method: .get).validate().responseDecodable(of: Sessions.self) { response in            
+            print("DEBUG: response is \(response)")
             guard response.value != nil else {return}
             if response.response?.statusCode == 200 {
                 SessionViewController.sessions = response.value!

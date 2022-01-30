@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07E6BC40A22A1826DA2027AB /* Pods_EqualSplitOnline.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC418417459CA5F7B6F5837B /* Pods_EqualSplitOnline.framework */; };
 		650C107827828AD600549DA6 /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C107727828AD600549DA6 /* SessionService.swift */; };
 		650C107E27839F0000549DA6 /* HighlightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C107D27839F0000549DA6 /* HighlightButton.swift */; };
 		650C10822783A31600549DA6 /* IntToCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C10812783A31600549DA6 /* IntToCurrency.swift */; };
@@ -52,11 +51,25 @@
 		65F9C1C5278656060096DB39 /* SetImageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F9C1C4278656060096DB39 /* SetImageColor.swift */; };
 		65F9C1C7278660E80096DB39 /* SessionCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F9C1C6278660E80096DB39 /* SessionCodeCell.swift */; };
 		65F9C1CC27866B7E0096DB39 /* AddOfflineUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F9C1CB27866B7E0096DB39 /* AddOfflineUserCell.swift */; };
+		960CECA127A580A100F30E7E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 960CECA027A580A100F30E7E /* Alamofire */; };
+		960CECA427A580D700F30E7E /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 960CECA327A580D700F30E7E /* JGProgressHUD */; };
+		96CA964D27A4E55200BF7196 /* AuthServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CA964C27A4E55200BF7196 /* AuthServiceTest.swift */; };
+		B9445427B748E127D2694F34 /* Pods_EqualSplitOnline.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC418417459CA5F7B6F5837B /* Pods_EqualSplitOnline.framework */; };
+		DF34E512C914863EA6E88DE1 /* Pods_EqualSplitOnlineTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A918087AFA2C6CF2E44C52 /* Pods_EqualSplitOnlineTests.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		96CA964727A4E4C500BF7196 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 65E61AE4277E35D70003BAD8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65E61AEB277E35D70003BAD8;
+			remoteInfo = EqualSplitOnline;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		24A9CDFD734D044EB3421AE2 /* Pods-EqualSplitOnline.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EqualSplitOnline.release.xcconfig"; path = "Target Support Files/Pods-EqualSplitOnline/Pods-EqualSplitOnline.release.xcconfig"; sourceTree = "<group>"; };
-		616AC3212694FDDA9F01D6EA /* Pods-EqualSplitOnline.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EqualSplitOnline.debug.xcconfig"; path = "Target Support Files/Pods-EqualSplitOnline/Pods-EqualSplitOnline.debug.xcconfig"; sourceTree = "<group>"; };
+		12F2446AA05C0558446CAA86 /* Pods-EqualSplitOnline.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EqualSplitOnline.release.xcconfig"; path = "Target Support Files/Pods-EqualSplitOnline/Pods-EqualSplitOnline.release.xcconfig"; sourceTree = "<group>"; };
 		650C107727828AD600549DA6 /* SessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
 		650C107D27839F0000549DA6 /* HighlightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightButton.swift; sourceTree = "<group>"; };
 		650C10812783A31600549DA6 /* IntToCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntToCurrency.swift; sourceTree = "<group>"; };
@@ -103,7 +116,14 @@
 		65F9C1C4278656060096DB39 /* SetImageColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetImageColor.swift; sourceTree = "<group>"; };
 		65F9C1C6278660E80096DB39 /* SessionCodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCodeCell.swift; sourceTree = "<group>"; };
 		65F9C1CB27866B7E0096DB39 /* AddOfflineUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOfflineUserCell.swift; sourceTree = "<group>"; };
+		87EBDBA10622743FFD4B9592 /* Pods-EqualSplitOnline.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EqualSplitOnline.debug.xcconfig"; path = "Target Support Files/Pods-EqualSplitOnline/Pods-EqualSplitOnline.debug.xcconfig"; sourceTree = "<group>"; };
+		96CA607127A4ECD100857E58 /* EqualSplitOnlineTestsTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqualSplitOnlineTestsTarget.swift; sourceTree = "<group>"; };
+		96CA964327A4E4C500BF7196 /* EqualSplitOnlineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EqualSplitOnlineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		96CA964C27A4E55200BF7196 /* AuthServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceTest.swift; sourceTree = "<group>"; };
 		CC418417459CA5F7B6F5837B /* Pods_EqualSplitOnline.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EqualSplitOnline.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E434B4119F06D7F9853A9FC6 /* Pods-EqualSplitOnlineTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EqualSplitOnlineTests.debug.xcconfig"; path = "Target Support Files/Pods-EqualSplitOnlineTests/Pods-EqualSplitOnlineTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E4CBC5AB5EDF40A131EE9A1D /* Pods-EqualSplitOnlineTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EqualSplitOnlineTests.release.xcconfig"; path = "Target Support Files/Pods-EqualSplitOnlineTests/Pods-EqualSplitOnlineTests.release.xcconfig"; sourceTree = "<group>"; };
+		F1A918087AFA2C6CF2E44C52 /* Pods_EqualSplitOnlineTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EqualSplitOnlineTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,13 +131,35 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07E6BC40A22A1826DA2027AB /* Pods_EqualSplitOnline.framework in Frameworks */,
+				960CECA427A580D700F30E7E /* JGProgressHUD in Frameworks */,
+				960CECA127A580A100F30E7E /* Alamofire in Frameworks */,
+				B9445427B748E127D2694F34 /* Pods_EqualSplitOnline.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		96CA964027A4E4C500BF7196 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF34E512C914863EA6E88DE1 /* Pods_EqualSplitOnlineTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		20BD1D9C2870C16C57BE65D0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				87EBDBA10622743FFD4B9592 /* Pods-EqualSplitOnline.debug.xcconfig */,
+				12F2446AA05C0558446CAA86 /* Pods-EqualSplitOnline.release.xcconfig */,
+				E434B4119F06D7F9853A9FC6 /* Pods-EqualSplitOnlineTests.debug.xcconfig */,
+				E4CBC5AB5EDF40A131EE9A1D /* Pods-EqualSplitOnlineTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		650C108E2783CE3400549DA6 /* AuthenticationControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,9 +212,11 @@
 			isa = PBXGroup;
 			children = (
 				65E61AEE277E35D70003BAD8 /* EqualSplitOnline */,
+				96CA964427A4E4C500BF7196 /* EqualSplitOnlineTests */,
+				96CA607027A4ECD100857E58 /* EqualSplitOnlineTestsTarget */,
 				65E61AED277E35D70003BAD8 /* Products */,
 				68C269B545C62869AC73544F /* Frameworks */,
-				975AB8BDE384DA84EB83BA23 /* Pods */,
+				20BD1D9C2870C16C57BE65D0 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -180,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				65E61AEC277E35D70003BAD8 /* EqualSplitOnline.app */,
+				96CA964327A4E4C500BF7196 /* EqualSplitOnlineTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -280,17 +325,25 @@
 			isa = PBXGroup;
 			children = (
 				CC418417459CA5F7B6F5837B /* Pods_EqualSplitOnline.framework */,
+				F1A918087AFA2C6CF2E44C52 /* Pods_EqualSplitOnlineTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		975AB8BDE384DA84EB83BA23 /* Pods */ = {
+		96CA607027A4ECD100857E58 /* EqualSplitOnlineTestsTarget */ = {
 			isa = PBXGroup;
 			children = (
-				616AC3212694FDDA9F01D6EA /* Pods-EqualSplitOnline.debug.xcconfig */,
-				24A9CDFD734D044EB3421AE2 /* Pods-EqualSplitOnline.release.xcconfig */,
+				96CA607127A4ECD100857E58 /* EqualSplitOnlineTestsTarget.swift */,
 			);
-			path = Pods;
+			path = EqualSplitOnlineTestsTarget;
+			sourceTree = "<group>";
+		};
+		96CA964427A4E4C500BF7196 /* EqualSplitOnlineTests */ = {
+			isa = PBXGroup;
+			children = (
+				96CA964C27A4E55200BF7196 /* AuthServiceTest.swift */,
+			);
+			path = EqualSplitOnlineTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,16 +357,38 @@
 				65E61AE8277E35D70003BAD8 /* Sources */,
 				65E61AE9277E35D70003BAD8 /* Frameworks */,
 				65E61AEA277E35D70003BAD8 /* Resources */,
-				74E22A042BDC2179BB244245 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = EqualSplitOnline;
+			packageProductDependencies = (
+				960CECA027A580A100F30E7E /* Alamofire */,
+				960CECA327A580D700F30E7E /* JGProgressHUD */,
+			);
 			productName = EqualSplitOnline;
 			productReference = 65E61AEC277E35D70003BAD8 /* EqualSplitOnline.app */;
 			productType = "com.apple.product-type.application";
+		};
+		96CA964227A4E4C500BF7196 /* EqualSplitOnlineTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 96CA964B27A4E4C500BF7196 /* Build configuration list for PBXNativeTarget "EqualSplitOnlineTests" */;
+			buildPhases = (
+				B916834938B4AA2B96BB9D65 /* [CP] Check Pods Manifest.lock */,
+				96CA963F27A4E4C500BF7196 /* Sources */,
+				96CA964027A4E4C500BF7196 /* Frameworks */,
+				96CA964127A4E4C500BF7196 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				96CA964827A4E4C500BF7196 /* PBXTargetDependency */,
+			);
+			name = EqualSplitOnlineTests;
+			productName = EqualSplitOnlineTests;
+			productReference = 96CA964327A4E4C500BF7196 /* EqualSplitOnlineTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -322,11 +397,16 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1310;
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
 					65E61AEB277E35D70003BAD8 = {
 						CreatedOnToolsVersion = 13.1;
+					};
+					96CA964227A4E4C500BF7196 = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
+						TestTargetID = 65E61AEB277E35D70003BAD8;
 					};
 				};
 			};
@@ -339,11 +419,16 @@
 				Base,
 			);
 			mainGroup = 65E61AE3277E35D70003BAD8;
+			packageReferences = (
+				960CEC9F27A580A100F30E7E /* XCRemoteSwiftPackageReference "Alamofire" */,
+				960CECA227A580D700F30E7E /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
+			);
 			productRefGroup = 65E61AED277E35D70003BAD8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				65E61AEB277E35D70003BAD8 /* EqualSplitOnline */,
+				96CA964227A4E4C500BF7196 /* EqualSplitOnlineTests */,
 			);
 		};
 /* End PBXProject section */
@@ -355,6 +440,13 @@
 			files = (
 				65E61AFC277E35D90003BAD8 /* LaunchScreen.storyboard in Resources */,
 				65E61AF9277E35D90003BAD8 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		96CA964127A4E4C500BF7196 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,21 +475,26 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		74E22A042BDC2179BB244245 /* [CP] Embed Pods Frameworks */ = {
+		B916834938B4AA2B96BB9D65 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-EqualSplitOnline/Pods-EqualSplitOnline-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-EqualSplitOnline/Pods-EqualSplitOnline-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EqualSplitOnlineTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EqualSplitOnline/Pods-EqualSplitOnline-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -452,7 +549,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		96CA963F27A4E4C500BF7196 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96CA964D27A4E55200BF7196 /* AuthServiceTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		96CA964827A4E4C500BF7196 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 65E61AEB277E35D70003BAD8 /* EqualSplitOnline */;
+			targetProxy = 96CA964727A4E4C500BF7196 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		65E61AFA277E35D90003BAD8 /* LaunchScreen.storyboard */ = {
@@ -584,7 +697,7 @@
 		};
 		65E61B01277E35D90003BAD8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 616AC3212694FDDA9F01D6EA /* Pods-EqualSplitOnline.debug.xcconfig */;
+			baseConfigurationReference = 87EBDBA10622743FFD4B9592 /* Pods-EqualSplitOnline.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -612,7 +725,7 @@
 		};
 		65E61B02277E35D90003BAD8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 24A9CDFD734D044EB3421AE2 /* Pods-EqualSplitOnline.release.xcconfig */;
+			baseConfigurationReference = 12F2446AA05C0558446CAA86 /* Pods-EqualSplitOnline.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -638,6 +751,59 @@
 			};
 			name = Release;
 		};
+		96CA964927A4E4C500BF7196 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E434B4119F06D7F9853A9FC6 /* Pods-EqualSplitOnlineTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZZZN24R7C9;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ilinedv.EqualSplitOnlineTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EqualSplitOnline.app/EqualSplitOnline";
+			};
+			name = Debug;
+		};
+		96CA964A27A4E4C500BF7196 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E4CBC5AB5EDF40A131EE9A1D /* Pods-EqualSplitOnlineTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZZZN24R7C9;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ilinedv.EqualSplitOnlineTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EqualSplitOnline.app/EqualSplitOnline";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -659,7 +825,48 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		96CA964B27A4E4C500BF7196 /* Build configuration list for PBXNativeTarget "EqualSplitOnlineTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96CA964927A4E4C500BF7196 /* Debug */,
+				96CA964A27A4E4C500BF7196 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		960CEC9F27A580A100F30E7E /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		960CECA227A580D700F30E7E /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		960CECA027A580A100F30E7E /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 960CEC9F27A580A100F30E7E /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		960CECA327A580D700F30E7E /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 960CECA227A580D700F30E7E /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 65E61AE4277E35D70003BAD8 /* Project object */;
 }

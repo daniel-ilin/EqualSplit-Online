@@ -1,0 +1,6 @@
+framework module Pods_EqualSplitOnlineTests {
+  umbrella header "Pods-EqualSplitOnlineTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

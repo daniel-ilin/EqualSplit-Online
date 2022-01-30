@@ -68,6 +68,7 @@ class LoginController: UIViewController {
         super.viewDidLoad()
         configureUI()
         configureNotificationObservers()
+        hideKeyboardWhenTappedAround() 
     }
     
     // MARK: - Actions
@@ -79,7 +80,7 @@ class LoginController: UIViewController {
         }
         
         if dontHaveAccountButton.frame.minY < keyboardSize.height {
-            self.view.frame.origin.y = dontHaveAccountButton.frame.maxY - keyboardSize.height
+            self.view.frame.origin.y = -keyboardSize.height+dontHaveAccountButton.frame.minY
         }
     }
     
@@ -115,7 +116,7 @@ class LoginController: UIViewController {
                 print("DEBUG: Could not login")
                 return
             }            
-            self.delegate?.authenticationDidComplete()
+            self.delegate?.authenticationDidComplete()            
         }
     }
     
@@ -131,7 +132,11 @@ class LoginController: UIViewController {
         topStack.spacing = 16
         
         view.addSubview(topStack)
-        topStack.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 150, paddingLeft: 32, paddingRight: 32)
+        topStack.anchor(left: view.leftAnchor, right: view.rightAnchor, paddingLeft: 32, paddingRight: 32)
+        
+        NSLayoutConstraint.activate([
+            topStack.topAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor, constant: 150)
+        ])
         
         let stack = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, loginButton, dontHaveAccountButton])
         stack.axis = .vertical
@@ -139,6 +144,10 @@ class LoginController: UIViewController {
         
         view.addSubview(stack)
         stack.anchor(top: topStack.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 50, paddingLeft: 32, paddingRight: 32)
+        
+        NSLayoutConstraint.activate([
+            stack.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: -20)
+        ])
         
     }
     
@@ -159,5 +168,19 @@ extension LoginController: FormViewModel {
     func updateForm() {
         loginButton.backgroundColor = viewModel.buttonBackgroundColor
         loginButton.isEnabled = viewModel.formIsValid
+    }
+}
+
+// MARK: - hideKeyboardWhenTappedAround
+
+extension LoginController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }

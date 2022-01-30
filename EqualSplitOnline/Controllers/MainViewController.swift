@@ -258,7 +258,7 @@ class MainViewController: UIViewController {
     }
     
     @objc func handleExpand(sender: UIPanGestureRecognizer) {
-        let dragView = tableViewContainer
+        let dragView = self.view
         let translation = sender.translation(in: dragView)
         if sender.state == .began {
         startingConstant = self.topConstraint?.constant
@@ -285,8 +285,10 @@ class MainViewController: UIViewController {
 //    MARK: - Add Observers
     
     private func addObservers() {
-        tableViewContainer.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleExpand)))
-    }
+        let tap: UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleExpand))
+        tap.delegate = self
+        tableViewContainer.addGestureRecognizer(tap)
+    }    
 }
 
 // MARK: - PushTransition Animation
@@ -348,5 +350,20 @@ extension MainViewController: TransactionTableViewViewModelDelegate {
             return
         }
         viewModel = Calculator.findOwersNeeders(inSession: activeSession)
+    }
+}
+
+//  MARK: - UIGestureRecognizerDelegate
+
+extension MainViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        guard let panRecognizer = otherGestureRecognizer as? UIPanGestureRecognizer else {
+            return false
+        }
+        let velocity = panRecognizer.velocity(in: panRecognizer.view)
+        if (abs(velocity.x) > abs(velocity.y)) {
+            return true
+        }
+        return false
     }
 }

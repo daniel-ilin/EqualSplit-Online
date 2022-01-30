@@ -71,8 +71,8 @@ class TransactionsTableViewController: UITableViewController {
         guard let id = transaction.id else { return }
         
         
-        let titleString = "Delete \(IntToCurrency.makeDollars(fromNumber: transaction.amount) ?? "error")"
-        let messageString = "from \(viewModel.name)?"
+        let titleString = "Remove \(IntToCurrency.makeDollars(fromNumber: transaction.amount) ?? "error")?"
+        let messageString = "from \(viewModel.name)"
         let ac = UIAlertController(title: titleString, message: messageString, preferredStyle: .alert)
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)

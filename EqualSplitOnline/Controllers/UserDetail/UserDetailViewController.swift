@@ -25,7 +25,7 @@ class UserDetailViewController: UIViewController {
     private lazy var addTransactionMode: Bool = false {
         didSet {
             if addTransactionMode == true {
-//                expandTableView()
+                expandTableView()
                 self.addTransactionView.isHidden = false
                 self.addNewPaymentButton.isEnabled = false
                 self.heightConstraint?.constant = 160
@@ -340,7 +340,9 @@ class UserDetailViewController: UIViewController {
 //    MARK: - Add Observers
     
     private func addObservers() {
-        tableViewContainer.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleExpand)))
+        let tap: UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleExpand))
+        tap.delegate = self
+        tableViewContainer.addGestureRecognizer(tap)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         
@@ -393,4 +395,19 @@ extension UserDetailViewController: HeaderNewTransactionViewDelegate {
     }
     
     
+}
+
+//  MARK: - UIGestureRecognizerDelegate
+
+extension UserDetailViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        guard let panRecognizer = otherGestureRecognizer as? UIPanGestureRecognizer else {
+            return false
+        }
+        let velocity = panRecognizer.velocity(in: panRecognizer.view)
+        if (abs(velocity.x) > abs(velocity.y)) {
+            return true
+        }
+        return false
+    }
 }

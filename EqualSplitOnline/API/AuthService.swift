@@ -23,7 +23,6 @@ struct AuthService {
     static func registerUser(withCredentials credentials: AuthCredentials, completion: @escaping (AFDataResponse<Data?>)->Void) {
         
         
-        
         let request: [String: String] = [
             "email": credentials.email,
             "name": credentials.name,

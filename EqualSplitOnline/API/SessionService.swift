@@ -4,7 +4,7 @@
 //
 //  Created by Daniel Ilin on 02.01.2022.
 //
-
+import Foundation
 import Alamofire
 
 struct SessionService {
@@ -32,7 +32,7 @@ struct SessionService {
     static func deleteSession(withId id: String, completion: @escaping (AFDataResponse<Data?>)->Void) {
         
         let request: [String: String] = [
-            "id": id
+            "sessionid": id
         ]
         
         let callurl = "\(API_URL)/session"
@@ -51,7 +51,7 @@ struct SessionService {
     static func renameSession(withId id: String, toName name: String, completion: @escaping (AFDataResponse<Data?>)->Void) {
         
         let request: [String: String] = [
-            "id": id,
+            "sessionid": id,
             "name": name
         ]
         
@@ -75,7 +75,7 @@ struct SessionService {
             "sessionCode": code
         ]
         
-        let callurl = "\(API_URL)/joinsession"
+        let callurl = "\(API_URL)/session/join"
         
         AF.request(callurl, method: .post, parameters: request, encoder: JSONParameterEncoder.default).response { response in
             if response.response?.statusCode == 200 {
@@ -96,7 +96,7 @@ struct SessionService {
             "userid": userid
         ]
         
-        let callurl = "\(API_URL)/sessionusers"
+        let callurl = "\(API_URL)/session/user"
         
         AF.request(callurl, method: .delete, parameters: request, encoder: JSONParameterEncoder.default).response { response in
             if response.response?.statusCode == 200 {
