@@ -48,7 +48,7 @@ class SessionTableViewCell: UITableViewCell {
         return label
     }()
     
-    var renameButton: UIButton = {
+    lazy var renameButton: UIButton = {
         let button = UIButton()
         let attributedTitle = NSMutableAttributedString(string: "Change Name ", attributes: [.font: UIFont.systemFont(ofSize: 16), .foregroundColor: UIColor.systemBlue])
         button.setAttributedTitle(attributedTitle, for: .normal)
@@ -60,7 +60,7 @@ class SessionTableViewCell: UITableViewCell {
         return button
     }()
     
-    var deleteButton: UIButton = {
+    lazy var deleteButton: UIButton = {
         let button = UIButton()
         let attributedTitle = NSMutableAttributedString(string: "Delete ", attributes: [.font: UIFont.systemFont(ofSize: 16), .foregroundColor: UIColor.systemRed])
         button.setAttributedTitle(attributedTitle, for: .normal)
@@ -74,7 +74,7 @@ class SessionTableViewCell: UITableViewCell {
     
     var session: Session?
     
-    var delegate: SessionCellDelegate?
+    weak var delegate: SessionCellDelegate?
     
 //    MARK: - Actions
     
@@ -176,7 +176,7 @@ class SessionTableViewCell: UITableViewCell {
 
 // MARK: - SessionCellDelegate
 
-protocol SessionCellDelegate {
+protocol SessionCellDelegate: AnyObject {
     func renameActionHandler(forCell cell: SessionTableViewCell)
     func deleteActionHandler(forCell cell: SessionTableViewCell)
 }

@@ -7,6 +7,31 @@
 
 import Foundation
 
+// MARK: - Error
+
+struct APIError: Codable {
+    let error: String
+}
+
+// MARK: - Tokens
+struct Tokens: Codable {
+    var accessToken: String?
+    var refreshToken: String?
+}
+
+// MARK: - UserData
+struct UserData: Codable {
+    let activeUser: ActiveUser
+    let sessions: [Session]
+}
+
+
+// MARK: - ActiveUser
+struct ActiveUser: Codable {
+    let name, email, id: String
+    var token: Token?
+}
+
 // MARK: - WelcomeElement
 struct Session: Codable {
     let id, name, ownerid: String

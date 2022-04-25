@@ -7,16 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		421177A0BEF6794CF4648256D6895782 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		55E7E7800783F9F1751A69670CD9B218 /* Pods-EqualSplitOnlineTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C59AE010D3F6BA8DB51D9969DD05FB /* Pods-EqualSplitOnlineTests-dummy.m */; };
-		6E6597F6A5FB661801CA61CFF645D35B /* Pods-EqualSplitOnlineTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 177ED95C343BE93CB6437BA0AE62F343 /* Pods-EqualSplitOnlineTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0CBFBBC52B77AEDD220B219AFA55B4F6 /* KeychainSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4F6FC730B87B16A7F7A0A92CF2EB13 /* KeychainSwift.swift */; };
+		37EC024F54023B0D698A37C47122C953 /* KeychainSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E9CF1441562AF1808C78D1B0BB5941B /* KeychainSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		55E7E7800783F9F1751A69670CD9B218 /* Pods-EqualSplitOnlineTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA6E11F003236CFBA6E8EF71D61B263 /* Pods-EqualSplitOnlineTests-dummy.m */; };
+		6C133193471A0A93B4CE45491148072A /* TegKeychainConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA3466BDF1C63EE297562FE8F1823FD /* TegKeychainConstants.swift */; };
+		6E6597F6A5FB661801CA61CFF645D35B /* Pods-EqualSplitOnlineTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D4E1EE2181264A7F11DEEFFE456AB491 /* Pods-EqualSplitOnlineTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74F1B399380ECE4B4D3DFD61F7F8489F /* Pods-EqualSplitOnline-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 757E433E78B984BE42EAA80C3D3C1010 /* Pods-EqualSplitOnline-dummy.m */; };
+		B0D0E4D848A1ECC9613D901E175B70A5 /* Pods-EqualSplitOnline-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D8F4D5CE2FCB5D2AB24AB660C324083 /* Pods-EqualSplitOnline-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B39BF720A3E471DC10CDC6CC3986D2A9 /* KeychainSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0A8EBB8429A13FD79B471B95E12020 /* KeychainSwift-dummy.m */; };
+		C543B2A5CF83423F50EF2DFA3A7F1141 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		CCF8C6C5E59837958001AE90F5D11FB2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		D67D689A94FF7A6DAFDA0B789328911E /* Pods-EqualSplitOnline-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5934EE7949C5537A41401A6AE644A71C /* Pods-EqualSplitOnline-dummy.m */; };
-		E41D2EFEA998105409D94E59DAA96BF0 /* Pods-EqualSplitOnline-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C0AA400B85CE2C772D7AF3C973BEF411 /* Pods-EqualSplitOnline-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E0608F060B9749A699098AD66F5FF0EA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		FAA9422DBF165F89AA81D94DB2DBF457 /* KeychainSwiftAccessOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8CDCCBA5A8118998F805DDE346BFA6 /* KeychainSwiftAccessOptions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		AD3F1671D328BC5E4C1A8AF1BEE93741 /* PBXContainerItemProxy */ = {
+		9238A02F12A04C1A16DBA3324CB66EB6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 07E54A78BCF82272E99319D7F7F5E8C1;
+			remoteInfo = KeychainSwift;
+		};
+		B050C0B4E132D05B2CB9786989267FC3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
@@ -26,34 +39,54 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		177ED95C343BE93CB6437BA0AE62F343 /* Pods-EqualSplitOnlineTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-EqualSplitOnlineTests-umbrella.h"; sourceTree = "<group>"; };
-		2C70419385AB39EECFEC692B4C11E9CB /* Pods-EqualSplitOnlineTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-EqualSplitOnlineTests.debug.xcconfig"; sourceTree = "<group>"; };
-		3D83F0C691C3B90EFC20E69CA2FCA6F9 /* Pods-EqualSplitOnlineTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-EqualSplitOnlineTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		3E57806E8BC0ECDE3A0C49CA7D995C02 /* Pods-EqualSplitOnline-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-EqualSplitOnline-acknowledgements.plist"; sourceTree = "<group>"; };
+		09AFB6417A66A2201318A579C231B2AA /* KeychainSwift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "KeychainSwift-Info.plist"; sourceTree = "<group>"; };
+		17456078214F01FDA3C509F1DFB5475F /* KeychainSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KeychainSwift-prefix.pch"; sourceTree = "<group>"; };
+		1E9CF1441562AF1808C78D1B0BB5941B /* KeychainSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KeychainSwift-umbrella.h"; sourceTree = "<group>"; };
+		2C0A8EBB8429A13FD79B471B95E12020 /* KeychainSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "KeychainSwift-dummy.m"; sourceTree = "<group>"; };
+		39F33228D8F0CD3C709911FF8FFCFFF0 /* Pods-EqualSplitOnline.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-EqualSplitOnline.modulemap"; sourceTree = "<group>"; };
+		3C4F6FC730B87B16A7F7A0A92CF2EB13 /* KeychainSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeychainSwift.swift; path = Sources/KeychainSwift.swift; sourceTree = "<group>"; };
+		3C8CDCCBA5A8118998F805DDE346BFA6 /* KeychainSwiftAccessOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeychainSwiftAccessOptions.swift; path = Sources/KeychainSwiftAccessOptions.swift; sourceTree = "<group>"; };
+		482A97125A6383E9C5E2FB94F12ECA89 /* Pods-EqualSplitOnlineTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-EqualSplitOnlineTests.modulemap"; sourceTree = "<group>"; };
+		4E61AE68D4DD343AAD3E907933BA9E68 /* Pods-EqualSplitOnline.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-EqualSplitOnline.debug.xcconfig"; sourceTree = "<group>"; };
+		509DC1C56F9E1F05837B10323E74CCE0 /* Pods-EqualSplitOnlineTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-EqualSplitOnlineTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		56DE7C170BD66CADC56CB9F780E198A5 /* Pods-EqualSplitOnline */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-EqualSplitOnline"; path = Pods_EqualSplitOnline.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5934EE7949C5537A41401A6AE644A71C /* Pods-EqualSplitOnline-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-EqualSplitOnline-dummy.m"; sourceTree = "<group>"; };
-		5B9E092E367C37B8052AAF4523AEE2F8 /* Pods-EqualSplitOnlineTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-EqualSplitOnlineTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		6B8929BA270A6145EF0C0CF1F09ABA47 /* Pods-EqualSplitOnline-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-EqualSplitOnline-acknowledgements.markdown"; sourceTree = "<group>"; };
+		612E892CFBC52CEC7F93B9B56B723D4D /* Pods-EqualSplitOnlineTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-EqualSplitOnlineTests.debug.xcconfig"; sourceTree = "<group>"; };
+		670DEB5D7CD21FD474274CCACEF5B1CA /* Pods-EqualSplitOnline-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-EqualSplitOnline-Info.plist"; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		83C59AE010D3F6BA8DB51D9969DD05FB /* Pods-EqualSplitOnlineTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-EqualSplitOnlineTests-dummy.m"; sourceTree = "<group>"; };
-		842734197309D19517BF898B42F3F6BB /* Pods-EqualSplitOnline.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-EqualSplitOnline.debug.xcconfig"; sourceTree = "<group>"; };
-		914A2F72E06CC6270560F74F07610BB6 /* Pods-EqualSplitOnlineTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-EqualSplitOnlineTests-Info.plist"; sourceTree = "<group>"; };
-		9CFF96009F60F5A5CDDA4C49E039EFF7 /* Pods-EqualSplitOnlineTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-EqualSplitOnlineTests.modulemap"; sourceTree = "<group>"; };
+		757E433E78B984BE42EAA80C3D3C1010 /* Pods-EqualSplitOnline-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-EqualSplitOnline-dummy.m"; sourceTree = "<group>"; };
+		76CD7E6410789D6E755C834287E1E892 /* Pods-EqualSplitOnline-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-EqualSplitOnline-acknowledgements.markdown"; sourceTree = "<group>"; };
+		7D8F4D5CE2FCB5D2AB24AB660C324083 /* Pods-EqualSplitOnline-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-EqualSplitOnline-umbrella.h"; sourceTree = "<group>"; };
+		938C638E4CAA0C991D26A73C54F1DF37 /* Pods-EqualSplitOnline.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-EqualSplitOnline.release.xcconfig"; sourceTree = "<group>"; };
+		9A03EE69A7178EF0E83EAD733927F2F5 /* Pods-EqualSplitOnlineTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-EqualSplitOnlineTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		AA59D480824C57A04D5DF9D0F37FD7AF /* Pods-EqualSplitOnlineTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-EqualSplitOnlineTests.release.xcconfig"; sourceTree = "<group>"; };
-		B0A462CDC7F0C9F6D19034C183B62097 /* Pods-EqualSplitOnline.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-EqualSplitOnline.release.xcconfig"; sourceTree = "<group>"; };
-		C0AA400B85CE2C772D7AF3C973BEF411 /* Pods-EqualSplitOnline-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-EqualSplitOnline-umbrella.h"; sourceTree = "<group>"; };
-		E3D745858C9BFE60558A16C8D1CE70DF /* Pods-EqualSplitOnline-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-EqualSplitOnline-Info.plist"; sourceTree = "<group>"; };
-		E41F1DE75488814E8677E4F3BB2634F4 /* Pods-EqualSplitOnline.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-EqualSplitOnline.modulemap"; sourceTree = "<group>"; };
+		9E0FD012ADC3C7179C684035672383E5 /* KeychainSwift */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = KeychainSwift; path = KeychainSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2EC25F9466FF73FB330A1883AD6CEF6 /* Pods-EqualSplitOnline-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-EqualSplitOnline-acknowledgements.plist"; sourceTree = "<group>"; };
+		B49033E92F41BDC09E19EB59B46FA96D /* Pods-EqualSplitOnline-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-EqualSplitOnline-frameworks.sh"; sourceTree = "<group>"; };
+		B6DBDC187520AEA2149B702813C781D4 /* KeychainSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = KeychainSwift.release.xcconfig; sourceTree = "<group>"; };
+		BFA6E11F003236CFBA6E8EF71D61B263 /* Pods-EqualSplitOnlineTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-EqualSplitOnlineTests-dummy.m"; sourceTree = "<group>"; };
+		CAA3466BDF1C63EE297562FE8F1823FD /* TegKeychainConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TegKeychainConstants.swift; path = Sources/TegKeychainConstants.swift; sourceTree = "<group>"; };
+		CC0A1A45A134726369FA33CF88BAFAB8 /* Pods-EqualSplitOnlineTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-EqualSplitOnlineTests.release.xcconfig"; sourceTree = "<group>"; };
+		D3FC93B8FF581D37B8347BB2004879E9 /* KeychainSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = KeychainSwift.debug.xcconfig; sourceTree = "<group>"; };
+		D4E1EE2181264A7F11DEEFFE456AB491 /* Pods-EqualSplitOnlineTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-EqualSplitOnlineTests-umbrella.h"; sourceTree = "<group>"; };
+		D9FE44B0E6F59D7F3F70D94F1C430C1C /* KeychainSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = KeychainSwift.modulemap; sourceTree = "<group>"; };
 		E7AE127C24B62B1976F9498880E949C0 /* Pods-EqualSplitOnlineTests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-EqualSplitOnlineTests"; path = Pods_EqualSplitOnlineTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBD0A6C42FAC12947DE1704DFBCF3851 /* Pods-EqualSplitOnlineTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-EqualSplitOnlineTests-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		D341ED4C9946ED3832419949C9AA377D /* Frameworks */ = {
+		0CC5FA585509F7037B5CEFBDAE556334 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				421177A0BEF6794CF4648256D6895782 /* Foundation.framework in Frameworks */,
+				E0608F060B9749A699098AD66F5FF0EA /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F5E1096151C1DC75B67489352719863 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C543B2A5CF83423F50EF2DFA3A7F1141 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +101,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D8703CB411E99F21D678B64213EC7E6 /* Pods-EqualSplitOnline */ = {
+			isa = PBXGroup;
+			children = (
+				39F33228D8F0CD3C709911FF8FFCFFF0 /* Pods-EqualSplitOnline.modulemap */,
+				76CD7E6410789D6E755C834287E1E892 /* Pods-EqualSplitOnline-acknowledgements.markdown */,
+				A2EC25F9466FF73FB330A1883AD6CEF6 /* Pods-EqualSplitOnline-acknowledgements.plist */,
+				757E433E78B984BE42EAA80C3D3C1010 /* Pods-EqualSplitOnline-dummy.m */,
+				B49033E92F41BDC09E19EB59B46FA96D /* Pods-EqualSplitOnline-frameworks.sh */,
+				670DEB5D7CD21FD474274CCACEF5B1CA /* Pods-EqualSplitOnline-Info.plist */,
+				7D8F4D5CE2FCB5D2AB24AB660C324083 /* Pods-EqualSplitOnline-umbrella.h */,
+				4E61AE68D4DD343AAD3E907933BA9E68 /* Pods-EqualSplitOnline.debug.xcconfig */,
+				938C638E4CAA0C991D26A73C54F1DF37 /* Pods-EqualSplitOnline.release.xcconfig */,
+			);
+			name = "Pods-EqualSplitOnline";
+			path = "Target Support Files/Pods-EqualSplitOnline";
+			sourceTree = "<group>";
+		};
+		5742738EC726EE82743D6F6BDFDD5F7A /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				2D8703CB411E99F21D678B64213EC7E6 /* Pods-EqualSplitOnline */,
+				C090091E255AAACC9B58FFDC67E02FEA /* Pods-EqualSplitOnlineTests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
 		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -76,26 +135,62 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		A28BABEDE8800D2EE85E45927B5E9ABC /* Targets Support Files */ = {
+		631E0D719A2C086B70DAF9DD02909185 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DD4641786296A9BBEC23D6E5F246F884 /* Pods-EqualSplitOnline */,
-				AD5F46CC610C68DDA88720E7290C38E3 /* Pods-EqualSplitOnlineTests */,
+				9E0FD012ADC3C7179C684035672383E5 /* KeychainSwift */,
+				56DE7C170BD66CADC56CB9F780E198A5 /* Pods-EqualSplitOnline */,
+				E7AE127C24B62B1976F9498880E949C0 /* Pods-EqualSplitOnlineTests */,
 			);
-			name = "Targets Support Files";
+			name = Products;
 			sourceTree = "<group>";
 		};
-		AD5F46CC610C68DDA88720E7290C38E3 /* Pods-EqualSplitOnlineTests */ = {
+		6914C866BAE31BFBA9841BEDCD93C6A6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				9CFF96009F60F5A5CDDA4C49E039EFF7 /* Pods-EqualSplitOnlineTests.modulemap */,
-				3D83F0C691C3B90EFC20E69CA2FCA6F9 /* Pods-EqualSplitOnlineTests-acknowledgements.markdown */,
-				5B9E092E367C37B8052AAF4523AEE2F8 /* Pods-EqualSplitOnlineTests-acknowledgements.plist */,
-				83C59AE010D3F6BA8DB51D9969DD05FB /* Pods-EqualSplitOnlineTests-dummy.m */,
-				914A2F72E06CC6270560F74F07610BB6 /* Pods-EqualSplitOnlineTests-Info.plist */,
-				177ED95C343BE93CB6437BA0AE62F343 /* Pods-EqualSplitOnlineTests-umbrella.h */,
-				2C70419385AB39EECFEC692B4C11E9CB /* Pods-EqualSplitOnlineTests.debug.xcconfig */,
-				AA59D480824C57A04D5DF9D0F37FD7AF /* Pods-EqualSplitOnlineTests.release.xcconfig */,
+				BB96A68701C841DFFA76F65DBE7E5D29 /* KeychainSwift */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B00DA973CA9C8B3444685714158C4C85 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				D9FE44B0E6F59D7F3F70D94F1C430C1C /* KeychainSwift.modulemap */,
+				2C0A8EBB8429A13FD79B471B95E12020 /* KeychainSwift-dummy.m */,
+				09AFB6417A66A2201318A579C231B2AA /* KeychainSwift-Info.plist */,
+				17456078214F01FDA3C509F1DFB5475F /* KeychainSwift-prefix.pch */,
+				1E9CF1441562AF1808C78D1B0BB5941B /* KeychainSwift-umbrella.h */,
+				D3FC93B8FF581D37B8347BB2004879E9 /* KeychainSwift.debug.xcconfig */,
+				B6DBDC187520AEA2149B702813C781D4 /* KeychainSwift.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/KeychainSwift";
+			sourceTree = "<group>";
+		};
+		BB96A68701C841DFFA76F65DBE7E5D29 /* KeychainSwift */ = {
+			isa = PBXGroup;
+			children = (
+				3C4F6FC730B87B16A7F7A0A92CF2EB13 /* KeychainSwift.swift */,
+				3C8CDCCBA5A8118998F805DDE346BFA6 /* KeychainSwiftAccessOptions.swift */,
+				CAA3466BDF1C63EE297562FE8F1823FD /* TegKeychainConstants.swift */,
+				B00DA973CA9C8B3444685714158C4C85 /* Support Files */,
+			);
+			name = KeychainSwift;
+			path = KeychainSwift;
+			sourceTree = "<group>";
+		};
+		C090091E255AAACC9B58FFDC67E02FEA /* Pods-EqualSplitOnlineTests */ = {
+			isa = PBXGroup;
+			children = (
+				482A97125A6383E9C5E2FB94F12ECA89 /* Pods-EqualSplitOnlineTests.modulemap */,
+				9A03EE69A7178EF0E83EAD733927F2F5 /* Pods-EqualSplitOnlineTests-acknowledgements.markdown */,
+				509DC1C56F9E1F05837B10323E74CCE0 /* Pods-EqualSplitOnlineTests-acknowledgements.plist */,
+				BFA6E11F003236CFBA6E8EF71D61B263 /* Pods-EqualSplitOnlineTests-dummy.m */,
+				EBD0A6C42FAC12947DE1704DFBCF3851 /* Pods-EqualSplitOnlineTests-Info.plist */,
+				D4E1EE2181264A7F11DEEFFE456AB491 /* Pods-EqualSplitOnlineTests-umbrella.h */,
+				612E892CFBC52CEC7F93B9B56B723D4D /* Pods-EqualSplitOnlineTests.debug.xcconfig */,
+				CC0A1A45A134726369FA33CF88BAFAB8 /* Pods-EqualSplitOnlineTests.release.xcconfig */,
 			);
 			name = "Pods-EqualSplitOnlineTests";
 			path = "Target Support Files/Pods-EqualSplitOnlineTests";
@@ -106,8 +201,9 @@
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
-				E7530D90C046616F1E67EBA8C7A3059F /* Products */,
-				A28BABEDE8800D2EE85E45927B5E9ABC /* Targets Support Files */,
+				6914C866BAE31BFBA9841BEDCD93C6A6 /* Pods */,
+				631E0D719A2C086B70DAF9DD02909185 /* Products */,
+				5742738EC726EE82743D6F6BDFDD5F7A /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -119,39 +215,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DD4641786296A9BBEC23D6E5F246F884 /* Pods-EqualSplitOnline */ = {
-			isa = PBXGroup;
-			children = (
-				E41F1DE75488814E8677E4F3BB2634F4 /* Pods-EqualSplitOnline.modulemap */,
-				6B8929BA270A6145EF0C0CF1F09ABA47 /* Pods-EqualSplitOnline-acknowledgements.markdown */,
-				3E57806E8BC0ECDE3A0C49CA7D995C02 /* Pods-EqualSplitOnline-acknowledgements.plist */,
-				5934EE7949C5537A41401A6AE644A71C /* Pods-EqualSplitOnline-dummy.m */,
-				E3D745858C9BFE60558A16C8D1CE70DF /* Pods-EqualSplitOnline-Info.plist */,
-				C0AA400B85CE2C772D7AF3C973BEF411 /* Pods-EqualSplitOnline-umbrella.h */,
-				842734197309D19517BF898B42F3F6BB /* Pods-EqualSplitOnline.debug.xcconfig */,
-				B0A462CDC7F0C9F6D19034C183B62097 /* Pods-EqualSplitOnline.release.xcconfig */,
-			);
-			name = "Pods-EqualSplitOnline";
-			path = "Target Support Files/Pods-EqualSplitOnline";
-			sourceTree = "<group>";
-		};
-		E7530D90C046616F1E67EBA8C7A3059F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				56DE7C170BD66CADC56CB9F780E198A5 /* Pods-EqualSplitOnline */,
-				E7AE127C24B62B1976F9498880E949C0 /* Pods-EqualSplitOnlineTests */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		3BA7FBD2AA41A14D12B9B96EFA8739EA /* Headers */ = {
+		1380B9994192F420D8BC0308CC7B1B0D /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E41D2EFEA998105409D94E59DAA96BF0 /* Pods-EqualSplitOnline-umbrella.h in Headers */,
+				37EC024F54023B0D698A37C47122C953 /* KeychainSwift-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,9 +234,35 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EE59BFB9A14C720F447DAB4811EEE041 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0D0E4D848A1ECC9613D901E175B70A5 /* Pods-EqualSplitOnline-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		07E54A78BCF82272E99319D7F7F5E8C1 /* KeychainSwift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 997BF8AEF73E04BE3F0E828FF63C51E6 /* Build configuration list for PBXNativeTarget "KeychainSwift" */;
+			buildPhases = (
+				1380B9994192F420D8BC0308CC7B1B0D /* Headers */,
+				27429ECFAA0B46393CF2868590187F44 /* Sources */,
+				8F5E1096151C1DC75B67489352719863 /* Frameworks */,
+				417F0B4D46DB5C4EC5381D3770D462EC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KeychainSwift;
+			productName = KeychainSwift;
+			productReference = 9E0FD012ADC3C7179C684035672383E5 /* KeychainSwift */;
+			productType = "com.apple.product-type.framework";
+		};
 		38034A659C968CA91BBE24A7461477A2 /* Pods-EqualSplitOnlineTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1815FC32D24B29A493DD723FFC38B8CA /* Build configuration list for PBXNativeTarget "Pods-EqualSplitOnlineTests" */;
@@ -178,7 +275,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				683C1D91FD9652836DFA2A7B9E37D8A3 /* PBXTargetDependency */,
+				D3C9DB33ADA89AE6FA7C1A56DD0E215C /* PBXTargetDependency */,
 			);
 			name = "Pods-EqualSplitOnlineTests";
 			productName = Pods_EqualSplitOnlineTests;
@@ -187,16 +284,17 @@
 		};
 		C6C59954397FBF7CFC6127E00636467F /* Pods-EqualSplitOnline */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 01665547121138F01947885B3D587DB3 /* Build configuration list for PBXNativeTarget "Pods-EqualSplitOnline" */;
+			buildConfigurationList = 5E2E35C65B60A5A42F4ED4DF4BD86CD4 /* Build configuration list for PBXNativeTarget "Pods-EqualSplitOnline" */;
 			buildPhases = (
-				3BA7FBD2AA41A14D12B9B96EFA8739EA /* Headers */,
-				A68EEC42E65BBDF4AEEBB30951378082 /* Sources */,
-				D341ED4C9946ED3832419949C9AA377D /* Frameworks */,
-				A04C489E8EC7EF2EF17872253ADF1E0F /* Resources */,
+				EE59BFB9A14C720F447DAB4811EEE041 /* Headers */,
+				4B9F0D5CA1E7F864B104AA1562132A84 /* Sources */,
+				0CC5FA585509F7037B5CEFBDAE556334 /* Frameworks */,
+				FD51F2509A5B5527136F41CD7B40552D /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				CADD7EEB100FFD07AB01FD746670E179 /* PBXTargetDependency */,
 			);
 			name = "Pods-EqualSplitOnline";
 			productName = Pods_EqualSplitOnline;
@@ -221,10 +319,11 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = E7530D90C046616F1E67EBA8C7A3059F /* Products */;
+			productRefGroup = 631E0D719A2C086B70DAF9DD02909185 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				07E54A78BCF82272E99319D7F7F5E8C1 /* KeychainSwift */,
 				C6C59954397FBF7CFC6127E00636467F /* Pods-EqualSplitOnline */,
 				38034A659C968CA91BBE24A7461477A2 /* Pods-EqualSplitOnlineTests */,
 			);
@@ -232,7 +331,7 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A04C489E8EC7EF2EF17872253ADF1E0F /* Resources */ = {
+		417F0B4D46DB5C4EC5381D3770D462EC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -246,9 +345,35 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FD51F2509A5B5527136F41CD7B40552D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		27429ECFAA0B46393CF2868590187F44 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0CBFBBC52B77AEDD220B219AFA55B4F6 /* KeychainSwift.swift in Sources */,
+				B39BF720A3E471DC10CDC6CC3986D2A9 /* KeychainSwift-dummy.m in Sources */,
+				FAA9422DBF165F89AA81D94DB2DBF457 /* KeychainSwiftAccessOptions.swift in Sources */,
+				6C133193471A0A93B4CE45491148072A /* TegKeychainConstants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4B9F0D5CA1E7F864B104AA1562132A84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74F1B399380ECE4B4D3DFD61F7F8489F /* Pods-EqualSplitOnline-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8008C82007765882A3DCD2304013C7F5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -257,29 +382,65 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A68EEC42E65BBDF4AEEBB30951378082 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D67D689A94FF7A6DAFDA0B789328911E /* Pods-EqualSplitOnline-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		683C1D91FD9652836DFA2A7B9E37D8A3 /* PBXTargetDependency */ = {
+		CADD7EEB100FFD07AB01FD746670E179 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = KeychainSwift;
+			target = 07E54A78BCF82272E99319D7F7F5E8C1 /* KeychainSwift */;
+			targetProxy = 9238A02F12A04C1A16DBA3324CB66EB6 /* PBXContainerItemProxy */;
+		};
+		D3C9DB33ADA89AE6FA7C1A56DD0E215C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-EqualSplitOnline";
 			target = C6C59954397FBF7CFC6127E00636467F /* Pods-EqualSplitOnline */;
-			targetProxy = AD3F1671D328BC5E4C1A8AF1BEE93741 /* PBXContainerItemProxy */;
+			targetProxy = B050C0B4E132D05B2CB9786989267FC3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		2A9B332FFC3E19C7CEFC4E55A4FA38F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 938C638E4CAA0C991D26A73C54F1DF37 /* Pods-EqualSplitOnline.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-EqualSplitOnline/Pods-EqualSplitOnline-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-EqualSplitOnline/Pods-EqualSplitOnline.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		59EFBC0E583FA98093FAC95E4DA094B5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA59D480824C57A04D5DF9D0F37FD7AF /* Pods-EqualSplitOnlineTests.release.xcconfig */;
+			baseConfigurationReference = CC0A1A45A134726369FA33CF88BAFAB8 /* Pods-EqualSplitOnlineTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -315,12 +476,10 @@
 			};
 			name = Release;
 		};
-		89716C666E7A2B53E680203E25FD9DF1 /* Release */ = {
+		717BF11508A479CC048B39007DBFA655 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B0A462CDC7F0C9F6D19034C183B62097 /* Pods-EqualSplitOnline.release.xcconfig */;
+			baseConfigurationReference = B6DBDC187520AEA2149B702813C781D4 /* KeychainSwift.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -329,23 +488,22 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-EqualSplitOnline/Pods-EqualSplitOnline-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/KeychainSwift/KeychainSwift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/KeychainSwift/KeychainSwift-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-EqualSplitOnline/Pods-EqualSplitOnline.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				MODULEMAP_FILE = "Target Support Files/KeychainSwift/KeychainSwift.modulemap";
+				PRODUCT_MODULE_NAME = KeychainSwift;
+				PRODUCT_NAME = KeychainSwift;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -481,9 +639,9 @@
 			};
 			name = Release;
 		};
-		A4C710666E6303B720BB28B38C4B45FD /* Debug */ = {
+		C0A228E25A4229C828BD84786CF75674 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 842734197309D19517BF898B42F3F6BB /* Pods-EqualSplitOnline.debug.xcconfig */;
+			baseConfigurationReference = 4E61AE68D4DD343AAD3E907933BA9E68 /* Pods-EqualSplitOnline.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -520,7 +678,7 @@
 		};
 		CAE96A49ED74399CE5AF90865FD19F99 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C70419385AB39EECFEC692B4C11E9CB /* Pods-EqualSplitOnlineTests.debug.xcconfig */;
+			baseConfigurationReference = 612E892CFBC52CEC7F93B9B56B723D4D /* Pods-EqualSplitOnlineTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -555,18 +713,43 @@
 			};
 			name = Debug;
 		};
+		D2F78367C06F341A16DEF595FE4BB14C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D3FC93B8FF581D37B8347BB2004879E9 /* KeychainSwift.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/KeychainSwift/KeychainSwift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/KeychainSwift/KeychainSwift-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/KeychainSwift/KeychainSwift.modulemap";
+				PRODUCT_MODULE_NAME = KeychainSwift;
+				PRODUCT_NAME = KeychainSwift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		01665547121138F01947885B3D587DB3 /* Build configuration list for PBXNativeTarget "Pods-EqualSplitOnline" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A4C710666E6303B720BB28B38C4B45FD /* Debug */,
-				89716C666E7A2B53E680203E25FD9DF1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		1815FC32D24B29A493DD723FFC38B8CA /* Build configuration list for PBXNativeTarget "Pods-EqualSplitOnlineTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -581,6 +764,24 @@
 			buildConfigurations = (
 				90D4D09BCB6A4660E43ACBE9ECB6FE9A /* Debug */,
 				9553C89E183877A5CB2F3C6801BEC129 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5E2E35C65B60A5A42F4ED4DF4BD86CD4 /* Build configuration list for PBXNativeTarget "Pods-EqualSplitOnline" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C0A228E25A4229C828BD84786CF75674 /* Debug */,
+				2A9B332FFC3E19C7CEFC4E55A4FA38F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		997BF8AEF73E04BE3F0E828FF63C51E6 /* Build configuration list for PBXNativeTarget "KeychainSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2F78367C06F341A16DEF595FE4BB14C /* Debug */,
+				717BF11508A479CC048B39007DBFA655 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

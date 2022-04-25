@@ -7,22 +7,40 @@
 
 import Alamofire
 
-typealias AuthCompletion = (DataResponse<Sessions, AFError>)->Void
+typealias AuthCompletion = (DataResponse<UserData, AFError>)->Void
 
 struct UserService {
     
     static func fetchUserData(completion: @escaping AuthCompletion) {
+        guard let accessToken = KeychainService.getAccessToken() else { return }
+         
+        let headers: HTTPHeaders = [
+            "x-auth-token": accessToken
+          ]
+        
+        let request = [String: String]()
         
         let callurl = "\(API_URL)/users"
                 
-        AF.request(callurl, method: .get).validate().responseDecodable(of: Sessions.self) { response in            
-            print("DEBUG: response is \(response)")
-            guard response.value != nil else {return}
-            if response.response?.statusCode == 200 {
-                SessionViewController.sessions = response.value!
+        AF.request(callurl, method: .post, parameters: request, headers: headers).validate(statusCode: 200..<300).responseDecodable(of: UserData.self) { response in
+            
+            switch response.result {
+            case .success:
+                SessionViewController.sessions = response.value!.sessions
+                AuthService.activeUser = response.value!.activeUser
                 completion(response)
-            } else {
-                print("DEBUG - Could not fetch userdata: \(String(describing: response.error?.localizedDescription))")
+                
+            case .failure:
+                if response.response?.statusCode == 401 {
+                    AuthService.requestAccessToken {
+                        fetchUserData { response in
+                            completion(response)
+                        }
+                    } errorHandler: { error in
+                        print(error)
+                    }
+
+                }
             }
         }
     }

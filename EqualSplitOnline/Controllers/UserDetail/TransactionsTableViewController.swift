@@ -28,7 +28,7 @@ class TransactionsTableViewController: UITableViewController {
     // MARK: - Lifecycle
     
     init(user: User, viewModel: Person, session: SessionViewModel) {
-        if AuthService.activeUser?.id == viewModel.id {
+        if AuthService.activeUser?.id == viewModel.id || AuthService.activeUser?.id == session.ownerId {
             activeUserCanMakeChanges = true
         }
         self.currentSession = session
@@ -84,7 +84,7 @@ class TransactionsTableViewController: UITableViewController {
                 UserService.fetchUserData { response in
                     guard response.error == nil else { return }
                     guard response.value != nil else { return }
-                    SessionViewController.sessions = response.value!
+                    SessionViewController.sessions = response.value!.sessions
                     self!.showLoader(false)
                     self!.viewmodelDelegate?.configureViewmodel()
                 }
@@ -94,6 +94,11 @@ class TransactionsTableViewController: UITableViewController {
         ac.addAction(cancel)
         ac.addAction(confirm)
         present(ac, animated: true, completion: nil)
+    }
+    
+    func isCurrentUserSessionOwner() -> Bool {
+        if AuthService.activeUser?.id == currentSession.ownerId { return true }
+        else { return false }
     }
 }
 
@@ -134,7 +139,7 @@ extension TransactionsTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as? TransactionViewCell
         cell?.expandedView.delegate = self
-        return cell!.cellSetup(at: indexPath, withViewModel: viewModel)
+        return cell!.cellSetup(at: indexPath, withViewModel: viewModel, forSession: currentSession)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -221,7 +226,7 @@ extension TransactionsTableViewController: ExpandedCellViewDelegate {
             UserService.fetchUserData { response in
                 guard response.error == nil else { return }
                 guard response.value != nil else { return }
-                SessionViewController.sessions = response.value!
+                SessionViewController.sessions = response.value!.sessions
                 self.viewmodelDelegate?.configureViewmodel()
                 
                 self.delegate?.deselectedRow()
@@ -252,9 +257,9 @@ extension UITableViewController {
     
     func SetupCellSwipeEditStyle(forPerson person: Person, forSession session: SessionViewModel, atIndexPath indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         
-        guard AuthService.activeUser?.id == session.ownerId else {            
-            return UITableViewCell.EditingStyle.none
-        }
+//        guard AuthService.activeUser?.id == session.ownerId else {
+//            return UITableViewCell.EditingStyle.none
+//        }
         
         if person.spent.count > 0 && person.owes.count == 0 && person.needs.count == 0 {
             return UITableViewCell.EditingStyle.delete

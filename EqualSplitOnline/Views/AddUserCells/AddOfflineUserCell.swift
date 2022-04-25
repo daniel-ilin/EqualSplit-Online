@@ -29,7 +29,7 @@ class AddOfflineUserCell: UITableViewCell {
         return label
     }()
     
-    var addUserButton: UIButton = {
+    lazy var addUserButton: UIButton = {
         let label = HighlightButton()
         let attributedString = NSMutableAttributedString(string: "Add Offline User", attributes: [.font: UIFont.boldSystemFont(ofSize: 18), .foregroundColor: UIColor.systemBlue])
         label.setAttributedTitle(attributedString, for: .normal)

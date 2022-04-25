@@ -33,8 +33,8 @@ class TransactionViewCell: UITableViewCell {
     
     //    MARK: - UISetup
     
-    func cellSetup(at indexPath: IndexPath, withViewModel viewModel: Person)->UITableViewCell {
-        findIfUserCanEditCell(at: indexPath, withViewModel: viewModel)
+    func cellSetup(at indexPath: IndexPath, withViewModel viewModel: Person, forSession session: SessionViewModel)->UITableViewCell {
+        findIfUserCanEditCell(at: indexPath, withViewModel: viewModel, forSession: session)
         
         collapsedView.uiSetup(at: indexPath, withViewModel: viewModel)
         expandedView.uiSetup(at: indexPath, withViewModel: viewModel)
@@ -92,8 +92,8 @@ extension TransactionViewCell {
 }
 
 extension TransactionViewCell {
-    func findIfUserCanEditCell(at indexPath: IndexPath, withViewModel viewModel: Person) {
-        if AuthService.activeUser?.id == viewModel.id {
+    func findIfUserCanEditCell(at indexPath: IndexPath, withViewModel viewModel: Person, forSession session: SessionViewModel) {
+        if AuthService.activeUser?.id == viewModel.id || AuthService.activeUser?.id == session.ownerId {
             userCanEdit = true
         } else {
             userCanEdit = false

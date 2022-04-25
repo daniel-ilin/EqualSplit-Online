@@ -32,7 +32,7 @@ class SessionCodeCell: UITableViewCell {
         return label
     }()
     
-    var copyToClipboard: UIButton = {
+    lazy var copyToClipboard: UIButton = {
         let label = HighlightButton()
         let attributedString = NSMutableAttributedString(string: "Copy", attributes: [.font: UIFont.boldSystemFont(ofSize: 18), .foregroundColor: UIColor.systemBlue])
         label.setAttributedTitle(attributedString, for: .normal)

@@ -74,7 +74,7 @@ class MainViewController: UIViewController {
         return tableViewContainer
     }()
     
-    private var sessionMenuButton: UIButton = {
+    private lazy var sessionMenuButton: UIButton = {
         let button = UIButton()
         let image = UIImage(named: "menu.bars")
         button.setImage(image, for: .normal)
@@ -82,7 +82,7 @@ class MainViewController: UIViewController {
         return button
     }()
     
-    private var addPersonButton: UIButton = {
+    private lazy var addPersonButton: UIButton = {
         let button = UIButton()
         let image = UIImage(named: "person.add")
         button.setImage(image, for: .normal)

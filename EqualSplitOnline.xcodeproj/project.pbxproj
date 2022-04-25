@@ -53,7 +53,13 @@
 		65F9C1CC27866B7E0096DB39 /* AddOfflineUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F9C1CB27866B7E0096DB39 /* AddOfflineUserCell.swift */; };
 		960CECA127A580A100F30E7E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 960CECA027A580A100F30E7E /* Alamofire */; };
 		960CECA427A580D700F30E7E /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 960CECA327A580D700F30E7E /* JGProgressHUD */; };
+		964EE1FD28135376005E47A1 /* ConfirmationCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964EE1FC28135376005E47A1 /* ConfirmationCodeViewController.swift */; };
+		964EE1FF281355F5005E47A1 /* OneTimeCodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964EE1FE281355F5005E47A1 /* OneTimeCodeTextField.swift */; };
+		964EE2012813A952005E47A1 /* SendCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964EE2002813A952005E47A1 /* SendCodeViewModel.swift */; };
+		964EE2032814E3E3005E47A1 /* ActivationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964EE2022814E3E3005E47A1 /* ActivationService.swift */; };
+		9667E2DC281627760020B7F5 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9667E2DB281627760020B7F5 /* ResetPasswordViewController.swift */; };
 		96CA964D27A4E55200BF7196 /* AuthServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CA964C27A4E55200BF7196 /* AuthServiceTest.swift */; };
+		96F4DF5E27CF139F002C4490 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F4DF5D27CF139F002C4490 /* KeychainService.swift */; };
 		B9445427B748E127D2694F34 /* Pods_EqualSplitOnline.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC418417459CA5F7B6F5837B /* Pods_EqualSplitOnline.framework */; };
 		DF34E512C914863EA6E88DE1 /* Pods_EqualSplitOnlineTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A918087AFA2C6CF2E44C52 /* Pods_EqualSplitOnlineTests.framework */; };
 /* End PBXBuildFile section */
@@ -117,9 +123,15 @@
 		65F9C1C6278660E80096DB39 /* SessionCodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCodeCell.swift; sourceTree = "<group>"; };
 		65F9C1CB27866B7E0096DB39 /* AddOfflineUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOfflineUserCell.swift; sourceTree = "<group>"; };
 		87EBDBA10622743FFD4B9592 /* Pods-EqualSplitOnline.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EqualSplitOnline.debug.xcconfig"; path = "Target Support Files/Pods-EqualSplitOnline/Pods-EqualSplitOnline.debug.xcconfig"; sourceTree = "<group>"; };
+		964EE1FC28135376005E47A1 /* ConfirmationCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationCodeViewController.swift; sourceTree = "<group>"; };
+		964EE1FE281355F5005E47A1 /* OneTimeCodeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneTimeCodeTextField.swift; sourceTree = "<group>"; };
+		964EE2002813A952005E47A1 /* SendCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendCodeViewModel.swift; sourceTree = "<group>"; };
+		964EE2022814E3E3005E47A1 /* ActivationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivationService.swift; sourceTree = "<group>"; };
+		9667E2DB281627760020B7F5 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		96CA607127A4ECD100857E58 /* EqualSplitOnlineTestsTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqualSplitOnlineTestsTarget.swift; sourceTree = "<group>"; };
 		96CA964327A4E4C500BF7196 /* EqualSplitOnlineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EqualSplitOnlineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96CA964C27A4E55200BF7196 /* AuthServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceTest.swift; sourceTree = "<group>"; };
+		96F4DF5D27CF139F002C4490 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		CC418417459CA5F7B6F5837B /* Pods_EqualSplitOnline.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EqualSplitOnline.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E434B4119F06D7F9853A9FC6 /* Pods-EqualSplitOnlineTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EqualSplitOnlineTests.debug.xcconfig"; path = "Target Support Files/Pods-EqualSplitOnlineTests/Pods-EqualSplitOnlineTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E4CBC5AB5EDF40A131EE9A1D /* Pods-EqualSplitOnlineTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EqualSplitOnlineTests.release.xcconfig"; path = "Target Support Files/Pods-EqualSplitOnlineTests/Pods-EqualSplitOnlineTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -156,7 +168,6 @@
 				E434B4119F06D7F9853A9FC6 /* Pods-EqualSplitOnlineTests.debug.xcconfig */,
 				E4CBC5AB5EDF40A131EE9A1D /* Pods-EqualSplitOnlineTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -166,6 +177,8 @@
 				65222C9A277E5F9F007D2B01 /* RegistrationController.swift */,
 				65222C9C277E5FBF007D2B01 /* LoginController.swift */,
 				65222C9E277E5FE3007D2B01 /* AuthenticationDelegate.swift */,
+				964EE1FC28135376005E47A1 /* ConfirmationCodeViewController.swift */,
+				9667E2DB281627760020B7F5 /* ResetPasswordViewController.swift */,
 			);
 			path = AuthenticationControllers;
 			sourceTree = "<group>";
@@ -174,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				65222CA1277E6013007D2B01 /* AuthenticationViewModel.swift */,
+				964EE2002813A952005E47A1 /* SendCodeViewModel.swift */,
 				6549A739278A24C500C87B3A /* OverallViewModel.swift */,
 			);
 			path = ViewModel;
@@ -271,6 +285,7 @@
 		65E61B05277E3DA40003BAD8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				964EE1FE281355F5005E47A1 /* OneTimeCodeTextField.swift */,
 				65222CA3277E6044007D2B01 /* AuthButton.swift */,
 				65222CA5277E6068007D2B01 /* CustomTextField.swift */,
 				650C107D27839F0000549DA6 /* HighlightButton.swift */,
@@ -297,6 +312,7 @@
 				650C10892783A8B600549DA6 /* LineDrawer.swift */,
 				65F9C1C4278656060096DB39 /* SetImageColor.swift */,
 				65E08EF227966DBB00A2E883 /* ArrayRearrange.swift */,
+				96F4DF5D27CF139F002C4490 /* KeychainService.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -308,6 +324,7 @@
 				65222CAF2780F7BC007D2B01 /* UserService.swift */,
 				650C107727828AD600549DA6 /* SessionService.swift */,
 				65E08EEB2794A89A00A2E883 /* TransactionService.swift */,
+				964EE2022814E3E3005E47A1 /* ActivationService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -357,6 +374,7 @@
 				65E61AE8277E35D70003BAD8 /* Sources */,
 				65E61AE9277E35D70003BAD8 /* Frameworks */,
 				65E61AEA277E35D70003BAD8 /* Resources */,
+				6D5F08C0C274505CAC0FDF9B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -475,6 +493,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		6D5F08C0C274505CAC0FDF9B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EqualSplitOnline/Pods-EqualSplitOnline-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EqualSplitOnline/Pods-EqualSplitOnline-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EqualSplitOnline/Pods-EqualSplitOnline-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B916834938B4AA2B96BB9D65 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -507,13 +542,16 @@
 				6549A73E278A51B700C87B3A /* AddNewPaymentButton.swift in Sources */,
 				650C10842783A83400549DA6 /* MainViewController.swift in Sources */,
 				65222C9B277E5F9F007D2B01 /* RegistrationController.swift in Sources */,
+				9667E2DC281627760020B7F5 /* ResetPasswordViewController.swift in Sources */,
 				65E61AF4277E35D70003BAD8 /* SessionViewController.swift in Sources */,
 				65222CB02780F7BC007D2B01 /* UserService.swift in Sources */,
+				96F4DF5E27CF139F002C4490 /* KeychainService.swift in Sources */,
 				65222CB627825742007D2B01 /* SessionTableViewCell.swift in Sources */,
 				6549A7312787AF9E00C87B3A /* TransactionsTableViewController.swift in Sources */,
 				65E61B09277E3E300003BAD8 /* Extensions.swift in Sources */,
 				65222CB42780FD26007D2B01 /* MyJsonDecoder.swift in Sources */,
 				65E08EF327966DBB00A2E883 /* ArrayRearrange.swift in Sources */,
+				964EE2012813A952005E47A1 /* SendCodeViewModel.swift in Sources */,
 				650C108A2783A8B600549DA6 /* LineDrawer.swift in Sources */,
 				65E61B0F277E40760003BAD8 /* ResponseModel.swift in Sources */,
 				6549A7332787E53A00C87B3A /* RIngProgressBar.swift in Sources */,
@@ -531,11 +569,14 @@
 				65F9C1C7278660E80096DB39 /* SessionCodeCell.swift in Sources */,
 				6549A73A278A24C500C87B3A /* OverallViewModel.swift in Sources */,
 				6549A740278A6F3600C87B3A /* TransactionViewCell.swift in Sources */,
+				964EE1FF281355F5005E47A1 /* OneTimeCodeTextField.swift in Sources */,
 				65F9C1C5278656060096DB39 /* SetImageColor.swift in Sources */,
 				65222C9D277E5FBF007D2B01 /* LoginController.swift in Sources */,
+				964EE1FD28135376005E47A1 /* ConfirmationCodeViewController.swift in Sources */,
 				650C10862783A84100549DA6 /* UsersTableViewController.swift in Sources */,
 				65E61AF0277E35D70003BAD8 /* AppDelegate.swift in Sources */,
 				654347C3278BFAD600546BC2 /* LoginResponseModel.swift in Sources */,
+				964EE2032814E3E3005E47A1 /* ActivationService.swift in Sources */,
 				650C10822783A31600549DA6 /* IntToCurrency.swift in Sources */,
 				6549A73C278A4DFF00C87B3A /* RingPersonIcon.swift in Sources */,
 				6549A72F2787AF4300C87B3A /* UserDetailViewController.swift in Sources */,

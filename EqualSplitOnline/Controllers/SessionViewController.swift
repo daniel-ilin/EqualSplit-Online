@@ -23,13 +23,13 @@ class SessionViewController: UITableViewController {
             let currentUserId = AuthService.activeUser?.id
             for (index, session) in sessions.enumerated() {
                 if session.ownerid == currentUserId {
-                    sessions.move(from: index, to: 0)
+                    sessions.move(from: index, to: 0)                    
                 }                
             }
         }
     }
     
-    private let addSessionButton: UIButton = {
+    private lazy var addSessionButton: UIButton = {
         let button = HighlightButton()
         button.setTitle("Add session", for: .normal)
         button.addTarget(self, action: #selector(addSession), for: .touchUpInside)
@@ -49,14 +49,13 @@ class SessionViewController: UITableViewController {
         super.viewDidLoad()
         
         configureUI()
-        configureRefreshControl()
-        checkIfUserLoggedIn()
+        configureRefreshControl()        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
         self.showLoader(true)
-        fetchUser()
+        checkIfUserLoggedIn()
     }
     
     //    MARK: - Helpers
@@ -91,7 +90,7 @@ class SessionViewController: UITableViewController {
             guard response.error == nil else { return }
             guard response.value != nil else { return }
             guard let value = response.value else { return }            
-            SessionViewController.sessions = value
+            SessionViewController.sessions = value.sessions
             self.tableView.reloadData()
         }
     }
@@ -105,6 +104,8 @@ class SessionViewController: UITableViewController {
                 nav.modalPresentationStyle = .fullScreen
                 self.present(nav, animated: true, completion: nil)
             }
+        } else {
+            fetchUser()
         }
     }
     
@@ -166,9 +167,6 @@ class SessionViewController: UITableViewController {
     
     @objc func handleLogout() {
         AuthService.logout { response in
-            guard response.error == nil else {
-                return
-            }
             self.checkIfUserLoggedIn()
         }
     }
@@ -200,7 +198,7 @@ extension SessionViewController: AuthenticationDelegate {
     func authenticationDidComplete() {
         self.fetchUser()
         dismiss(animated: true, completion: nil)
-    }
+    } 
 }
 
 // MARK: - TableViewDataSource

@@ -8,5 +8,5 @@
 import Foundation
 
 protocol AuthenticationDelegate: AnyObject {
-    func authenticationDidComplete()
+    func authenticationDidComplete()    
 }

@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.backgroundColor = .black
+//        window?.rootViewController = UINavigationController(rootViewController: ConfirmationCodeViewController(email: "email@gmail.com"))
         window?.rootViewController = UINavigationController(rootViewController: SessionViewController())
         
         return true

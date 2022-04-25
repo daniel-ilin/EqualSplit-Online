@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// MARK: - TransactionCollapsedCellView
 
 final class TransactionCollapsedCellView: UIView {
     
@@ -236,7 +237,7 @@ final class TransactionExpandedCellView: UIView {
         return tf
     }()
     
-    private let cancelButton: UIButton = {
+    private lazy var cancelButton: UIButton = {
         let button = AnimatedButton()
         button.backgroundColor = .systemGray4
         button.setTitle("Cancel", for: .normal)
@@ -249,7 +250,7 @@ final class TransactionExpandedCellView: UIView {
         return button
     }()
     
-    private let confirmButton: UIButton = {
+    private lazy var confirmButton: UIButton = {
         let button = AnimatedButton()
         button.backgroundColor = UIColor(named: "ButtonBlue")
         button.setTitle("Confirm", for: .normal)
@@ -271,10 +272,12 @@ final class TransactionExpandedCellView: UIView {
     //    MARK: - Actions
     
     @objc func confirmChangesHandler() {
+        
+        
         if isNewTransaction {
             
             guard moneyField.text != "" else { return }
-            guard descriptionField.text != "" else { return }
+            if descriptionField.text == "" { descriptionField.text = "Description" }
             let amount = moneyAmount
             let description = descriptionField.text
             headerDelegate?.confirmHandler(amount: amount, description: description ?? "") { [weak self] in
@@ -285,7 +288,7 @@ final class TransactionExpandedCellView: UIView {
         } else {
             guard currentIndexPath != nil else { return }
             guard moneyField.text != "" else { return }
-            guard descriptionField.text != "" else { return }
+            if descriptionField.text == "" { descriptionField.text = "Description" }
             guard let id = tableSectionsData[currentIndexPath!.section][currentIndexPath!.row].id else { return }            
             let amount = moneyAmount
             let description = descriptionField.text
@@ -307,7 +310,7 @@ final class TransactionExpandedCellView: UIView {
     //    MARK: - Helpers
     
     func uiSetup(at indexPath: IndexPath, withViewModel viewModel: Person) {
-        currentIndexPath = indexPath
+        currentIndexPath = indexPath        
         let person = viewModel
         
         if person.owes.count > 0 {

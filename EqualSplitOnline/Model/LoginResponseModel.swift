@@ -8,6 +8,7 @@
 import Foundation
 
 // MARK: - ActiveUser
-struct ActiveUser: Codable {
-    let id, name: String
+struct Token: Codable {
+    var token: String?
+    var error: String?
 }

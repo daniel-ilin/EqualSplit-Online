@@ -31,7 +31,7 @@ struct Calculator {
         let personSpent = session.totalSpent()/users.count
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-mm-dd"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         
         for user in users {
             let newPerson = Person(name: user.username, id: user.userid)

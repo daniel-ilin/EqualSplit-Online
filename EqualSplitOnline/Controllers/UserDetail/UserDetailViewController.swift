@@ -55,7 +55,7 @@ class UserDetailViewController: UIViewController {
     
     private var heightConstraint: NSLayoutConstraint?
     
-    private var backButton: UIButton = {
+    private lazy var backButton: UIButton = {
         let backButton = UIButton()
         backButton.addTarget(self, action: #selector(closeController), for: .touchUpInside)
         let btnImage = UIImage(named: "xButton")
@@ -118,7 +118,7 @@ class UserDetailViewController: UIViewController {
     private var currentSession: SessionViewModel
     
     private lazy var tableView: TransactionsTableViewController = {
-        let tableView = TransactionsTableViewController(user: activeUser, viewModel: viewModel, session: currentSession)
+        let tableView = TransactionsTableViewController(user: currentUser, viewModel: viewModel, session: currentSession)
         tableView.viewmodelDelegate = self.viewmodelDelegate
         tableView.view.translatesAutoresizingMaskIntoConstraints = false
         tableView.view.clipsToBounds = true
@@ -140,7 +140,7 @@ class UserDetailViewController: UIViewController {
     private lazy var addNewPaymentButton: AddNewPaymentButton = {
         let button = AddNewPaymentButton()
         button.addTarget(self, action: #selector(addNewPaymentHandler), for: .touchUpInside)
-        if AuthService.activeUser?.id == viewModel.id {
+        if AuthService.activeUser?.id == viewModel.id || AuthService.activeUser?.id == currentSession.ownerId {
             button.isEnabled = true
             button.alpha = 1
         } else {
@@ -151,7 +151,7 @@ class UserDetailViewController: UIViewController {
     }()
     
     private lazy var addTransactionView: TransactionExpandedCellView = {
-        let cv = TransactionExpandedCellView(frame: CGRect.zero, newTransaction: true)        
+        let cv = TransactionExpandedCellView(frame: CGRect.zero, newTransaction: true)
         cv.headerDelegate = self
         cv.isHidden = false
         return cv
@@ -159,7 +159,7 @@ class UserDetailViewController: UIViewController {
     
     private var personIcon = RingPersonIcon()
     
-    private var activeUser: User
+    private var currentUser: User
     var viewModel: Person {
         didSet {
             view.pushTransition(0.2)
@@ -178,7 +178,7 @@ class UserDetailViewController: UIViewController {
     // MARK: - Lifecycle
     
     init(user: User, viewModel: Person, inSession session: SessionViewModel) {
-        activeUser = user
+        currentUser = user
         self.viewModel = viewModel
         self.currentSession = session
         self.currentSessionId = session.sessionId
@@ -352,7 +352,7 @@ class UserDetailViewController: UIViewController {
 }
 
 
-// MARK: TransactionsTableViewControllerDelegate
+// MARK: - TransactionsTableViewControllerDelegate
 
 extension UserDetailViewController: TransactionsTableViewControllerDelegate {
     func selectedRow() {
@@ -365,15 +365,19 @@ extension UserDetailViewController: TransactionsTableViewControllerDelegate {
     
 }
 
+// MARK: - HeaderNewTransactionViewDelegate
+
 extension UserDetailViewController: HeaderNewTransactionViewDelegate {
+    
     func confirmHandler(amount: Int, description: String, completion: @escaping () -> Void) {
+        
         self.showLoader(true)
-        TransactionService.addTransaction(intoSessionId: currentSessionId, withAmount: amount, description: description) { response in
+        TransactionService.addTransaction(intoSessionId: currentSessionId, forUser: viewModel.id, withAmount: amount, description: description) { response in
             guard response.error == nil else { return }
             UserService.fetchUserData { response in
                 guard response.error == nil else { return }
                 guard response.value != nil else { return }
-                SessionViewController.sessions = response.value!                
+                SessionViewController.sessions = response.value!.sessions
                 self.viewmodelDelegate?.configureViewmodel()
                 self.addTransactionMode = false
                 completion()

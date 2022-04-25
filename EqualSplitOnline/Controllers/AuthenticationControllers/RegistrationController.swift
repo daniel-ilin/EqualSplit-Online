@@ -23,7 +23,7 @@ class RegistrationController: UIViewController {
     private var viewModel = RegistrationViewModel()
     private var profileImage: UIImage?
     
-    private let signupButton: UIButton = {
+    private lazy var signupButton: UIButton = {
         let button = AuthButton()
         button.setTitle("Sign Up", for: .normal)
         button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
@@ -50,7 +50,7 @@ class RegistrationController: UIViewController {
         return tf
     }()
     
-    private let alreadyHaveAccountButton: UIButton = {
+    private lazy var alreadyHaveAccountButton: UIButton = {
         let button = UIButton(type: .system)
         button.attributedTitle(firstPart: "Already have an account? ", secondPart: "Log In")
         button.addTarget(self, action: #selector(handleShowLogin), for: .touchUpInside)
@@ -68,11 +68,11 @@ class RegistrationController: UIViewController {
     private let welcomeLabel: UILabel = {
         let label = UILabel()
         let atts: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.secondaryLabel, .font: UIFont.systemFont(ofSize: 20)]
-        let attributedTitle = NSMutableAttributedString(string: "EqualSplit Online", attributes: atts)
+        let attributedTitle = NSMutableAttributedString(string: "EqualSplit", attributes: atts)
         label.attributedText = attributedTitle
         return label
     }()
-     
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -83,14 +83,22 @@ class RegistrationController: UIViewController {
     }
     
     //    MARK: - Actions
-        
-    @objc func keyboardWillShow(notification: NSNotification) {
+    
+    @objc func keyboardWillShow(notification: NSNotification) {        
         guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
             return
         }
         
-        if alreadyHaveAccountButton.frame.minY < keyboardSize.height {
-            self.view.frame.origin.y = -keyboardSize.height + alreadyHaveAccountButton.frame.minY
+        var shouldMoveViewUp = false
+        let bottomOfTextField = alreadyHaveAccountButton.convert(alreadyHaveAccountButton.bounds, to: self.view).maxY;
+        let topOfKeyboard = self.view.frame.height - keyboardSize.height
+        
+        if bottomOfTextField > topOfKeyboard {
+            shouldMoveViewUp = true
+        }
+        
+        if(shouldMoveViewUp) {
+            self.view.frame.origin.y = 0 - (bottomOfTextField-topOfKeyboard)
         }
     }
     
@@ -106,28 +114,17 @@ class RegistrationController: UIViewController {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         guard let name = fullnameTextField.text else { return }
-        
         let credentials = AuthCredentials(email: email, name: name, password: password)
-        AuthService.registerUser(withCredentials: credentials) { response in
-            if response.error != nil {
-                self.showLoader(false)
-                print("DEBUG: Could not register")
-                return
-            }
-            AuthService.loginUser(withEmail: email, password: password) { response in
-                self.showLoader(false)
-                if response.error != nil {                    
-                    print("DEBUG: Could not login")
-                    return
-                }
-                
-                self.showLoader(false)
-                
-                self.delegate?.authenticationDidComplete()
-            }
+        
+        AuthService.registerUser(withCredentials: credentials) { [weak self] response in
+            self?.showConfirmationCode(for: email, password: password)
+        } activateUserHandler: { [weak self] in
+            self?.showConfirmationCode(for: email, password: password)
+        } errorHandler: { [weak self] in
+            self?.showLoader(false)
         }
     }
-        
+    
     
     @objc func handleShowLogin() {
         navigationController?.popViewController(animated: true)
@@ -146,7 +143,13 @@ class RegistrationController: UIViewController {
     
     // MARK: - Helpers
     
-    func configureUI() {        
+    func showConfirmationCode(for email: String, password: String) {
+        let confirmCodeVC = ConfirmationCodeViewController(email: email, password: password, delegate: delegate)
+        confirmCodeVC.modalPresentationStyle = .popover
+        self.present(confirmCodeVC, animated: true, completion: nil)
+    }
+    
+    func configureUI() {
         view.backgroundColor = .systemBackground
         
         let topStack = UIStackView(arrangedSubviews: [welcomeLabel, signupLabel])
@@ -160,7 +163,7 @@ class RegistrationController: UIViewController {
             topStack.topAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor, constant: 150)
         ])
         
-        let stack = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, fullnameTextField, signupButton, alreadyHaveAccountButton])
+        let stack = UIStackView(arrangedSubviews: [fullnameTextField, emailTextField, passwordTextField, signupButton, alreadyHaveAccountButton])
         stack.axis = .vertical
         stack.spacing = 20
         

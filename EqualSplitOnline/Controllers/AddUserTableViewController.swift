@@ -76,7 +76,7 @@ extension AddUserTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 1
     }
     
     
@@ -133,7 +133,7 @@ extension AddUserTableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UIView()
         let addUserLabel = UILabel()
-        addUserLabel.text = "How would you like to add users?"
+        addUserLabel.text = "Would you like to add users?"
         addUserLabel.font = UIFont(name: "Avenir Next Medium", size: 18)
         addUserLabel.textColor = .secondaryLabel
         addUserLabel.textAlignment = .center

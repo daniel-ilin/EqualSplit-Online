@@ -59,7 +59,7 @@ class UsersTableViewController: UITableViewController {
         UserService.fetchUserData { response in
             guard response.error == nil else { return }
             guard response.value != nil else { return }
-            SessionViewController.sessions = response.value!            
+            SessionViewController.sessions = response.value!.sessions
             self.viewmodelDelegate?.configureViewmodel()
             DispatchQueue.main.async {
                 self.tableView.refreshControl?.endRefreshing()
@@ -95,7 +95,7 @@ class UsersTableViewController: UITableViewController {
         UserService.fetchUserData { response in
             guard response.error == nil else { return }
             guard response.value != nil else { return }
-            SessionViewController.sessions = response.value!
+            SessionViewController.sessions = response.value!.sessions
             self.showLoader(false)
             self.viewmodelDelegate?.configureViewmodel()
         }
@@ -126,7 +126,7 @@ class UsersTableViewController: UITableViewController {
                 UserService.fetchUserData { response in
                     guard response.error == nil else { return }
                     guard response.value != nil else { return }
-                    SessionViewController.sessions = response.value!
+                    SessionViewController.sessions = response.value!.sessions
                     self?.showLoader(false)
                     self?.viewmodelDelegate?.configureViewmodel()
                 }
