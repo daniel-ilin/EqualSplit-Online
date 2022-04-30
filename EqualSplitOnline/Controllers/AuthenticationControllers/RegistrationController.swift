@@ -13,7 +13,7 @@ class RegistrationController: UIViewController {
     // MARK: - Utils
     
     deinit {
-        print("DEBUG: Registration controller left the memory")
+        
     }
     
     // MARK: - Properties
@@ -109,6 +109,8 @@ class RegistrationController: UIViewController {
     
     @objc func handleSignUp() {
         
+        HapticFeedbackController.shared.mainButtonTouch()
+        
         showLoader(true)
         
         guard let email = emailTextField.text else { return }
@@ -118,8 +120,10 @@ class RegistrationController: UIViewController {
         
         AuthService.registerUser(withCredentials: credentials) { [weak self] response in
             self?.showConfirmationCode(for: email, password: password)
+            self?.showLoader(false)
         } activateUserHandler: { [weak self] in
             self?.showConfirmationCode(for: email, password: password)
+            self?.showLoader(false)
         } errorHandler: { [weak self] in
             self?.showLoader(false)
         }

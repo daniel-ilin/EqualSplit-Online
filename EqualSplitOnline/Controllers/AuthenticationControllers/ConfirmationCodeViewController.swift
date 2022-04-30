@@ -161,6 +161,8 @@ class ConfirmationCodeViewController: UIViewController {
     }
     
     @objc func handleSendCode() {
+        HapticFeedbackController.shared.mainButtonTouch()
+        
         viewModel.startTimer()
         
         ActivationService.requestActivationCode(forEmail: email) {
@@ -196,12 +198,12 @@ class ConfirmationCodeViewController: UIViewController {
 
 extension ConfirmationCodeViewController: SendCodeViewModelDelegate {
     
-    func updateCounter(to time: Int, isFormValid valid: Bool) {
-        sendCodeButton.isEnabled = valid
+    func updateCounter() {
+        sendCodeButton.isEnabled = viewModel.formIsValid
         sendCodeButton.backgroundColor = viewModel.buttonBackgroundColor
         sendCodeButton.tintColor = viewModel.buttonTitleColor
-        if !valid {
-            sendCodeButton.setTitle("Resend code in \(time)s", for: .normal)
+        if !viewModel.formIsValid {
+            sendCodeButton.setTitle("Resend code in \(viewModel.timeLeft)s", for: .normal)
         } else {
             sendCodeButton.setTitle("Send Code", for: .normal)
         }

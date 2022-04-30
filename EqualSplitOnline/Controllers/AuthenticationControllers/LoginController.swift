@@ -83,7 +83,9 @@ class LoginController: UIViewController {
     // MARK: - Actions
     
     @objc func handleForgotPassword() {
-        print("DEBUG: Forgot Password")
+        let resetPasswordVC = ResetPasswordViewController()
+        resetPasswordVC.modalPresentationStyle = .popover
+        present(resetPasswordVC, animated: true, completion: nil)
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -126,12 +128,14 @@ class LoginController: UIViewController {
     }
     
     @objc func handleLogin() {
+        
+        HapticFeedbackController.shared.mainButtonTouch()
+        
         showLoader(true)
         
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
-        AuthService.loginUser(withEmail: email, password: password) { [weak self] in
-            self?.showLoader(false)
+        AuthService.loginUser(withEmail: email, password: password) { [weak self] in            
             self?.delegate?.authenticationDidComplete()
         } errorHandler: { [weak self] in
             self?.showLoader(false)

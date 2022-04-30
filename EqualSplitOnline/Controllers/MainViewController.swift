@@ -46,6 +46,8 @@ class MainViewController: UIViewController {
     
     private let tableLine = TableLine()
     
+    private var backgroundGradient = CAGradientLayer()
+    
     private lazy var tableView: UsersTableViewController = {
         let tableView = UsersTableViewController(session: self.activeSession, viewModel: self.viewModel)
         tableView.viewmodelDelegate = self
@@ -180,8 +182,7 @@ class MainViewController: UIViewController {
     }
         
     override func viewWillAppear(_ animated: Bool) {
-        let background = CAGradientLayer()
-        GradientMaker.setGradientBackground(in: self.view, withGradient: background)
+        GradientMaker.setGradientBackground(in: self.view, withGradient: backgroundGradient)
 
         navigationController?.isNavigationBarHidden = true
     }
@@ -311,8 +312,8 @@ extension MainViewController {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         
-        let background = CAGradientLayer()
-        GradientMaker.setGradientBackground(in: self.view, withGradient: background)
+        backgroundGradient.removeFromSuperlayer()
+        GradientMaker.setGradientBackground(in: self.view, withGradient: backgroundGradient)
         tableLine.changeColor(to: "LineRed")
     }
 }

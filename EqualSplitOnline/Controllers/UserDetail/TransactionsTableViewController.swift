@@ -218,6 +218,8 @@ extension TransactionsTableViewController: ExpandedCellViewDelegate {
     }
     
     func confirmHandler(id: String, amount: Int, description: String) {
+        HapticFeedbackController.shared.mainButtonTouch()
+        
         self.showLoader(true)
         TransactionService.changeTransaction(id: id, withAmount: amount, description: description) { response in
             guard response.error == nil else {

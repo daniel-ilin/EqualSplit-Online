@@ -58,6 +58,8 @@
 		964EE2012813A952005E47A1 /* SendCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964EE2002813A952005E47A1 /* SendCodeViewModel.swift */; };
 		964EE2032814E3E3005E47A1 /* ActivationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964EE2022814E3E3005E47A1 /* ActivationService.swift */; };
 		9667E2DC281627760020B7F5 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9667E2DB281627760020B7F5 /* ResetPasswordViewController.swift */; };
+		9667E2DE28171A8A0020B7F5 /* SendLinkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9667E2DD28171A8A0020B7F5 /* SendLinkViewModel.swift */; };
+		96A629C0281852AF00BE8084 /* HapticFeedbackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A629BF281852AF00BE8084 /* HapticFeedbackController.swift */; };
 		96CA964D27A4E55200BF7196 /* AuthServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CA964C27A4E55200BF7196 /* AuthServiceTest.swift */; };
 		96F4DF5E27CF139F002C4490 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F4DF5D27CF139F002C4490 /* KeychainService.swift */; };
 		B9445427B748E127D2694F34 /* Pods_EqualSplitOnline.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC418417459CA5F7B6F5837B /* Pods_EqualSplitOnline.framework */; };
@@ -128,6 +130,8 @@
 		964EE2002813A952005E47A1 /* SendCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendCodeViewModel.swift; sourceTree = "<group>"; };
 		964EE2022814E3E3005E47A1 /* ActivationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivationService.swift; sourceTree = "<group>"; };
 		9667E2DB281627760020B7F5 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		9667E2DD28171A8A0020B7F5 /* SendLinkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendLinkViewModel.swift; sourceTree = "<group>"; };
+		96A629BF281852AF00BE8084 /* HapticFeedbackController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedbackController.swift; sourceTree = "<group>"; };
 		96CA607127A4ECD100857E58 /* EqualSplitOnlineTestsTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqualSplitOnlineTestsTarget.swift; sourceTree = "<group>"; };
 		96CA964327A4E4C500BF7196 /* EqualSplitOnlineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EqualSplitOnlineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96CA964C27A4E55200BF7196 /* AuthServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceTest.swift; sourceTree = "<group>"; };
@@ -189,6 +193,7 @@
 				65222CA1277E6013007D2B01 /* AuthenticationViewModel.swift */,
 				964EE2002813A952005E47A1 /* SendCodeViewModel.swift */,
 				6549A739278A24C500C87B3A /* OverallViewModel.swift */,
+				9667E2DD28171A8A0020B7F5 /* SendLinkViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -313,6 +318,7 @@
 				65F9C1C4278656060096DB39 /* SetImageColor.swift */,
 				65E08EF227966DBB00A2E883 /* ArrayRearrange.swift */,
 				96F4DF5D27CF139F002C4490 /* KeychainService.swift */,
+				96A629BF281852AF00BE8084 /* HapticFeedbackController.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -579,10 +585,12 @@
 				964EE2032814E3E3005E47A1 /* ActivationService.swift in Sources */,
 				650C10822783A31600549DA6 /* IntToCurrency.swift in Sources */,
 				6549A73C278A4DFF00C87B3A /* RingPersonIcon.swift in Sources */,
+				9667E2DE28171A8A0020B7F5 /* SendLinkViewModel.swift in Sources */,
 				6549A72F2787AF4300C87B3A /* UserDetailViewController.swift in Sources */,
 				650C109A2784939E00549DA6 /* AddUserTableViewController.swift in Sources */,
 				65E08EE827937BC700A2E883 /* TransactionViewCellViews.swift in Sources */,
 				65E08EEC2794A89A00A2E883 /* TransactionService.swift in Sources */,
+				96A629C0281852AF00BE8084 /* HapticFeedbackController.swift in Sources */,
 				650C107E27839F0000549DA6 /* HighlightButton.swift in Sources */,
 				65E61B0B277E3E4C0003BAD8 /* Constants.swift in Sources */,
 				65E08EEA27946AC400A2E883 /* AnimatedButton.swift in Sources */,

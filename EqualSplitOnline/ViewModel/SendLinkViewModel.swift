@@ -1,26 +1,41 @@
 //
-//  SendCodeViewModel.swift
+//  SendLinkViewModel.swift
 //  EqualSplitOnline
 //
-//  Created by Daniel Ilin on 4/22/22.
+//  Created by Daniel Ilin on 4/25/22.
 //
 
 import Foundation
 import UIKit
 
-class SendCodeViewModel {
+
+class SendLinkViewModel {
     
     private var timer: Timer?
     
-    var formIsValid = true
-    
-    weak private var delegate: SendCodeViewModelDelegate?
-    
     var timeLeft = 0 {
         didSet {
-            delegate?.updateCounter()
+            if email == nil { formIsValid = false; delegate?.updateButton(); return }
+            else if !email!.isEmpty && timeLeft == 0 {
+                formIsValid = true
+            } else { formIsValid = false}
+            delegate?.updateButton()
         }
     }
+    
+    var email: String? {
+        didSet {
+            if email == nil { formIsValid = false; return }
+            else if !email!.isEmpty && timeLeft == 0 {
+                formIsValid = true
+            } else { formIsValid = false}
+        }
+    }
+    
+    var formIsValid = false
+    
+    weak private var delegate: SendLinkViewModelDelegate?
+        
     
     var buttonBackgroundColor: UIColor {
         return formIsValid ? .systemBlue : .systemBlue.withAlphaComponent(0.4)
@@ -28,10 +43,6 @@ class SendCodeViewModel {
     
     var buttonTitleColor: UIColor {
         return formIsValid ? .white : .white.withAlphaComponent(0.67)
-    }
-    
-    init(delegate: SendCodeViewModelDelegate) {
-        self.delegate = delegate
     }
     
     func startTimer()  {
@@ -62,8 +73,12 @@ class SendCodeViewModel {
            timer = nil
         }
     }
+    
+    init(delegate: SendLinkViewModelDelegate) {
+        self.delegate = delegate
+    }
 }
 
-protocol SendCodeViewModelDelegate: AnyObject {
-    func updateCounter()
+protocol SendLinkViewModelDelegate: AnyObject {
+    func updateButton()
 }

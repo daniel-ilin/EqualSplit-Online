@@ -57,6 +57,7 @@ class SessionViewController: UITableViewController {
         self.showLoader(true)
         checkIfUserLoggedIn()
     }
+
     
     //    MARK: - Helpers
     
@@ -197,6 +198,7 @@ class SessionViewController: UITableViewController {
 extension SessionViewController: AuthenticationDelegate {
     func authenticationDidComplete() {
         self.fetchUser()
+        showLoader(false)
         dismiss(animated: true, completion: nil)
     } 
 }

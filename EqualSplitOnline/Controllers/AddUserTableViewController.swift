@@ -94,7 +94,7 @@ extension AddUserTableViewController {
                 let attributedString = NSMutableAttributedString(string: "Copied", attributes: [.font: UIFont.systemFont(ofSize: 18), .foregroundColor: UIColor.label])
                 codeCell.copyToClipboard.setAttributedTitle(attributedString, for: .normal)
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
                 UIView.animate(withDuration: 0.2) {
                     let attributedString = NSMutableAttributedString(string: "Copy", attributes: [.font: UIFont.boldSystemFont(ofSize: 18), .foregroundColor: UIColor.systemBlue])
                     codeCell.copyToClipboard.setAttributedTitle(attributedString, for: .normal)

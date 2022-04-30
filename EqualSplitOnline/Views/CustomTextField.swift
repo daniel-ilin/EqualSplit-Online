@@ -21,7 +21,7 @@ class CustomTextField: UITextField {
         layer.borderColor = UIColor.systemBlue.withAlphaComponent(0.8).cgColor
         layer.borderWidth = 2
         layer.cornerRadius = 10
-        textColor = .black
+//        textColor = .black
         keyboardType = .emailAddress
         backgroundColor = .systemBackground
         setHeight(50)

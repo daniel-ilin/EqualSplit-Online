@@ -112,6 +112,7 @@ class UserDetailViewController: UIViewController {
     private var topConstraint: NSLayoutConstraint?
     
     private let tableLine = TableLine()
+    private var backgroundGradient = CAGradientLayer()
     
     weak var viewmodelDelegate: TransactionTableViewViewModelDelegate?
     
@@ -198,8 +199,7 @@ class UserDetailViewController: UIViewController {
     }
         
     override func viewWillAppear(_ animated: Bool) {
-        let background = CAGradientLayer()
-        GradientMaker.setGradientBackground(in: self.view, withGradient: background)
+        GradientMaker.setGradientBackground(in: self.view, withGradient: backgroundGradient)
 
         navigationController?.isNavigationBarHidden = true
     }
@@ -351,6 +351,17 @@ class UserDetailViewController: UIViewController {
     
 }
 
+// MARK: - Dark Mode UI Setup
+
+extension UserDetailViewController {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        backgroundGradient.removeFromSuperlayer()
+        GradientMaker.setGradientBackground(in: self.view, withGradient: backgroundGradient)
+        tableLine.changeColor(to: "LineRed")
+    }
+}
 
 // MARK: - TransactionsTableViewControllerDelegate
 
@@ -370,6 +381,8 @@ extension UserDetailViewController: TransactionsTableViewControllerDelegate {
 extension UserDetailViewController: HeaderNewTransactionViewDelegate {
     
     func confirmHandler(amount: Int, description: String, completion: @escaping () -> Void) {
+        
+        HapticFeedbackController.shared.mainButtonTouch()
         
         self.showLoader(true)
         TransactionService.addTransaction(intoSessionId: currentSessionId, forUser: viewModel.id, withAmount: amount, description: description) { response in

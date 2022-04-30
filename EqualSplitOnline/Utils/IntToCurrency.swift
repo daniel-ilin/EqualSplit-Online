@@ -12,8 +12,9 @@ struct IntToCurrency {
         
         let formatter = NumberFormatter()
         formatter.numberStyle = NumberFormatter.Style.currency
-        formatter.currencySymbol = "$"
+        formatter.currencySymbol = ""
         let amount = Double(amt/100) + Double(amt%100)/100
-        return formatter.string(from: NSNumber(value: amount))
+        let money = "$" + formatter.string(from: NSNumber(value: amount))!
+        return money
     }
 }

@@ -18,7 +18,7 @@ struct ActivationService {
         
         print("DEBUG: Email for requesting activation \(email)")
         
-        let callurl = API_URL + "/mail/service"
+        let callurl = API_URL + "/mail/code"
         
         AF.request(callurl, method: .post, parameters: params, encoder: JSONParameterEncoder.default).validate(statusCode: 200..<300).response { response in
             switch response.result {
@@ -46,6 +46,25 @@ struct ActivationService {
                 completion()
             case .failure:
                 print("Error")
+            }
+        }
+    }
+    
+    static func sendResetPasswordLink(to email: String, completion: @escaping ()->Void, errorHandler: @escaping ()->Void) {
+        
+        let params: [String: String] = [
+            "email": email,            
+        ]
+        
+        let callurl = API_URL + "/mail/resetpassword"
+        print(callurl)
+        
+        AF.request(callurl, method: .post, parameters: params, encoder: JSONParameterEncoder.default).validate(statusCode: 200..<300).response { response in
+            switch response.result {
+            case .success:
+                completion()
+            case .failure:
+                errorHandler()
             }
         }
     }
