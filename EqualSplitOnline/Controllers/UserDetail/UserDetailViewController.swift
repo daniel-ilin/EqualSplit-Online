@@ -119,7 +119,7 @@ class UserDetailViewController: UIViewController {
     private var currentSession: SessionViewModel
     
     private lazy var tableView: TransactionsTableViewController = {
-        let tableView = TransactionsTableViewController(user: currentUser, viewModel: viewModel, session: currentSession)
+        let tableView = TransactionsTableViewController(viewModel: viewModel, session: currentSession)
         tableView.viewmodelDelegate = self.viewmodelDelegate
         tableView.view.translatesAutoresizingMaskIntoConstraints = false
         tableView.view.clipsToBounds = true
@@ -160,7 +160,7 @@ class UserDetailViewController: UIViewController {
     
     private var personIcon = RingPersonIcon()
     
-    private var currentUser: User
+//    private var currentUser: User
     var viewModel: Person {
         didSet {
             view.pushTransition(0.2)
@@ -178,8 +178,8 @@ class UserDetailViewController: UIViewController {
     
     // MARK: - Lifecycle
     
-    init(user: User, viewModel: Person, inSession session: SessionViewModel) {
-        currentUser = user
+    init(viewModel: Person, inSession session: SessionViewModel) {
+//        currentUser = user
         self.viewModel = viewModel
         self.currentSession = session
         self.currentSessionId = session.sessionId
@@ -223,7 +223,7 @@ class UserDetailViewController: UIViewController {
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }
-        self.view.endEditing(true)
+        self.view.endEditing(true)        
     }
     
     private func setupUI() {
@@ -289,6 +289,7 @@ class UserDetailViewController: UIViewController {
         nameLabel.text = viewModel.name
         progressRing.progress = viewModel.progress
         progressLabel.text = IntToCurrency.makeDollars(fromNumber: viewModel.totalDebtFieldText ?? 0)
+        
     }
     
     // MARK: - Actions

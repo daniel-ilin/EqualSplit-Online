@@ -33,8 +33,8 @@ struct SessionService {
                         addSession(withName: name) { response in
                             completion(response)
                         }
-                    } errorHandler: { error in
-                        print(error)
+                    } errorHandler: {
+                        print("Error")
                     }
                 } else {
                     print("Request failed")
@@ -70,8 +70,8 @@ struct SessionService {
                         deleteSession(withId: id) { response in
                             completion(response)
                         }
-                    } errorHandler: { error in
-                        print(error)
+                    } errorHandler: {
+                        print("Error")
                     }
                 } else {
                     print("Request failed")
@@ -107,8 +107,8 @@ struct SessionService {
                         renameSession(withId: id, toName: name) { response in
                             completion(response)
                         }
-                    } errorHandler: { error in
-                        print(error)
+                    } errorHandler: {
+                        print("Error")
                     }
                 } else {
                     print("Request failed")
@@ -144,8 +144,8 @@ struct SessionService {
                         joinSession(withCode: code) { response in
                             completion(response)
                         }
-                    } errorHandler: { error in
-                        print(error)
+                    } errorHandler: {
+                        print("Error")
                     }
                 } else {
                     print("Request failed")
@@ -182,8 +182,8 @@ struct SessionService {
                         removeUser(withId: userid, fromSessionWithId: sessionid) { response in
                             completion(response)
                         }
-                    } errorHandler: { error in
-                        print(error)
+                    } errorHandler: {
+                        print("Error")
                     }
                 } else {
                     print("Request failed")

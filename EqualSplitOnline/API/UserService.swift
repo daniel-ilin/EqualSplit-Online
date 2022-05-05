@@ -36,13 +36,83 @@ struct UserService {
                         fetchUserData { response in
                             completion(response)
                         }
-                    } errorHandler: { error in
-                        print(error)
+                    } errorHandler: {
+                        print("Error")
                     }
 
                 }
             }
         }
     }
+    
+    static func changeUserName(to newname: String, completion: @escaping ()->()) {
+        guard let accessToken = KeychainService.getAccessToken() else { return }
+         
+        let headers: HTTPHeaders = [
+            "x-auth-token": accessToken
+          ]
+        
+        let request: [String: String] = [
+            "newname": newname
+        ]
+        
+        let callurl = "\(API_URL)/users"
+                
+        AF.request(callurl, method: .put, parameters: request, encoder: JSONParameterEncoder.default, headers: headers).validate(statusCode: 200..<300).response { response in
+            switch response.result {
+            case .success:
+                completion()
+            case .failure:
+                if response.response?.statusCode == 401 {
+                    AuthService.requestAccessToken {
+                        changeUserName(to: newname) {
+                            completion()
+                        }
+                    } errorHandler: {
+                        print("Error")
+                    }
+                } else {
+                    print("Request failed")
+                }
+            }
+        }
+    }
+    
+    
+    
+    
+    static func deleteAccount(completion: @escaping ()->(), errorhandler: @escaping ()->()) {
+        guard let accessToken = KeychainService.getAccessToken() else { return }
+         
+        let headers: HTTPHeaders = [
+            "x-auth-token": accessToken
+          ]
+        
+        let callurl = "\(API_URL)/users"
+                
+        AF.request(callurl, method: .delete, headers: headers).validate(statusCode: 200..<300).response { response in
+            switch response.result {
+            case .success:
+                completion()
+            case .failure:
+                if response.response?.statusCode == 401 {
+                    AuthService.requestAccessToken {
+                        deleteAccount {
+                            completion()
+                        } errorhandler: {
+                            errorhandler()
+                        }
+
+                    } errorHandler: {
+                        errorhandler()
+                    }
+                } else {
+                    print("Request failed")
+                }
+            }
+        }
+    }
+    
+    
     
 }

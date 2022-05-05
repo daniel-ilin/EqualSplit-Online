@@ -44,14 +44,14 @@ class ResetPasswordViewController: UIViewController {
         return label
     }()
     
-    private let emailTextField: UITextField = {
+    let emailTextField: UITextField = {
         let tf = CustomTextField(placeholder: "Email") 
         tf.keyboardType = .emailAddress
         tf.autocapitalizationType = .none
         return tf
     }()
     
-    private lazy var sendEmailButton: UIButton = {
+    lazy var sendEmailButton: UIButton = {
         let button = AuthButton()
         button.addTarget(self, action: #selector(handleSendLink), for: .touchUpInside )
         button.setTitle("Send Link", for: .normal)        

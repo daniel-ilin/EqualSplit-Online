@@ -27,7 +27,7 @@ class TransactionsTableViewController: UITableViewController {
     
     // MARK: - Lifecycle
     
-    init(user: User, viewModel: Person, session: SessionViewModel) {
+    init(viewModel: Person, session: SessionViewModel) {
         if AuthService.activeUser?.id == viewModel.id || AuthService.activeUser?.id == session.ownerId {
             activeUserCanMakeChanges = true
         }
@@ -219,22 +219,21 @@ extension TransactionsTableViewController: ExpandedCellViewDelegate {
     
     func confirmHandler(id: String, amount: Int, description: String) {
         HapticFeedbackController.shared.mainButtonTouch()
-        
-        self.showLoader(true)
-        TransactionService.changeTransaction(id: id, withAmount: amount, description: description) { response in
+//
+//        self.showLoader(true)
+        TransactionService.changeTransaction(id: id, withAmount: amount, description: description) { [weak self] response in
             guard response.error == nil else {
                 return
             }            
-            UserService.fetchUserData { response in
+            UserService.fetchUserData { [weak self] response in
                 guard response.error == nil else { return }
                 guard response.value != nil else { return }
                 SessionViewController.sessions = response.value!.sessions
-                self.viewmodelDelegate?.configureViewmodel()
+                self?.viewmodelDelegate?.configureViewmodel()
                 
-                self.delegate?.deselectedRow()
-                self.deselectAllRows(animated: true)
-                
-                self.showLoader(false)
+                self?.delegate?.deselectedRow()
+                self?.deselectAllRows(animated: true)                
+//                self.showLoader(false)
             }
         }
     }

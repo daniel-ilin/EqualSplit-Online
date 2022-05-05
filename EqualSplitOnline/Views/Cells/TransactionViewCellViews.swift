@@ -53,26 +53,26 @@ final class TransactionCollapsedCellView: UIView {
         super.init(frame: frame)
         
         let contentView = self
-        
+        contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 60).isActive = true
         contentView.addSubview(descriptionLabel)
         contentView.addSubview(dateLabel)
         contentView.addSubview(moneyLabel)
         
         NSLayoutConstraint.activate([
             descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            descriptionLabel.bottomAnchor.constraint(greaterThanOrEqualTo: dateLabel.topAnchor, constant: 0),
+            descriptionLabel.bottomAnchor.constraint(lessThanOrEqualTo: dateLabel.topAnchor, constant: 0),
             descriptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             descriptionLabel.trailingAnchor.constraint(lessThanOrEqualTo: centerXAnchor, constant: 0),
             
             dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             dateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -6),
-            dateLabel.topAnchor.constraint(greaterThanOrEqualTo: descriptionLabel.bottomAnchor, constant: 10),
+//            dateLabel.topAnchor.constraint(greaterThanOrEqualTo: descriptionLabel.bottomAnchor, constant: 10),
             dateLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -20),
             
             moneyLabel.leadingAnchor.constraint(greaterThanOrEqualTo: centerXAnchor, constant: 0),
-            moneyLabel.bottomAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 0),
+            moneyLabel.bottomAnchor.constraint(greaterThanOrEqualTo: dateLabel.topAnchor, constant: 0),
             moneyLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
-            moneyLabel.topAnchor.constraint(lessThanOrEqualTo: descriptionLabel.topAnchor, constant: 0)
+            moneyLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
         ])
         
     }
@@ -208,6 +208,7 @@ final class TransactionExpandedCellView: UIView {
     
     lazy var moneyField: UITextField = {
         let tf = CustomTextField(placeholder: "$0.00")
+        tf.outline.isHidden = true
         tf.setHeight(40)
         tf.delegate = self
         tf.layer.borderColor = UIColor.clear.cgColor
@@ -224,6 +225,7 @@ final class TransactionExpandedCellView: UIView {
     
     private let descriptionField: UITextField = {
         let tf = CustomTextField(placeholder: "Description")
+        tf.outline.isHidden = true
         tf.setHeight(40)
         tf.layer.borderColor = UIColor.clear.cgColor
         tf.layer.borderWidth = 0
@@ -277,7 +279,7 @@ final class TransactionExpandedCellView: UIView {
         if isNewTransaction {
             
             guard moneyField.text != "" else { return }
-            if descriptionField.text == "" { descriptionField.text = "Description" }
+//            if descriptionField.text == "" { descriptionField.text = " " }
             let amount = moneyAmount
             let description = descriptionField.text
             headerDelegate?.confirmHandler(amount: amount, description: description ?? "") { [weak self] in
@@ -288,7 +290,7 @@ final class TransactionExpandedCellView: UIView {
         } else {
             guard currentIndexPath != nil else { return }
             guard moneyField.text != "" else { return }
-            if descriptionField.text == "" { descriptionField.text = "Description" }
+//            if descriptionField.text == "" { descriptionField.text = " " }
             guard let id = tableSectionsData[currentIndexPath!.section][currentIndexPath!.row].id else { return }            
             let amount = moneyAmount
             let description = descriptionField.text

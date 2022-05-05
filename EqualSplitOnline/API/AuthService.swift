@@ -121,9 +121,9 @@ struct AuthService {
     
     
     static func requestAccessToken(completion: @escaping()->Void,
-                                   errorHandler: @escaping (AFError)->Void) {
+                                   errorHandler: @escaping ()->Void) {
         let callurl = API_URL + "/login/token"
-        guard let refreshToken = KeychainService.getRefreshToken() else { return }        
+        guard let refreshToken = KeychainService.getRefreshToken() else { return }
         
         let headers: HTTPHeaders = [
             "x-auth-token": refreshToken
@@ -143,17 +143,36 @@ struct AuthService {
                 }
             case .failure:
                 logout { response in
-                    print("Successful logout")
+                    errorHandler()
                 }
             }
         }
     }
     
-    static func checkIfUserLoggedIn() -> Bool {
-        if KeychainService.getRefreshToken() != nil {
-            return true
+    static func checkIfUserLoggedIn(completion: @escaping ()->Void, errorhandler: @escaping ()->Void) {
+        guard KeychainService.getRefreshToken() != nil else {
+            errorhandler()
+            return            
         }
-        return false
+        
+        let callurl = API_URL + "/checklogin"
+        guard let refreshToken = KeychainService.getRefreshToken() else { return }
+        
+        let headers: HTTPHeaders = [
+            "x-auth-token": refreshToken
+        ]
+        
+        AF.request(callurl, method: .get, headers: headers).validate(statusCode: 200..<300).response { response in
+            switch response.result {
+            case .success:
+                completion()
+            case .failure:
+                if response.response?.statusCode == 401 {
+                    errorhandler()
+                } else {
+                    print("Request failed")
+                }
+            }
+        }
     }
-    
 }

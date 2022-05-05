@@ -100,7 +100,7 @@ class UsersTableViewController: UITableViewController {
             self.viewmodelDelegate?.configureViewmodel()
         }
         
-        dvc = UserDetailViewController(user: activeSession.users[rowNumber], viewModel: viewModel.people[rowNumber], inSession: viewModel)
+        dvc = UserDetailViewController(viewModel: viewModel.people[rowNumber], inSession: viewModel)
         dvc!.viewmodelDelegate = self.viewmodelDelegate
         self.present(dvc!, animated: true, completion: nil)
     }

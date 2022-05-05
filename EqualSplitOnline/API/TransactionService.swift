@@ -37,8 +37,8 @@ struct TransactionService {
                         addTransaction(intoSessionId: sessionid, forUser: targetid, withAmount: amount, description: description) { response in
                             completion(response)
                         }
-                    } errorHandler: { error in
-                        print(error)
+                    } errorHandler: {
+                        print("Error")
                     }
                 } else {
                     print("Request failed")
@@ -73,8 +73,8 @@ struct TransactionService {
                         changeTransaction(id: id, withAmount: amount, description: description) { response in
                             completion(response)
                         }
-                    } errorHandler: { error in
-                        print(error)
+                    } errorHandler: {
+                        print("Error")
                     }
                 } else {
                     print("Request failed")
@@ -108,8 +108,8 @@ struct TransactionService {
                         deleteTransaction(withId: id, inSessionWithId: sessionId) { response in
                             completion(response)
                         }
-                    } errorHandler: { error in
-                        print(error)
+                    } errorHandler: {
+                        print("Error")
                     }
                 } else {
                     print("Request failed")
