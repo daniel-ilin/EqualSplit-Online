@@ -1,8 +1,7 @@
 # Equal Split Online
 
-This is the code for Equal Split Online and is work-in-progress. 
+This is the code for Equal Split Online
 The backend server code can be found here: https://github.com/daniel-ilin/auth-test.
-The offline version Equal Split is available on AppStore and can be found here: https://github.com/daniel-ilin/Equal_Split.
 
 This app allows you to add people to a selected session and keep track of their expenses. 
 In return, the app calculates the best way to split them equally among all people in the group. 
